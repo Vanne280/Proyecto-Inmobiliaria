@@ -1,17 +1,21 @@
 from djongo import models
 
 
-#comentario de prueba2
+
 class Tipo_de_inmueble(models.Model):
     nombre = models.CharField(max_length=25, null=False)
 
     """
     Crea un modelo con el nombre Tipo_de_inmueble y un campo
-    llamado nombre de tipo cadena, nulo
+    llamado nombre de tipo Varchar(25) y nulo
     """
 
     def __str__(self):
         return self.nombre
+    """
+    Función que muestracorrectamente el nombre del tipo de inmueble
+    en el admin de Django
+    """
 
 class Tipo_de_oferta(models.Model):
     nombre = models.CharField(max_length=20, null=False)
