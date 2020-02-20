@@ -54,7 +54,6 @@ class Inmueble(models.Model):
     parqueadero = models.BooleanField(null=False)
     disponible = models.BooleanField(null=False)
 
-# class Imagenes(models.Model):
-#     ruta = models.FileField(null=True, upload_to="archivos/%Y/%m/%d")
-#     nombre = models.CharField(max_length=50, null=True)
-#     IDInmueble = models.ForeignKey(Inmueble, null=True, on_delete=models.PROTECT)
+class Imagenes(models.Model):
+    ruta = models.FileField(null=True, upload_to="archivos/%Y/%m/%d")
+    IDInmueble = models.ForeignKey(Inmueble, null=True, on_delete=models.PROTECT)
