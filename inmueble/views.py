@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 # funciones que llaman las páginas
 def home(request):
-    return render(request, "paginas/inicio.html")
+    return render(request, "inicio.html")
 
 def ventas(request):
     return render(request, "paginas/ventas.html")

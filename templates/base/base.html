@@ -7,23 +7,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
-  <body>
+  <body class="brown lighten-4">
 
-    <nav class="nav-extended">
+    <nav class="nav-extended brown darken-1">
       <div class="nav-wrapper">
         <a href="#" class="brand-logo">Logo</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="{% url 'ventas' %}">INICIO</a></li>
+          <li><a href="{% url 'inicio' %}">INICIO</a></li>
           <li><a href="{% url 'ventas' %}">VENTAS</a></li>
           <li><a href="{% url 'arrendamientos' %}">ARRENDAMIENTOS</a></li>
-          <li><a href="{% url 'inicio' %}">NOSOSTROS</a></li>
+          <li><a href="">NOSOSTROS</a></li>
           <li><a href="">CONTACTO</a></li>
         </ul>
       </div>
-      <div class="nav-wrapper">
+      <div class="divider"></div>
+      <div class="nav-wrapper brown">
         <ul class="right hide-on-med-and-down">
-          <li><a href="">Ingresa</a></li>
+          {% if user.is_authenticated %}
+            <li><h6>Hola {{ user.username }}! - Rol: {{ user.perfil.IDRol.nombre }}</h6></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+          {% else %}
+            <li><a href="{% url 'usuario:signup' %}">Registrarse</a></li>
+            <li><a href="{% url 'login' %}"><i class="material-icons right">account_circle</i>Ingresar</a></li>
+          {% endif %}
         </ul>
       </div>
     </nav>
