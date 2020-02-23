@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from .models import Inmueble
+
+#ListView
+from django.views.generic.list import ListView
 
 # Create your views here.
 
@@ -11,3 +15,7 @@ def ventas(request):
 
 def arrendamientos(request):
     return render(request, "paginas/arrendamientos.html")
+
+# Clase que lista los registros de los inmuebles
+class InmuebleView(ListView):
+    model = Inmueble

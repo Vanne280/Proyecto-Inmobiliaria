@@ -46,7 +46,7 @@ class Barrio(models.Model):
 class Inmueble(models.Model):
     direccion = models.CharField(max_length=100, null=False)
     IDBarrio = models.ForeignKey(Barrio, null=False, on_delete=models.PROTECT)
-    precio = models.DecimalField(max_digits=10, decimal_places=10, null=False)
+    precio = models.IntegerField(null=False)
     IDTipo_de_inmueble = models.ForeignKey(Tipo_de_inmueble, null=False, on_delete=models.PROTECT)
     IDTipo_de_oferta = models.ForeignKey(Tipo_de_oferta, null=False, on_delete=models.PROTECT)
     alcoba = models.IntegerField(null=False)

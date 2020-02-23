@@ -23,6 +23,10 @@
       </div>
       <div class="divider"></div>
       <div class="nav-wrapper brown">
+        <ul class="left hide-on-med-and-down">
+          <li><a href="{% url 'listar' %}">Inmuebles</a></li>         
+        </ul>
+
         <ul class="right hide-on-med-and-down">
           {% if user.is_authenticated %}
             <li><h6>Hola {{ user.username }}! - Rol: {{ user.perfil.IDRol.nombre }}</h6></li>

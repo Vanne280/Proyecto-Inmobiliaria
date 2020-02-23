@@ -1,0 +1,41 @@
+{% extends 'base/base.html' %}
+
+{% block container %}
+<h4>listar inmuebles</h4>
+
+<table class="responsive-table">
+    <thead>
+      <tr>
+          <th>Tipo de oferta</th>
+          <th>Tipo de inmueble</th>
+          <th>Barrio</th>
+          <th>Dirección</th>
+          <th>Precio</th>
+          <th>Alcoba</th>
+          <th>Baño</th>
+          <th>Parqueadero</th>
+          <th>Disponible</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for data in object_list %}
+      <tr>
+        <td>{{ data.IDTipo_de_oferta.nombre }}</td>
+        <td>{{ data.IDTipo_de_inmueble.nombre }}</td>
+        <td>{{ data.IDBarrio.nombre }}</td>
+        <td>{{ data.direccion }}</td>
+        <td>{{ data.precio }}</td>
+        <td>{{ data.alcoba }}</td>
+        <td>{{ data.baño }}</td>
+        <td>{{ data.parqueadero }}</td>
+        <td>{{ data.disponible }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+
+
+
+{% endblock %}
