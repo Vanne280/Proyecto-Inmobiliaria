@@ -9,6 +9,7 @@ urlpatterns = [
     path('paginas/arrendamientos/', views.arrendamientos, name='arrendamientos'),
 
     path('listar/', views.InmuebleView.as_view(), name='listar'),
+    path('crear/', views.InmuebleCreate.as_view(), name='crear'),
 
     path('accounts/', include('django.contrib.auth.urls')),
     path('usuario/', include(('usuario.urls', 'usuario'), namespace='usuario')),

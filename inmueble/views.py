@@ -3,6 +3,7 @@ from .models import Inmueble
 
 #ListView
 from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView
 
 # Create your views here.
 
@@ -19,3 +20,12 @@ def arrendamientos(request):
 # Clase que lista los registros de los inmuebles
 class InmuebleView(ListView):
     model = Inmueble
+    context_object_name = 'inmueble'
+
+class InmuebleCreate(CreateView):
+    model = Inmueble
+    fields = '__all__'
+
+    def get_success_url(self):
+        return reverse('')
+        

@@ -1,6 +1,5 @@
 from djongo import models
-
-
+# from django.forms import inlineformset_factory
 
 class Tipo_de_inmueble(models.Model):
     nombre = models.CharField(max_length=25, null=False)
@@ -46,13 +45,44 @@ class Barrio(models.Model):
 class Inmueble(models.Model):
     direccion = models.CharField(max_length=100, null=False)
     IDBarrio = models.ForeignKey(Barrio, null=False, on_delete=models.PROTECT)
-    precio = models.IntegerField(null=False)
+    precio = models.DecimalField(max_digits=9, decimal_places=0,  null=False)
     IDTipo_de_inmueble = models.ForeignKey(Tipo_de_inmueble, null=False, on_delete=models.PROTECT)
     IDTipo_de_oferta = models.ForeignKey(Tipo_de_oferta, null=False, on_delete=models.PROTECT)
     alcoba = models.IntegerField(null=False)
     baño = models.IntegerField(null=False)
     parqueadero = models.BooleanField(null=False)
     disponible = models.BooleanField(null=False)
+
+# InmuebleFormSet = inlineformset_factory(Tipo_de_oferta, Inmueble, fields=('direccion', 'precio', 'alcoba', 'baño', 'parqueadero', 'disponible'))
+# IDTipo_de_oferta = Tipo_de_oferta.objects.get(pk=1)
+# formset = InmuebleFormSet(instance= IDTipo_de_oferta)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class Imagenes(models.Model):
     ruta = models.FileField(null=True, upload_to="archivos/%Y/%m/%d")
