@@ -22,16 +22,88 @@
         </div>
       </div>
 
-      <form method="post">{% csrf_token %}
-        {{ form.as_p }}
-          <div class="input-field col s12">
-              <input type="submit" value="Enviar" class="blue darken-1 btn">
-          </div>
-      </form>
+      <div class="row">
+      <form method="post" action="{% url 'listar' %}">
+        {% csrf_token %}
 
+        <div class="input-field col s12">
+          <input id="direccion" type="text" name="direccion" required>
+          <label for="direccion">Dirección</label>
+        </div>
+
+        <div class="input-field col s12">
+          <select id="IDBarrio" name="IDBarrio" required>
+            <option value="" disabled selected>Seleccione un barrio</option>
+            {% for i in IDBarrio %}
+              <option value="{{ i.nombre }}">{{ i.nombre }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="input-field col s12">
+          <input id="precio" type="number" name="precio" required>
+          <label for="precio">Precio</label>
+        </div>
+
+        <div class="input-field col s12">
+          <select id="IDTipo_de_inmueble" name="IDTipo_de_inmueble" required>
+            <option value="" disabled selected>Seleccione un tipo de inmueble</option>
+            {% for i in IDTipo_de_inmueble %}
+              <option>{{ i.nombre }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="input-field col s12">
+          <select id="IDTipo_de_oferta" name="IDTipo_de_oferta" required>
+            <option value="" disabled selected>Seleccione un tipo de oferta</option>
+            {% for i in IDTipo_de_oferta %}
+              <option value="{{ i.id }}">{{ i.nombre }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="input-field col s12">
+          <input id="alcoba" type="number" name="alcoba" required>
+          <label for="alcoba">Alcoba</label>
+        </div>
+
+        <div class="input-field col s12">
+          <input id="baño" type="number" name="baño" required>
+          <label for="baño">Baño</label>
+        </div>
+
+        <div class="input-field col s12">
+          <p>
+          <label>
+            <input id="parqueadero" type="checkbox" class="filled-in" />
+            <span>Parqueadero</span>
+          </label>
+          </p>
+
+          <p>
+          <label>
+            <input id="disponible" type="checkbox" class="filled-in" />
+            <span>Disponible</span>
+          </label>
+          </p>
+        </div>
+
+        <div class="input-field col s12">
+          <button class="deep-purple darken-3 btn" type="submit" name="action">Guardar</button>
+        </div>
+      </form>
     </div>
+  </div>
 
   </body>
+  <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+        $(document).ready(function(){
+        $('select').formSelect();
+        });
+    </script>
 </html>

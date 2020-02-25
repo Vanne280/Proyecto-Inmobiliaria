@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Inmueble
+from .models import Inmueble, Barrio, Tipo_de_inmueble, Tipo_de_oferta
+# from .forms import InmuebleForm
 
 #ListView
 from django.views.generic.list import ListView
@@ -24,8 +25,16 @@ class InmuebleView(ListView):
 
 class InmuebleCreate(CreateView):
     model = Inmueble
-    fields = '__all__'
+    template_name = 'inmueble/inmueble_form.html'
+    fields = (['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
+                'alcoba','baño','parqueadero','disponible'])
 
     def get_success_url(self):
         return reverse('')
-        
+
+    def get_context_data(self,**kwargs):
+        context = super(InmuebleCreate,self).get_context_data(**kwargs)
+        context['IDBarrio'] = Barrio.objects.all()
+        context['IDTipo_de_inmueble'] = Tipo_de_inmueble.objects.all()
+        context['IDTipo_de_oferta'] = Tipo_de_oferta.objects.all()
+        return context
