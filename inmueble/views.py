@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Inmueble, Barrio, Tipo_de_inmueble, Tipo_de_oferta
-# from .forms import InmuebleForm
+from django.urls import reverse_lazy, reverse
 
 #ListView
 from django.views.generic.list import ListView
@@ -23,6 +23,7 @@ class InmuebleView(ListView):
     model = Inmueble
     context_object_name = 'inmueble'
 
+# Clase que registra los inmuebles
 class InmuebleCreate(CreateView):
     model = Inmueble
     template_name = 'inmueble/inmueble_form.html'
@@ -30,7 +31,7 @@ class InmuebleCreate(CreateView):
                 'alcoba','baño','parqueadero','disponible'])
 
     def get_success_url(self):
-        return reverse('')
+        return reverse('listar')
 
     def get_context_data(self,**kwargs):
         context = super(InmuebleCreate,self).get_context_data(**kwargs)
