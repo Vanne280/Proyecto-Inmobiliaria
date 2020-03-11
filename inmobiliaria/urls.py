@@ -8,8 +8,10 @@ urlpatterns = [
     path('paginas/ventas/', views.ventas, name='ventas'),
     path('paginas/arrendamientos/', views.arrendamientos, name='arrendamientos'),
 
-    path('listar/', views.InmuebleView.as_view(), name='listar'),
     path('crear/', views.InmuebleCreate.as_view(), name='crear'),
+    path('listar/', views.InmuebleView.as_view(), name='listar'),
+    path('/<int:pk>/', views.InmuebleUpdate.as_view(), name='editar'),
+    path('/eliminar/<int:pk>/', views.InmuebleDelete.as_view(), name='eliminar'),    
 
     path('accounts/', include('django.contrib.auth.urls')),
     path('usuario/', include(('usuario.urls', 'usuario'), namespace='usuario')),

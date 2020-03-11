@@ -30,6 +30,14 @@
         <td>{{ data.baño }}</td>
         <td>{{ data.parqueadero }}</td>
         <td>{{ data.disponible }}</td>
+        <td>
+          <a href="{% url 'editar' data.id %}" class="btn-floating btn-small waves-effect waves-light red darken-4">
+            <i class="small material-icons">create</i>
+          </a>
+          <a href="{% url 'eliminar' data.id %}" class="btn-floating btn-small waves-effect waves-light red darken-4">
+            <i class="small material-icons">delete_forever</i>
+          </a>
+        </td>
       </tr>
       {% endfor %}
     </tbody>

@@ -4,11 +4,9 @@ from django.urls import reverse_lazy, reverse
 
 #ListView
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-# Create your views here.
-
-# funciones que llaman las páginas
+# Funciones que llaman las páginas
 def home(request):
     return render(request, "inicio.html")
 
@@ -17,11 +15,6 @@ def ventas(request):
 
 def arrendamientos(request):
     return render(request, "paginas/arrendamientos.html")
-
-# Clase que lista los registros de los inmuebles
-class InmuebleView(ListView):
-    model = Inmueble
-    context_object_name = 'inmueble'
 
 # Clase que registra los inmuebles
 class InmuebleCreate(CreateView):
@@ -39,3 +32,28 @@ class InmuebleCreate(CreateView):
         context['IDTipo_de_inmueble'] = Tipo_de_inmueble.objects.all()
         context['IDTipo_de_oferta'] = Tipo_de_oferta.objects.all()
         return context
+
+# Clase que lista los registros de los inmuebles
+class InmuebleView(ListView):
+    model = Inmueble
+    context_object_name = 'inmueble'
+
+# Clase que edita los inmuebles
+class InmuebleUpdate(UpdateView):
+    """docstring for InmuebleUpdate."""
+
+    model = Inmueble
+    fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
+                'alcoba','baño','parqueadero','disponible']
+
+    def get_success_url(self):
+        return reverse('listar')
+
+# Clase que edita los inmuebles
+class InmuebleDelete(DeleteView):
+    """docstring for InmuebleDelete."""
+
+    model = Inmueble
+
+    def get_success_url(self):
+        return reverse('listar')

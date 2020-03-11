@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+
+{% block container %}
+<h4>listar Usuarios</h4>
+
+<table class="responsive-table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Usuario</th>
+        <th>Email</th>
+        <th>Rol</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in object_list %}
+      <tr>
+        <td>{{ user.first_name}}</td>
+        <td>{{ user.last_name}}</td>
+        <td>{{ user.username}}</td>
+        <td>{{ user.email}}</td>
+        <td>{{ user.perfil.IDRol.nombre}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

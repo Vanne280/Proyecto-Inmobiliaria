@@ -1,5 +1,5 @@
 from djongo import models
-# from django.forms import inlineformset_factory
+
 
 class Tipo_de_inmueble(models.Model):
     nombre = models.CharField(max_length=25, null=False)
@@ -53,9 +53,7 @@ class Inmueble(models.Model):
     parqueadero = models.BooleanField(null=False)
     disponible = models.BooleanField(null=False)
 
-# InmuebleFormSet = inlineformset_factory(Tipo_de_oferta, Inmueble, fields=('direccion', 'precio', 'alcoba', 'baño', 'parqueadero', 'disponible'))
-# IDTipo_de_oferta = Tipo_de_oferta.objects.get(pk=1)
-# formset = InmuebleFormSet(instance= IDTipo_de_oferta)
+
 
 
 

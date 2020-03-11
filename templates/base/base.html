@@ -24,7 +24,10 @@
       <div class="divider"></div>
       <div class="nav-wrapper brown">
         <ul class="left hide-on-med-and-down">
-          <li><a href="{% url 'listar' %}">Inmuebles</a></li>
+          {% if user.perfil.IDRol.nombre == "Administrador" %}
+            <li><a href="{% url 'listar' %}">Inmuebles</a></li>
+            <li><a href="{% url 'usuario:listar' %}">Usuarios</a></li>
+          {% endif %}
         </ul>
 
         <ul class="right hide-on-med-and-down">

@@ -75,10 +75,10 @@ def ActivateUser(request, uidb64, token, backend='django.contrib.auth.backends.M
 def templateEmailSent(request, username):
     return render(request, 'registration/account_activation.html', {'username': username})
 
-# class UserList(PermissionRequiredMixin, ListView):
-#     permission_required = 'users.listarusuarios'
-#     model = User
-#
+#Listar usuarios registrados
+class UserList(ListView):
+    model = User
+
 # @login_required
 # def UserApp(request):
 #     return render(request, "auth/user_app.html")
