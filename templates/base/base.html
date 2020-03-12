@@ -28,6 +28,9 @@
             <li><a href="{% url 'listar' %}">Inmuebles</a></li>
             <li><a href="{% url 'usuario:listar' %}">Usuarios</a></li>
           {% endif %}
+          {% if user.perfil.IDRol.nombre == "Cliente" %}
+            <li><a href="{% url 'usuario:userdata' %}">Datos personales</a></li>
+          {% endif %}
         </ul>
 
         <ul class="right hide-on-med-and-down">

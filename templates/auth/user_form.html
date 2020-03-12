@@ -1,0 +1,18 @@
+{% extends 'base/base.html' %}
+
+{% block container %}
+<h4>Editar datos</h4>
+
+<div class="row">
+  <form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <div class="">
+      <button class="deep-purple darken-3 btn" type="submit" name="action">Guardar</button>
+    </div>
+  </form>
+</div>
+
+
+
+{% endblock %}

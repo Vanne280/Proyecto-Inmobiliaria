@@ -6,7 +6,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 
-#envio de correo para activar cuenta
+# Envío de correo para activar cuenta
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -15,10 +15,11 @@ from .tokens import account_activation_token
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
 
-#ListView
+# ListView, UpdateView
 from django.views.generic.list import ListView
+from django.views.generic.edit import UpdateView
 
-#Decorador (permisos)
+# Decorador (permisos)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -38,7 +39,7 @@ def signup(request):
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
 
-#Enviar correo electrónico para activar Usuario
+# Enviar correo electrónico para activar Usuario
 def SendEmailActivateUser(request, user):
     current_site = get_current_site(request)
     subject = 'Activar cuenta inmobiliaria'
@@ -55,7 +56,7 @@ def SendEmailActivateUser(request, user):
     msg.attach_alternative(html_content, "text/html")
     msg.send()
 
-#Activar un usuario que previamente se ha registrado
+# Activar un usuario que previamente se ha registrado
 def ActivateUser(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
@@ -71,14 +72,23 @@ def ActivateUser(request, uidb64, token, backend='django.contrib.auth.backends.M
     else:
         return render(request, 'registration/account_activation_invalid.html')
 
-#Renderiza el template account_activation.html
+# Renderiza el template account_activation.html
 def templateEmailSent(request, username):
     return render(request, 'registration/account_activation.html', {'username': username})
 
-#Listar usuarios registrados
+# Listar usuarios registrados
 class UserList(ListView):
     model = User
 
+def UserData(request):
+    return render(request, "auth/user_data.html")
+
 # @login_required
-# def UserApp(request):
-#     return render(request, "auth/user_app.html")
+# class UserUpdate(UpdateView):
+#     """docstring for UserUpdate."""
+#
+#     model = User
+#     fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
+#
+#     def get_success_url(self):
+#         return reverse('inicio')
