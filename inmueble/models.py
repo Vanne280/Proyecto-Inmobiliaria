@@ -23,20 +23,20 @@ class Tipo_de_oferta(models.Model):
         return self.nombre
 
 class Departamento(models.Model):
-    nombre = models.CharField(max_length=45, null=False)
+    nombre = models.CharField(max_length=80, null=False)
 
     def __str__(self):
         return self.nombre
 
 class Ciudad(models.Model):
-    nombre = models.CharField(max_length=45, null=False)
+    nombre = models.CharField(max_length=80, null=False)
     IDDepartamento = models.ForeignKey(Departamento, null=False, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.nombre
 
 class Barrio(models.Model):
-    nombre = models.CharField(max_length=50, null=False)
+    nombre = models.CharField(max_length=80, null=False)
     IDCiudad = models.ForeignKey(Ciudad, null=False, on_delete=models.PROTECT)
 
     def __str__(self):
@@ -52,35 +52,6 @@ class Inmueble(models.Model):
     baño = models.IntegerField(null=False)
     parqueadero = models.BooleanField(null=False)
     disponible = models.BooleanField(null=False)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 class Imagenes(models.Model):
     ruta = models.FileField(null=True, upload_to="archivos/%Y/%m/%d")

@@ -6,21 +6,23 @@
 <table class="responsive-table">
     <thead>
       <tr>
-          <th>Tipo de oferta</th>
-          <th>Tipo de inmueble</th>
-          <th>Barrio</th>
-          <th>Dirección</th>
-          <th>Precio</th>
-          <th>Alcoba</th>
-          <th>Baño</th>
-          <th>Parqueadero</th>
-          <th>Disponible</th>
+        <th>ID</th>
+        <th>Tipo de oferta</th>
+        <th>Tipo de inmueble</th>
+        <th>Barrio</th>
+        <th>Dirección</th>
+        <th>Precio</th>
+        <th>Alcoba</th>
+        <th>Baño</th>
+        <th>Parqueadero</th>
+        <th>Disponible</th>
       </tr>
     </thead>
 
     <tbody>
       {% for data in inmueble %}
       <tr>
+        <td>{{ data.id }}</td>
         <td>{{ data.IDTipo_de_oferta.nombre }}</td>
         <td>{{ data.IDTipo_de_inmueble.nombre }}</td>
         <td>{{ data.IDBarrio.nombre }}</td>
@@ -41,6 +43,26 @@
       </tr>
       {% endfor %}
     </tbody>
+</table>
+
+<h5>listar Imágenes</h5>
+
+<table class="responsive-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>ruta</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for img in object_list %}
+    <tr>
+      <td>{{ img.IDInmueble.id }}</td>
+      <td>{{ img.ruta }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
 </table>
 
 <!--Botón para agregar nuevo inmueble-->

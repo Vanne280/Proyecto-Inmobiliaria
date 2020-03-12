@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Inmueble, Barrio, Tipo_de_inmueble, Tipo_de_oferta
+from .models import Inmueble, Barrio, Tipo_de_inmueble, Tipo_de_oferta, Imagenes
 from django.urls import reverse_lazy, reverse
 
 #ListView
@@ -57,3 +57,11 @@ class InmuebleDelete(DeleteView):
 
     def get_success_url(self):
         return reverse('listar')
+
+# Clase que lista las imágenes
+class ImageList(ListView):
+    """docstring for ImageList."""
+
+    template_name = 'inmueble/inmueble_list.html'
+    model = Imagenes
+    
