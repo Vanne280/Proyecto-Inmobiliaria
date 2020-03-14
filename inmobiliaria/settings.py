@@ -129,8 +129,8 @@ LOGOUT_REDIRECT_URL = '/'
 # Envío de correos
 EMAIL_USE_SSL = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'vgalvisb@uniremingtonmanizales.edu.co'
-EMAIL_HOST_PASSWORD = 'sisters280'
+EMAIL_HOST_USER = 'registroinmobiliariainnova@gmail.com'
+EMAIL_HOST_PASSWORD = 'Innova2020'
 EMAIL_PORT = 465
 
 # Carga de archivos

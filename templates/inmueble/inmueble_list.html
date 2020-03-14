@@ -16,6 +16,8 @@
         <th>Baño</th>
         <th>Parqueadero</th>
         <th>Disponible</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
 
@@ -36,6 +38,8 @@
           <a href="{% url 'editar' data.id %}" class="btn-floating btn-small waves-effect waves-light red darken-4">
             <i class="small material-icons">create</i>
           </a>
+        </td>
+        <td>
           <a href="{% url 'eliminar' data.id %}" class="btn-floating btn-small waves-effect waves-light red darken-4">
             <i class="small material-icons">delete_forever</i>
           </a>
