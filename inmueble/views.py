@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from .models import Inmueble, Barrio, Tipo_de_inmueble, Tipo_de_oferta, Imagenes
 from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect
+from .forms import InmuebleForm
+
+#Decoradores
+from django.contrib.auth.decorators import login_required
 
 #ListView
 from django.views.generic.list import ListView
@@ -20,8 +25,8 @@ def arrendamientos(request):
 class InmuebleCreate(CreateView):
     model = Inmueble
     template_name = 'inmueble/inmueble_form.html'
-    fields = (['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
-                'alcoba','baño','parqueadero','disponible'])
+    fields = ('direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
+                'alcoba','baño','parqueadero','disponible')
 
     def get_success_url(self):
         return reverse('listar')
@@ -32,6 +37,22 @@ class InmuebleCreate(CreateView):
         context['IDTipo_de_inmueble'] = Tipo_de_inmueble.objects.all()
         context['IDTipo_de_oferta'] = Tipo_de_oferta.objects.all()
         return context
+
+# Guardar inmueble
+@login_required()
+def Guardar_inmueble(request):
+    if request.method == 'POST':
+        is_file = request.POST.get('imagenes', True)
+        form = InmuebleForm(request.POST)
+        if form.is_valid():
+            inmueble = form.save()
+            for field in request.FILES.keys():
+                if is_file == True:
+                    for formfile in request.FILES.getlist(field):
+                        img = Imagenes(ruta = formfile, IDInmueble_id = inmueble.pk)
+                        img.save()
+
+        return HttpResponseRedirect(reverse('listar'))
 
 # Clase que lista los registros de los inmuebles
 class InmuebleView(ListView):
@@ -64,4 +85,3 @@ class ImageList(ListView):
 
     template_name = 'inmueble/inmueble_list.html'
     model = Imagenes
-    

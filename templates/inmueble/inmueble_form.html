@@ -23,9 +23,14 @@
     </div>
 
     <div class="row">
-      <form method="post">
+      <form method="post" method="post" enctype="multipart/form-data" action="{% url 'guardar_inmueble' %}">
         {% csrf_token %}
         {{form.as_p}}
+        <div class="row">
+          <div class="input-field col s12">
+            <input type="file" name="imagenes" id="imagenes" multiple>
+          </div>
+        </div>
         <div class="">
           <button class="deep-purple darken-3 btn" type="submit" name="action">Guardar</button>
         </div>

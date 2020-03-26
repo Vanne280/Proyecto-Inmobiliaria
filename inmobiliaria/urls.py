@@ -19,6 +19,9 @@ urlpatterns = [
     path('listar/', views.InmuebleView.as_view(), name='listar'),
     path('listar/', views.ImageList.as_view(), name='listar'),
 
+    # Guardar inmuebles
+    path('guardar_inmueble/', views.Guardar_inmueble, name='guardar_inmueble'),
+
     path('<int:pk>/', views.InmuebleUpdate.as_view(), name='editar'),
     path('eliminar/<int:pk>/', views.InmuebleDelete.as_view(), name='eliminar'),
 

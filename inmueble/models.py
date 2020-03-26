@@ -54,5 +54,5 @@ class Inmueble(models.Model):
     disponible = models.BooleanField(null=False)
 
 class Imagenes(models.Model):
-    ruta = models.FileField(null=True, upload_to="archivos/%Y/%m/%d")
+    ruta = models.ImageField(null=True, upload_to="imagenes/%Y/%m/%d")
     IDInmueble = models.ForeignKey(Inmueble, null=True, on_delete=models.PROTECT)
