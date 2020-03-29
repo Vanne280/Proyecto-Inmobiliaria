@@ -12,12 +12,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='inicio'),
     path('paginas/ventas/', views.ventas, name='ventas'),
-    path('paginas/arrendamientos/', views.arrendamientos, name='arrendamientos'),
+    # path('paginas/arrendamientos/', views.arrendamientos, name='arrendamientos'),
 
     path('crear/', views.InmuebleCreate.as_view(), name='crear'),
 
     path('listar/', views.InmuebleView.as_view(), name='listar'),
-    path('listar/', views.ImageList.as_view(), name='listar'),
+    path('paginas/arrendamientos/', views.ImageList.as_view(), name='listar_imagenes'),
 
     # Guardar inmuebles
     path('guardar_inmueble/', views.Guardar_inmueble, name='guardar_inmueble'),

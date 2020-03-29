@@ -18,11 +18,12 @@ def home(request):
 def ventas(request):
     return render(request, "paginas/ventas.html")
 
-def arrendamientos(request):
-    return render(request, "paginas/arrendamientos.html")
+# def arrendamientos(request):
+#     return render(request, "paginas/arrendamientos.html")
 
-# Clase que registra los inmuebles
 class InmuebleCreate(CreateView):
+    """Clase que registra los inmuebles"""
+
     model = Inmueble
     template_name = 'inmueble/inmueble_form.html'
     fields = ('direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
@@ -54,14 +55,14 @@ def Guardar_inmueble(request):
 
         return HttpResponseRedirect(reverse('listar'))
 
-# Clase que lista los registros de los inmuebles
 class InmuebleView(ListView):
+    """Clase que lista los registros de los inmuebles"""
+
     model = Inmueble
     context_object_name = 'inmueble'
 
-# Clase que edita los inmuebles
 class InmuebleUpdate(UpdateView):
-    """docstring for InmuebleUpdate."""
+    """Clase que edita los inmuebles"""
 
     model = Inmueble
     fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
@@ -70,18 +71,21 @@ class InmuebleUpdate(UpdateView):
     def get_success_url(self):
         return reverse('listar')
 
-# Clase que edita los inmuebles
 class InmuebleDelete(DeleteView):
-    """docstring for InmuebleDelete."""
+    """Clase que edita los inmuebles"""
 
     model = Inmueble
 
     def get_success_url(self):
         return reverse('listar')
 
-# Clase que lista las imágenes
 class ImageList(ListView):
-    """docstring for ImageList."""
+    """Clase que lista las imágenes"""
 
-    template_name = 'inmueble/inmueble_list.html'
+    template_name = 'paginas/arrendamientos.html'
     model = Imagenes
+    # context_object_name = 'imagenes'
+
+# def Imagelist(request):
+#     imagenes = Imagenes.objects.all()
+#     return render(request, 'inmueble/arrendamientos.html', {'imagenes': imagenes})
