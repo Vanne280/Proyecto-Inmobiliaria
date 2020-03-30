@@ -6,7 +6,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 
-# Envío de correo para activar cuenta
+# Librerías para el envío de correo y activar cuenta
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -15,16 +15,16 @@ from .tokens import account_activation_token
 from django.utils.html import strip_tags
 from django.core.mail import EmailMultiAlternatives
 
-# ListView, UpdateView
+# Librerías ListView, UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
 
-# Decorador (permisos)
+# Librería Decoradores (permisos)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
-# Registro de usuarios
+# Función para el registro de usuarios
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
@@ -39,7 +39,7 @@ def signup(request):
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
 
-# Enviar correo electrónico para activar Usuario
+# Función para enviar correo electrónico y activar Usuario
 def SendEmailActivateUser(request, user):
     current_site = get_current_site(request)
     subject = 'Activar cuenta inmobiliaria'
@@ -56,7 +56,7 @@ def SendEmailActivateUser(request, user):
     msg.attach_alternative(html_content, "text/html")
     msg.send()
 
-# Activar un usuario que previamente se ha registrado
+# Función para activar un usuario que previamente se ha registrado
 def ActivateUser(request, uidb64, token, backend='django.contrib.auth.backends.ModelBackend'):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
@@ -72,14 +72,16 @@ def ActivateUser(request, uidb64, token, backend='django.contrib.auth.backends.M
     else:
         return render(request, 'registration/account_activation_invalid.html')
 
-# Renderiza el template account_activation.html
+# Función que renderiza el template account_activation.html
 def templateEmailSent(request, username):
     return render(request, 'registration/account_activation.html', {'username': username})
 
-# Listar usuarios registrados
 class UserList(ListView):
+    """Clase que listar los usuarios registrados"""
+
     model = User
 
+# Función para editar los datos del usuario (No funciona)
 def UserData(request):
     return render(request, "auth/user_data.html")
 

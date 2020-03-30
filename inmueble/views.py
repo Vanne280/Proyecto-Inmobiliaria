@@ -4,12 +4,17 @@ from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 from .forms import InmuebleForm
 
-#Decoradores
+# Librería Decoradores (permisos)
 from django.contrib.auth.decorators import login_required
 
-#ListView
+# Librería ListView
 from django.views.generic.list import ListView
+
+# Librerías CreateView, UpdateView, DeleteView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+# Librería DetailView
+from django.views.generic.detail import DetailView
 
 # Funciones que llaman las páginas
 def home(request):
@@ -80,12 +85,14 @@ class InmuebleDelete(DeleteView):
         return reverse('listar')
 
 class ImageList(ListView):
-    """Clase que lista las imágenes"""
+    """Clase que muestra las imágenes"""
 
     template_name = 'paginas/arrendamientos.html'
     model = Imagenes
-    # context_object_name = 'imagenes'
+    context_object_name = 'imagenes'
 
-# def Imagelist(request):
-#     imagenes = Imagenes.objects.all()
-#     return render(request, 'inmueble/arrendamientos.html', {'imagenes': imagenes})
+class InmuebleDetail(DetailView):
+    """Clase que muestra los datos de la tabla Inmueble"""
+
+    model = Inmueble
+    template_name = 'inmueble/inmueble_detail.html'

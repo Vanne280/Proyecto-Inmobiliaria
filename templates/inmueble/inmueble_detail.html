@@ -1,0 +1,107 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block container %}
+
+<section style= "padding-top: 50px">
+  <div class="row">
+      <div class="col s7 push-s5">
+        <span class="flow-text"><h3>Imagenes</h3></span>
+      </div>
+      <div class="col s5 pull-s7">
+        <span class="flow-text">
+          <ul class="collection with-header">
+            <li class="collection-header">
+              <h4>{{ object.IDTipo_de_inmueble.nombre }} en {{ object.IDTipo_de_oferta.nombre }}</h4></li>
+            <li class="collection-item" style= "font-size: 20px;">Precio: {{ object.precio }}</li>
+            <li class="collection-item" style= "font-size: 20px;">Dirección: {{ object.direccion }}</li>
+            <li class="collection-item" style= "font-size: 20px;">Barrio: {{ object.IDBarrio.nombre }}</li>
+            <li class="collection-item" style= "font-size: 20px;">Disponible: {{ object.disponible }}</li>
+          </ul>
+        </span>
+      </div>
+    </div>
+</section>
+<div class="divider"></div>
+<section>
+  <ul id="tabs-swipe-demo" class="tabs">
+    <li class="tab col s3"><a class="active" href="#test-swipe-1">Detalles</a></li>
+    <li class="tab col s3"><a class="active" href="#test-swipe-2">Me interesa</a></li>
+  </ul>
+  <div id="test-swipe-1" class="col s12">
+    <div class="row">
+      <div class="col s6">
+        <h4>Descripción</h4>
+        <p>{{ object.IDTipo_de_inmueble.nombre }} con una excelente ubicación, cómodas rutas de acceso,
+           transporte público cercano, cerca de colegios, restaurantes, supermercados, cerca de la iglesia.
+           Características: 3 alcobas, 3 closet, 2 baños, sala comedor, cocina sencilla, gas natural,
+           área de ropas y pisos en baldosa.</p>
+      </div>
+      <br>
+      <div class="col s6">
+        <ul class="right" style="margin-right: 120px;">
+          <li>
+              <i class="small material-icons" style="text-align: center;">home</i>
+              Tipo de inmueble: {{ object.IDTipo_de_inmueble.nombre }}
+          </li>
+          <li>
+              <i class="small material-icons">local_offer</i>
+              Tipo de oferta: {{ object.IDTipo_de_oferta.nombre }}
+          </li>
+          <li>
+              <i class="small material-icons">hotel</i>
+              Alcoba: {{ object.alcoba }}
+          </li>
+          <li>
+              <i class="small material-icons">invert_colors</i>
+              Baño: {{ object.baño }}
+          </li>
+          <li>
+              <i class="small material-icons">directions_car</i>
+              Parqueadero: {{ object.parqueadero }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <div id="test-swipe-2" class="col s12">Test 2</div>
+</section>
+<!--
+{{ object.id }}
+<br>
+{{ object.direccion }}
+<br>
+{{ object.IDTipo_de_oferta.nombre }}
+<br>
+{{ object.IDTipo_de_inmueble.nombre }}
+<br>
+{{ object.IDBarrio.nombre }}
+<br>
+{{ object.precio }}
+<br>
+{{ object.alcoba }}
+<br>
+{{ object.baño }}
+<br>
+{{ object.parqueadero }}
+<br>
+{{ object.disponible }} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

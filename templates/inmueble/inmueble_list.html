@@ -49,26 +49,6 @@
     </tbody>
 </table>
 
-<h5>listar Imágenes</h5>
-
-<table class="responsive-table">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>ruta</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    {% for img in object_list %}
-    <tr>
-      <td>{{ img.IDInmueble.id }}</td>
-      <td>{{ img.ruta }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
 <!--Botón para agregar nuevo inmueble-->
 <div class="fixed-action-btn">
   <a href="{% url 'crear' %}" class="btn-floating btn-large teal darken-2">
