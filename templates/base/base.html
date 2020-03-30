@@ -83,10 +83,13 @@
         $('select').formSelect();
         });
 
-        $('.carousel.carousel-slider').carousel({
-            fullWidth: true,
-            indicators: true
+        document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.slider');
+          var instances = M.Slider.init(elems, {
+            indicators: false,
+            height: 450,
           });
+        });
     </script>
 
   </body>
