@@ -14,9 +14,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   </head>
-  <body class="brown lighten-4">
+  <body>
+    <nav class="#" role="navigation">
+      <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo">Logo<i class="material-icons">cloud</i></a>
+        <ul class="right hide-on-med-and-down">
+          {% if user.is_authenticated %}
+            <li><h6 style="padding-top: 4%;">Hola {{ user.username }}! - Rol: {{ user.perfil.IDRol.nombre }}</h6></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+          {% else %}
+            <li><a href="{% url 'usuario:signup' %}">Registrarse</a></li>
+            <li><a href="{% url 'login' %}"><i class="material-icons right">account_circle</i>Ingresar</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <nav class="nav-extended">
+      <div class="nav-wrapper">
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul id="nav-mobile" class="hide-on-med-and-down" style="padding-left: 380px">
+          <li><a href="{% url 'inicio' %}">INICIO</a></li>
+          <li><a href="{% url 'ventas' %}">VENTAS</a></li>
+          <li><a href="{% url 'listar_imagenes' %}">ARRENDAMIENTOS</a></li>
+          <li><a href="{% url 'nosotros' %}">NOSOSTROS</a></li>
+          <li><a href="">CONTACTO</a></li>
+        </ul>
+      </div>
+    </nav>
 
-    <nav class="nav-extended brown darken-1">
+    <!-- <nav class="nav-extended brown darken-1">
       <div class="nav-wrapper">
         <a href="#" class="brand-logo">Logo</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -24,7 +50,7 @@
           <li><a href="{% url 'inicio' %}">INICIO</a></li>
           <li><a href="{% url 'ventas' %}">VENTAS</a></li>
           <li><a href="{% url 'listar_imagenes' %}">ARRENDAMIENTOS</a></li>
-          <li><a href="">NOSOSTROS</a></li>
+          <li><a href="{% url 'nosotros' %}">NOSOSTROS</a></li>
           <li><a href="">CONTACTO</a></li>
         </ul>
       </div>
@@ -59,7 +85,7 @@
       <li><a href="">ARRENDAMIENTOS</a></li>
       <li><a href="">NOSOSTROS</a></li>
       <li><a href="">CONTACTO</a></li>
-    </ul>
+    </ul> -->
 
     <div class="container">
       {% block container %}
@@ -69,6 +95,32 @@
 
       {% block container2 %}
       {% endblock %}
+
+    <footer class="page-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Footer Content</h5>
+              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+              <h5 class="white-text">Links</h5>
+              <ul>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+          © 2014 Copyright Text
+          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          </div>
+        </div>
+    </footer>
 
 
     <!--Import jQuery before materialize.js-->
@@ -80,8 +132,9 @@
 
     <script>
         $(document).ready(function(){
-        $('select').formSelect();
-        $('.tabs').tabs();
+          $('.sidenav').sidenav();
+          $('select').formSelect();
+          $('.tabs').tabs();
         });
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -89,6 +142,10 @@
           var instances = M.Slider.init(elems, {
             indicators: false,
             height: 450,
+          });
+          var elems = document.querySelectorAll('.parallax');
+          var instances = M.Parallax.init(elems, {
+            responsiveThreshold: 0
           });
         });
     </script>

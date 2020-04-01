@@ -23,8 +23,8 @@ def home(request):
 def ventas(request):
     return render(request, "paginas/ventas.html")
 
-# def arrendamientos(request):
-#     return render(request, "paginas/arrendamientos.html")
+def nosotros(request):
+    return render(request, "paginas/nosotros.html")
 
 class InmuebleCreate(CreateView):
     """Clase que registra los inmuebles"""

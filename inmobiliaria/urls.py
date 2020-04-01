@@ -14,6 +14,9 @@ urlpatterns = [
     # Ruta de la página de Inicio
     path('', views.home, name='inicio'),
 
+    # Ruta de la página Nosotros
+    path('paginas/nosotros/', views.nosotros, name='nosotros'),
+
     # Ruta de la página de ventas
     path('paginas/ventas/', views.ventas, name='ventas'),
     # path('paginas/arrendamientos/', views.arrendamientos, name='arrendamientos'),
