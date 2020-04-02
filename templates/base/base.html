@@ -15,12 +15,26 @@
 
   </head>
   <body>
+    <!-- Dropdown Structure -->
+    <ul id="dropdown1" class="dropdown-content">
+      {% if user.perfil.IDRol.nombre == "Administrador" %}
+        <li><a href="{% url 'listar' %}">Inmuebles</a></li>
+        <li><a href="{% url 'usuario:listar' %}">Usuarios</a></li>
+      {% endif %}
+      {% if user.perfil.IDRol.nombre == "Cliente" %}
+        <li><a href="{% url 'usuario:userdata' %}">Datos personales</a></li>
+      {% endif %}
+    </ul>
     <nav class="#" role="navigation">
       <div class="nav-wrapper container">
         <a id="logo-container" href="#" class="brand-logo">Logo<i class="material-icons">cloud</i></a>
         <ul class="right hide-on-med-and-down">
           {% if user.is_authenticated %}
-            <li><h6 style="padding-top: 4%;">Hola {{ user.username }}! - Rol: {{ user.perfil.IDRol.nombre }}</h6></li>
+          <!-- Dropdown Trigger -->
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Hola {{ user.username }}! - Rol: {{ user.perfil.IDRol.nombre }}
+                  <i class="material-icons right">arrow_drop_down</i>
+                </a>
+            </li>
             <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
           {% else %}
             <li><a href="{% url 'usuario:signup' %}">Registrarse</a></li>
@@ -33,48 +47,11 @@
       <div class="nav-wrapper">
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="hide-on-med-and-down" style="padding-left: 380px">
-          <li><a href="{% url 'inicio' %}">INICIO</a></li>
-          <li><a href="{% url 'ventas' %}">VENTAS</a></li>
-          <li><a href="{% url 'listar_imagenes' %}">ARRENDAMIENTOS</a></li>
-          <li><a href="{% url 'nosotros' %}">NOSOSTROS</a></li>
-          <li><a href="">CONTACTO</a></li>
-        </ul>
-      </div>
-    </nav>
-
-    <!-- <nav class="nav-extended brown darken-1">
-      <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Logo</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="{% url 'inicio' %}">INICIO</a></li>
-          <li><a href="{% url 'ventas' %}">VENTAS</a></li>
-          <li><a href="{% url 'listar_imagenes' %}">ARRENDAMIENTOS</a></li>
-          <li><a href="{% url 'nosotros' %}">NOSOSTROS</a></li>
-          <li><a href="">CONTACTO</a></li>
-        </ul>
-      </div>
-
-      <div class="divider"></div>
-      <div class="nav-wrapper brown">
-        <ul class="left hide-on-med-and-down">
-          {% if user.perfil.IDRol.nombre == "Administrador" %}
-            <li><a href="{% url 'listar' %}">Inmuebles</a></li>
-            <li><a href="{% url 'usuario:listar' %}">Usuarios</a></li>
-          {% endif %}
-          {% if user.perfil.IDRol.nombre == "Cliente" %}
-            <li><a href="{% url 'usuario:userdata' %}">Datos personales</a></li>
-          {% endif %}
-        </ul>
-
-        <ul class="right hide-on-med-and-down">
-          {% if user.is_authenticated %}
-            <li><h6>Hola {{ user.username }}! - Rol: {{ user.perfil.IDRol.nombre }}</h6></li>
-            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
-          {% else %}
-            <li><a href="{% url 'usuario:signup' %}">Registrarse</a></li>
-            <li><a href="{% url 'login' %}"><i class="material-icons right">account_circle</i>Ingresar</a></li>
-          {% endif %}
+          <li><a href="{% url 'inicio' %}"><span class="black-text text-darken-2">INICIO</span></a></li>
+          <li><a href="{% url 'ventas' %}"><span class="black-text text-darken-2">VENTAS</span></a></li>
+          <li><a href="{% url 'listar_imagenes' %}"><span class="black-text text-darken-2">ARRENDAMIENTOS</span></a></li>
+          <li><a href="{% url 'nosotros' %}"><span class="black-text text-darken-2">NOSOSTROS</span></a></li>
+          <li><a href=""><span class="black-text text-darken-2">CONTACTO</span></a></li>
         </ul>
       </div>
     </nav>
@@ -85,7 +62,7 @@
       <li><a href="">ARRENDAMIENTOS</a></li>
       <li><a href="">NOSOSTROS</a></li>
       <li><a href="">CONTACTO</a></li>
-    </ul> -->
+    </ul>
 
     <div class="container">
       {% block container %}
@@ -147,7 +124,12 @@
           var instances = M.Parallax.init(elems, {
             responsiveThreshold: 0
           });
+          var elems = document.querySelectorAll('.dropdown-trigger');
+          var instances = M.Dropdown.init(elems, {
+            alignment: 'bot'
+          });
         });
+
     </script>
 
   </body>

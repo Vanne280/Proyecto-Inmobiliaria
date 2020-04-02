@@ -2354,7 +2354,7 @@ audio:not([controls]) {
  */
 img {
   border-style: none;
-  position: absolute;
+  -position: absolute;
 }
 
 /**
@@ -2587,7 +2587,7 @@ html {
 
 *, *:before, *:after {
   -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 button,

@@ -1,11 +1,42 @@
 {% extends 'base/base.html' %}
 
+{% load static %}
+
 {% block container %}
 
-<div class="row center">
-  <h5 class="header col s12">NOSOTROS</h5>
+<br>
+<h2 class="header center black-text text-lighten-3">NOSOTROS</h2>
+<br>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="row">
+      <div class="col s12 m5">
+        <div class="card-panel grey lighten-2">
+          <span class="black-text">I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.
+          I am similar to what is called a panel in other frameworks.
+          </span>
+        </div>
+      </div>
+      <div class="col s12 m7" style="padding-left: 50px">
+        <h5>¿Quién es Inmobiliaria Innova?</h5>
+        <span class="black-text">Somos una empresa dedicada a la prestación de servicios inmobiliarios profesionales
+          (arrendamientos y ventas).<br><br> Nuestra experiencia y asesoría para la compra y venta de propiedades,
+          lo hará sentirse respaldado mientras realiza sus trámites inmobiliarios; ya sea que este vendiendo
+          aquella propiedad que tanto valor sentimental tiene para usted,  comprando la casa de sus sueños,
+          o buscando la mejor alternativa de inversión.
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section"><br>
+      <div class="row center">
+        <div class="col s12 m6" style="padding-left: 200px">
+          <img src="{% static 'img/nosotros.jpg' %}" style="width: 500px"></div>
+      </div>
+  </div>
 
-</div>
 
 
 {% endblock %}
