@@ -16,18 +16,24 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Librería DetailView
 from django.views.generic.detail import DetailView
 
-# Funciones que llaman las páginas
+
 def home(request):
+    """Función que llama la página de inicio"""
+
     return render(request, "inicio.html")
 
 def ventas(request):
+    """Función que llama la página de ventas"""
+
     return render(request, "paginas/ventas.html")
 
 def nosotros(request):
+    """Función que llama la página de nosotros"""
+
     return render(request, "paginas/nosotros.html")
 
 class InmuebleCreate(CreateView):
-    """Clase que registra los inmuebles"""
+    """Clase que crea la vista para registrar los inmuebles"""
 
     model = Inmueble
     template_name = 'inmueble/inmueble_form.html'
@@ -35,18 +41,24 @@ class InmuebleCreate(CreateView):
                 'alcoba','baño','parqueadero','disponible')
 
     def get_success_url(self):
+        """Retorna a la página donde se listan los inmuebles"""
+
         return reverse('listar')
 
     def get_context_data(self,**kwargs):
+        """Muestra los registros guardados de las tablas (Barrio, Tipo_de_oferta,
+        Tipo_de_inmueble) en los campos de selección"""
+
         context = super(InmuebleCreate,self).get_context_data(**kwargs)
         context['IDBarrio'] = Barrio.objects.all()
         context['IDTipo_de_inmueble'] = Tipo_de_inmueble.objects.all()
         context['IDTipo_de_oferta'] = Tipo_de_oferta.objects.all()
         return context
 
-# Guardar inmueble
 @login_required()
 def Guardar_inmueble(request):
+    """Función que guarda registros de inmuebles con sus respectivas imágenes"""
+
     if request.method == 'POST':
         is_file = request.POST.get('imagenes', True)
         form = InmuebleForm(request.POST)
@@ -74,6 +86,8 @@ class InmuebleUpdate(UpdateView):
                 'alcoba','baño','parqueadero','disponible']
 
     def get_success_url(self):
+        """Retorna a la página donde se listan los inmuebles"""
+
         return reverse('listar')
 
 class InmuebleDelete(DeleteView):
@@ -82,6 +96,8 @@ class InmuebleDelete(DeleteView):
     model = Inmueble
 
     def get_success_url(self):
+        """Retorna a la página donde se listan los inmuebles"""
+
         return reverse('listar')
 
 class ImageList(ListView):
