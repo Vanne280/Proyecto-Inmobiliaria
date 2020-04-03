@@ -8,6 +8,7 @@
   {% for img in imagenes %}
     <div class="col s12 m4">
       <div class="card">
+        <a href="{% url 'detalle' img.id %}"</a>
         <div class="card-image">
           <img src="{{ img.ruta.url}} " alt="{{ img.IDInmueble.direccion }}">
           <span class="card-title">Card Title</span>
