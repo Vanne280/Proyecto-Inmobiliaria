@@ -27,11 +27,13 @@
     </ul>
     <nav class="#" role="navigation">
       <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo">Logo<i class="material-icons">cloud</i></a>
+        <img src="{% static 'img/Logo.jpg' %}" style="width: 67px">
+        <a id="logo-container" href="" class="brand-logo">Innova Inmobiliaria</a>
         <ul class="right hide-on-med-and-down">
           {% if user.is_authenticated %}
           <!-- Dropdown Trigger -->
-            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Hola {{ user.username }}! - Rol: {{ user.perfil.IDRol.nombre }}
+            <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">
+                  Hola {{ user.username }}! - Rol: {{ user.perfil.IDRol.nombre }}
                   <i class="material-icons right">arrow_drop_down</i>
                 </a>
             </li>
@@ -60,7 +62,7 @@
       <li><a href="">INICIO</a></li>
       <li><a href="">VENTAS</a></li>
       <li><a href="">ARRENDAMIENTOS</a></li>
-      <li><a href="">NOSOSTROS</a></li>
+      <li><a href="">NOSOTROS</a></li>
       <li><a href="">CONTACTO</a></li>
     </ul>
 
@@ -77,61 +79,66 @@
         <div class="container">
           <div class="row">
             <div class="col l6 s12">
-              <h5 class="white-text">Footer Content</h5>
-              <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+              <h4 class="white-text">Ubicación</h4>
+              <h6 class="grey-text text-lighten-4">Dirección: </h6>
+              <h6 class="grey-text text-lighten-4">Teléfono: </h6>
+              <h6 class="grey-text text-lighten-4">Celular: </h6>
+              <h6 class="grey-text text-lighten-4">Correo: </h6>
             </div>
-            <div class="col l4 offset-l2 s12">
-              <h5 class="white-text">Links</h5>
+            <div class="col l3 s12">
+              <h5 class="white-text">Enlaces</h5>
               <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                <li><a class="grey-text text-lighten-3" href="{% url 'ventas' %}">VENTAS</a></li>
+                <li><a class="grey-text text-lighten-3" href="{% url 'listar_imagenes' %}">ARRENDAMIENTOS</a></li>
+                <li><a class="grey-text text-lighten-3" href="{% url 'nosotros' %}">NOSOTROS</a></li>
+                <li><a class="grey-text text-lighten-3" href="#!">CONTACTO</a></li>
+              </ul>
+            </div>
+            <div class="col l3 s12">
+              <h5 class="white-text">Redes Sociales</h5>
+              <ul>
+                <li><i class="material-icons">android</i></li>
               </ul>
             </div>
           </div>
         </div>
         <div class="footer-copyright">
           <div class="container">
-          © 2014 Copyright Text
-          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          © 2020 Todos los derechos reservados
+          <a class="grey-text text-lighten-4 right">Diseñado y desarrollado por AVWeb</a>
           </div>
         </div>
     </footer>
 
-
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
-
-    <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
-
-    <script>
-        $(document).ready(function(){
-          $('.sidenav').sidenav();
-          $('select').formSelect();
-          $('.tabs').tabs();
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-          var elems = document.querySelectorAll('.slider');
-          var instances = M.Slider.init(elems, {
-            indicators: false,
-            height: 450,
-          });
-          var elems = document.querySelectorAll('.parallax');
-          var instances = M.Parallax.init(elems, {
-            responsiveThreshold: 0
-          });
-          var elems = document.querySelectorAll('.dropdown-trigger');
-          var instances = M.Dropdown.init(elems, {
-            alignment: 'bot'
-          });
-        });
-
-    </script>
-
   </body>
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
 
+  <!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+
+  <script>
+      $(document).ready(function(){
+        $('.sidenav').sidenav();
+        $('select').formSelect();
+        $('.tabs').tabs();
+      });
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.slider');
+        var instances = M.Slider.init(elems, {
+          indicators: false,
+          height: 450,
+        });
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems, {
+          responsiveThreshold: 0
+        });
+        var elems = document.querySelectorAll('.dropdown-trigger');
+        var instances = M.Dropdown.init(elems, {
+          alignment: 'bot'
+        });
+      });
+  </script>
 </html>
