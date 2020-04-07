@@ -7,7 +7,23 @@
 <section style= "padding-top: 50px">
   <div class="row">
       <div class="col s7 push-s5">
-        <span class="flow-text"><h3>Imagenes</h3></span>
+        <div class="section">
+          <div class="row">
+            <div class="col s12">
+              <div class="slider">
+                <ul class="slides">
+                  {% for img in imagenes %}
+                    <li>
+                      <img src="../../media/{{ img.ruta }}">
+                      <div class="caption center-align">
+                      </div>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>    
       </div>
       <div class="col s5 pull-s7">
         <span class="flow-text">

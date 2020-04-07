@@ -1,4 +1,5 @@
 from djongo import models
+from django.contrib.auth.models import User
 
 
 class Tipo_de_inmueble(models.Model):
@@ -52,6 +53,7 @@ class Inmueble(models.Model):
     baño = models.IntegerField(null=False)
     parqueadero = models.BooleanField(null=False)
     disponible = models.BooleanField(null=False)
+    imagen = models.ImageField(null=True, upload_to="imagenes/%Y/%m/%d")
 
 class Imagenes(models.Model):
     ruta = models.ImageField(null=True, upload_to="imagenes/%Y/%m/%d")

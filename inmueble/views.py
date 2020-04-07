@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Inmueble, Barrio, Tipo_de_inmueble, Tipo_de_oferta, Imagenes
+from .models import (Inmueble, Barrio, Tipo_de_inmueble,
+                     Tipo_de_oferta, Imagenes)
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 from .forms import InmuebleForm
@@ -38,7 +39,7 @@ class InmuebleCreate(CreateView):
     model = Inmueble
     template_name = 'inmueble/inmueble_form.html'
     fields = ('direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
-                'alcoba','baño','parqueadero','disponible')
+                'alcoba','baño','parqueadero','disponible','imagen')
 
     def get_success_url(self):
         """Retorna a la página donde se listan los inmuebles"""
@@ -83,7 +84,7 @@ class InmuebleUpdate(UpdateView):
 
     model = Inmueble
     fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
-                'alcoba','baño','parqueadero','disponible']
+                'alcoba','baño','parqueadero','disponible','imagen']
 
     def get_success_url(self):
         """Retorna a la página donde se listan los inmuebles"""
@@ -100,15 +101,20 @@ class InmuebleDelete(DeleteView):
 
         return reverse('listar')
 
+#Oferta de inmuebles
 class ImageList(ListView):
     """Clase que muestra las imágenes"""
 
     template_name = 'paginas/arrendamientos.html'
-    model = Imagenes
-    context_object_name = 'imagenes'
+    model = Inmueble
+    context_object_name = 'inmuebles'
 
 class InmuebleDetail(DetailView):
     """Clase que muestra los datos de la tabla Inmueble"""
 
     model = Inmueble
     template_name = 'inmueble/inmueble_detail.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['imagenes'] = Imagenes.objects.filter(IDInmueble_id = self.get_object().id)
+        return super(InmuebleDetail, self).get_context_data(**kwargs)
