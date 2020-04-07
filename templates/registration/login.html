@@ -2,37 +2,43 @@
 
 {% block container %}
 
-
-<div class="row">
-  <div class="col s12"></div>
-  <div class="col s12 m4 l3"></div>
-  <div class="col s12 m4 l6">
-    <h4>Inicia sesión </h4>
-    <form method="post">
-      {% csrf_token %}
-      <div class="input-field col s12">
-        <input id="username" type="text" name="username" required>
-        <label for="username">Nombre de usuario</label>
-      </div>
-      <div class="input-field col s12">
-        <input id="password" type="password" name="password" required>
-        <label for="password">Contraseña</label>
-      </div>
-      <div class="input-field col s12" style="text-align:center;">
-        <button class="btn waves-effect brown lighten-1" type="submit" name="action">Ingresar</button>
-      </div>
-      <div style="text-align:center;">
-        <a href="#" class="ForgetPwd">Olvidó su contraseña?</a>
-      </div>
-    </form>
-    {% if form.errors %}
-      <div class="alert alert-danger">
-          <a class="close" href="#" data-dismiss="alert">x</a>
-        Ha digitado un Usuario o Contraseña incorrecta
-      </div>
-    {% endif %}
+<br>
+<div class="section container">
+  <div class="row">
+    <div class="row card-panel">
+      <h3 class="center-align">Inicia sesión</h3>
+      <form class="col s12" method="post">{% csrf_token %}
+        <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="username" type="text" name="username" class="validate" required>
+          <label for="username">Nombre de usuario</label>
+        </div>
+        <div class="input-field col s12">
+          <i class="material-icons prefix">check_circle</i>
+          <input id="password" type="password" name="password" class="validate" required>
+          <label for="password">Contraseña</label>
+        </div>
+        <div class="input-field col s12" style="text-align:center;">
+          <button class="btn waves-effect brown lighten-1" type="submit" name="action">Ingresar
+            <i class="material-icons right">send</i>  
+          </button>
+        </div>
+        <div style="text-align:center;">
+          <a href="#" class="ForgetPwd">Olvidó su contraseña?</a>
+        </div>
+      </form>
+      {% if form.errors %}
+        <div class="alert alert-danger">
+            <a class="close" href="#" data-dismiss="alert">x</a>
+          Ha digitado un Usuario o Contraseña incorrecta
+        </div>
+      {% endif %}
+    </div>
   </div>
 </div>
+
+</div>
+
 <div class="col s12 m4 l3"></div>
 
 
