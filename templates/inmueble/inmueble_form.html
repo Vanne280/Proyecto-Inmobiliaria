@@ -4,23 +4,129 @@
 
 {% block container %}
 
-<h3>Crear/Actualizar Inmueble</h3>
-
-  <div class="container">
-    <div class="row">
+<h3 class="center-align">Crear/Actualizar Inmueble</h3>
+<br>
+<div class="section">
+  <div class="row">
+    <div class="row card-panel">
       <form method="post" method="post" enctype="multipart/form-data" action="{% url 'guardar_inmueble' %}">
         {% csrf_token %}
-        {{form.as_p}}
-        <div class="row">
-          <div class="input-field col s12">
-            <input type="file" name="imagenes" id="imagenes" multiple>
+        <!-- {{form.as_p}} -->
+        <div class="input-field col l6 col-m6">
+          <i class="material-icons prefix">home</i>
+          <input id="direccion" type="text" name="direccion" class="validate" required>
+          <label for="direccion">Dirección</label>
+        </div>
+
+        <div class="input-field col l6 col-m6">
+          <i class="material-icons prefix">location_city</i>
+          <select id="IDBarrio" name="IDBarrio" required>
+            <option value="" disabled selected>Seleccione un barrio</option>
+              {% for d in IDBarrio %}
+                <option value="{{ d.id }}">{{ d.nombre }}</option>
+              {% endfor %}
+          </select>
+          <label for="IDBarrio">Barrio</label>
+        </div>
+
+        <div class="input-field col l6 col-m6">
+          <i class="material-icons prefix">location_city</i>
+          <select id="IDTipo_de_inmueble" name="IDTipo_de_inmueble" required>
+            <option value="" disabled selected>Seleccione un tipo de inmueble</option>
+              {% for d in IDTipo_de_inmueble %}
+                <option value="{{ d.id }}">{{ d.nombre }}</option>
+              {% endfor %}
+          </select>
+          <label for="IDTipo_de_inmueble">Tipo de inmueble</label>
+        </div>
+
+        <div class="input-field col l6 col-m6">
+          <i class="material-icons prefix">local_offer</i>
+          <select id="IDTipo_de_oferta" name="IDTipo_de_oferta" required>
+            <option value="" disabled selected>Seleccione un tipo de oferta</option>
+              {% for d in IDTipo_de_oferta %}
+                <option value="{{ d.id }}">{{ d.nombre }}</option>
+              {% endfor %}
+          </select>
+          <label for="IDTipo_de_oferta">Tipo de oferta</label>
+        </div>
+
+        <div class="input-field col l3 col-m6">
+          <i class="material-icons prefix">monetization_on</i>
+          <input id="precio" type="number" name="precio" class="validate" required>
+          <label for="precio">Precio</label>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="input-field col l2">
+          <i class="material-icons prefix">hotel</i>
+          <input id="alcoba" type="number" name="alcoba" class="validate" required>
+          <label for="alcoba">Alcoba</label>
+        </div>
+
+        <div class="input-field col l2">
+          <i class="material-icons prefix">invert_colors</i>
+          <input id="baño" type="number" name="baño" class="validate" required>
+          <label for="baño">Baño</label>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="input-field col l2">
+          <label>
+            <input id="parqueadero" type="checkbox" name="parqueadero" class="filled-in" />
+            <span>Parqueadero</span>
+          </label>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="input-field col l2">
+          <label>
+            <input id="disponible" type="checkbox" name="disponible" class="filled-in" />
+            <span>Disponible</span>
+          </label>
+        </div>
+
+        <div class="clearfix"></div>
+        <br><br>
+        <div class="file-field input-field col s12">
+          <div class="btn-small">
+            <span>Examinar</span>
+            <input type="file" name="imagen" id="imagen">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate">
+            <label>Ingrese imagen principal de la propiedad</label>
           </div>
         </div>
-        <div class="">
-          <button class="deep-purple darken-3 btn" type="submit" name="action">Guardar</button>
+              
+        <div class="clearfix"></div>
+        <div class="file-field input-field col s12">
+          <div class="btn-small">
+            <span>Examinar</span>
+            <input type="file" name="imagenes" id="imagenes" multiple>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+            <label>Ingrese una o mas imágenes</label>
+          </div>
         </div>
+
+        <!-- <div class="clearfix"></div>
+          <div class="input-field col s12">
+            <input type="file" name="imagenes" id="imagenes" multiple>
+          </div> -->
+
+          <div class="input-field col s12" style="text-align:center;">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
+              <i class="material-icons right">check</i>
+            </button>
+          </div>
+
       </form>
     </div>
   </div>
+</div>
+
+
 
 {% endblock %}

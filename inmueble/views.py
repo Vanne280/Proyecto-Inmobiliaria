@@ -92,7 +92,7 @@ class InmuebleUpdate(UpdateView):
         return reverse('listar')
 
 class InmuebleDelete(DeleteView):
-    """Clase que edita los inmuebles"""
+    """Clase que elimina los inmuebles"""
 
     model = Inmueble
 
