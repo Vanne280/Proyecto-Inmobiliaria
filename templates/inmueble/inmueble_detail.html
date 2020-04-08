@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load humanize %}
+
 {% block container %}
 
 <section style= "padding-top: 50px">
@@ -30,7 +32,7 @@
           <ul class="collection with-header">
             <li class="collection-header">
               <h4>{{ object.IDTipo_de_inmueble.nombre }} en {{ object.IDTipo_de_oferta.nombre }}</h4></li>
-            <li class="collection-item" style= "font-size: 20px;">Precio: {{ object.precio }}</li>
+            <li class="collection-item" style= "font-size: 20px;">Precio: $ {{ object.precio|intcomma }}</li>
             <li class="collection-item" style= "font-size: 20px;">Dirección: {{ object.direccion }}</li>
             <li class="collection-item" style= "font-size: 20px;">Barrio: {{ object.IDBarrio.nombre }}</li>
             <li class="collection-item" style= "font-size: 20px;">Disponible: {{ object.disponible }}</li>

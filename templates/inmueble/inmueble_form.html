@@ -9,7 +9,7 @@
 <div class="section">
   <div class="row">
     <div class="row card-panel">
-      <form method="post" method="post" enctype="multipart/form-data" action="{% url 'guardar_inmueble' %}">
+      <form method="post" enctype="multipart/form-data" action="{% url 'guardar_inmueble' %}">
         {% csrf_token %}
         <!-- {{form.as_p}} -->
         <div class="input-field col l6 col-m6">
@@ -98,7 +98,7 @@
             <label>Ingrese imagen principal de la propiedad</label>
           </div>
         </div>
-              
+
         <div class="clearfix"></div>
         <div class="file-field input-field col s12">
           <div class="btn-small">

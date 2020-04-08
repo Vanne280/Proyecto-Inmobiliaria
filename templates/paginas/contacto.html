@@ -1,0 +1,87 @@
+{% extends 'base/base.html' %}
+
+{% block container %}
+
+<br>
+<h2 class="header center black-text text-lighten-3">CONTÁCTANOS</h2>
+<br>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="row">
+        <div class="col s12">
+          <p class="center-align">Para la INMOBILIARIA es muy importante acompañarte en la decisión de compra,
+            arriendo o consignación de un inmueble por eso hemos creado este canal de comunicación,
+            te invitamos a consultar nuestra política de protección de datos, una vez diligencies el siguiente
+            formulario estaremos poniéndonos en contacto contigo y asi hacer más fácil el proceso.</p>
+        </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="row">
+      <div class="col s12 m8">
+        <div class="row card-panel">
+          <form method="post" action=" ">
+            <!-- {% csrf_token %} -->
+            <!-- {{form.as_p}} -->
+            <div class="input-field col l6 col-m6">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="nombre" type="text" name="nombre" class="validate" required>
+              <label for="nombre">Nombre</label>
+            </div>
+
+            <div class="input-field col l6 col-m6">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="apellido" type="text" name="apellido" class="validate" required>
+              <label for="apellido">Apellido</label>
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="input-field col l6 col-m6">
+              <i class="material-icons prefix">phone</i>
+              <input id="telefono" type="number" name="telefono" class="validate" required>
+              <label for="telefono">Teléfono</label>
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">email</i>
+              <input id="email" type="email" name="email" class="validate" required>
+              <label for="email">Correo Electrónico</label>
+              <span class="helper-text" data-error="Incorrecto" data-success="Correcto">
+                Ingrese un correo electrónico válido
+              </span>
+            </div>
+
+            <div class="input-field col s12">
+              <i class="material-icons prefix">mode_edit</i>
+              <textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+              <label for="icon_prefix2">Mensaje</label>
+            </div>
+
+            <div class="input-field col s12" style="text-align:center;">
+              <button class="btn waves-effect waves-light" type="submit" name="action">
+                Enviar mensaje
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+      <div class="col s12 m4" style="padding-left: 50px">
+        <h5>Dirección</h5>
+        <span class="black-text">Carerra 4 </span>
+        <br><br>
+        <h5>Teléfonos</h5>
+        <span class="black-text">857575</span><br>
+        <span class="black-text">31475756</span>
+        <br><br>
+        <h5>Correo</h5>
+        <span class="black-text">abc@abc</span>
+        <br>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

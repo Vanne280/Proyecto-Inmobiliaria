@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load humanize %}
+
 {% block container %}
 
 <div class="row">
@@ -11,13 +13,13 @@
         <a href="{% url 'detalle' inmueble.id %}"</a>
         <div class="card-image">
           <img src="../../media/{{ inmueble.imagen }}" alt="{{ inmueble.direccion }}">
-          <span class="card-title">Card Title</span>          
+          <span class="card-title">Card Title</span>
         </div>
         <div class="card-content">
           <table class="highlight">
               <tr><td>{{ inmueble.IDTipo_de_inmueble.nombre }}</td></tr>
               <tr><td>Barrio: {{ inmueble.IDBarrio.nombre }}</td></tr>
-              <tr><td>Precio: {{ inmueble.precio }}</td></tr>
+              <tr><td>Precio: $ {{ inmueble.precio|intcomma }}</td></tr>
           </table>
         </div>
       </div>

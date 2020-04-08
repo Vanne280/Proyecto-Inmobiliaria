@@ -5,7 +5,7 @@ from inmueble import views
 # Modulo para buscar archivos en el proyecto
 from django.conf.urls.static import static
 
-# Importa el contenido de settings.py
+# Importa el contenido del archivo settings.py
 from django.conf import settings
 
 urlpatterns = [
@@ -16,6 +16,9 @@ urlpatterns = [
 
     # Ruta de la página Nosotros
     path('paginas/nosotros/', views.nosotros, name='nosotros'),
+
+    # Ruta de la página Contacto
+    path('paginas/contacto/', views.contacto, name='contacto'),
 
     # Ruta de la página de ventas
     path('paginas/ventas/', views.ventas, name='ventas'),

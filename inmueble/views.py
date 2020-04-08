@@ -33,13 +33,18 @@ def nosotros(request):
 
     return render(request, "paginas/nosotros.html")
 
+def contacto(request):
+    """Función que llama la página de contacto"""
+
+    return render(request, "paginas/contacto.html")
+
 class InmuebleCreate(CreateView):
     """Clase que crea la vista para registrar los inmuebles"""
 
     model = Inmueble
     template_name = 'inmueble/inmueble_form.html'
-    fields = ('direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
-                'alcoba','baño','parqueadero','disponible','imagen')
+    fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
+                'alcoba','baño','parqueadero','disponible','imagen']
 
     def get_success_url(self):
         """Retorna a la página donde se listan los inmuebles"""
