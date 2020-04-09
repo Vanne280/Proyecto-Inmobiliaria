@@ -1,14 +1,25 @@
 from django.urls import path
-
-from .views import signup, ActivateUser, templateEmailSent, UserList, UserData
+from usuario import views
 #UserUpdate
 
 urlpatterns = [
-    path('signup/', signup, name='signup'),
-    path('activate/<str:uidb64>/<str:token>/', ActivateUser, name='activate'),
-    path('emailsent/<str:username>/', templateEmailSent, name='emailsent'),
-    path('listar/', UserList.as_view(), name="listar"),
-    path('userdata/', UserData, name="userdata"),
+
+    # Ruta de la página de registro de usuario
+    path('signup/', views.signup, name='signup'),
+
+    # Ruta de la página de para realizar la activación de la cuenta
+    path('emailsent/<str:username>/', views.templateEmailSent, name='emailsent'),
+
+    # Ruta de la página que muestra la cuenta activada
+    path('activate/<str:uidb64>/<str:token>/', views.ActivateUser, name='activate'),
+
+    # Ruta de la página que lista los usuarios
+    path('listar/', views.UserList.as_view(), name="listar"),
+
+
+
+
+    path('userdata/', views.UserData, name="userdata"),
 
     #path('/<int:pk>/', UserUpdate.as_view(), name="editar"),
 ]
