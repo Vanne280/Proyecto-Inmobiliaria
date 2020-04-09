@@ -22,7 +22,7 @@
       <div class="col s12 m8">
         <div class="row card-panel">
           <form method="post" action=" ">
-            <!-- {% csrf_token %} -->
+            {% csrf_token %}
             <!-- {{form.as_p}} -->
             <div class="input-field col l6 col-m6">
               <i class="material-icons prefix">account_circle</i>
@@ -62,7 +62,7 @@
 
             <div class="input-field col s12">
               <i class="material-icons prefix">subject</i>
-              <textarea id="mensaje" class="materialize-textarea"></textarea>
+              <textarea id="mensaje" name="mensaje" class="materialize-textarea"></textarea>
               <label for="mensaje">Mensaje</label>
             </div>
 

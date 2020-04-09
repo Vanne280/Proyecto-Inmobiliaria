@@ -3,6 +3,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 class SignupForm(UserCreationForm):
+    """Clase de la tabla usuario"""
+
     username = forms.CharField(max_length=150, label="Nombre de Usuario",
                                widget = forms.TextInput(attrs={'class':'form-control'}))
     email = forms.EmailField(max_length=200, label="Correo Electrónico",

@@ -18,7 +18,7 @@ urlpatterns = [
     path('paginas/nosotros/', views.nosotros, name='nosotros'),
 
     # Ruta de la página Contacto
-    path('paginas/contacto/', views.contacto, name='contacto'),
+    path('paginas/contacto/', views.ContactoView.as_view(), name='contacto'),
 
     # Ruta de la página de ventas
     path('paginas/ventas/', views.ventas, name='ventas'),
