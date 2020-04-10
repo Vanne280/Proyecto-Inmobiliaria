@@ -27,35 +27,51 @@
         <li><a href="{% url 'usuario:userdata' %}">Datos personales</a></li>
       {% endif %}
     </ul>
-    <nav class="#" role="navigation">
+    <nav class="white" role="navigation">
       <div class="nav-wrapper container">
-        <img src="{% static 'img/Logo.jpg' %}" style="width: 67px">
-        <a id="logo-container" class="brand-logo">Innova Inmobiliaria</a>
-        <ul class="right hide-on-med-and-down">
+        <img src="{% static 'img/Logo5.png' %}" style="width: 100px; height: 64px">
+        <a id="logo-container" class="brand-logo">
+          <span class="black-text text-darken-2">Innova Inmobiliaria</span></a>
+        <ul class="right hide-on-med-and-down blue-text">
           {% if user.is_authenticated %}
           <!-- Dropdown Trigger -->
             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">
+              <span class="black-text text-darken-2">
                   Hola {{ user.username }}! - Rol: {{ user.perfil.IDRol.nombre }}
+              </span>
                   <i class="material-icons right">arrow_drop_down</i>
                 </a>
             </li>
-            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+            <li>
+              <a href="{% url 'logout' %}">
+                <span class="black-text text-darken-2">Cerrar Sesión</span>
+              </a>
+            </li>
           {% else %}
-            <li><a href="{% url 'usuario:signup' %}">Registrarse</a></li>
-            <li><a href="{% url 'login' %}"><i class="material-icons right">account_circle</i>Ingresar</a></li>
+            <li>
+              <a href="{% url 'usuario:signup' %}">
+                <span class="black-text text-darken-2">Registrarse</span>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'login' %}" class="black-text">
+                <i class="material-icons right">account_circle</i>
+                <span class="black-text text-darken-2">Ingresar</span>
+              </a>
+            </li>
           {% endif %}
         </ul>
       </div>
     </nav>
-    <nav class="nav-extended brown lighten-4" >
+    <nav class="nav-extended red darken-2 white-text" >
       <div class="nav-wrapper">
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="hide-on-med-and-down">
-          <li><a href="{% url 'inicio' %}"><span class="black-text text-darken-2">INICIO</span></a></li>
-          <li><a href="{% url 'ventas' %}"><span class="black-text text-darken-2">VENTAS</span></a></li>
-          <li><a href="{% url 'listar_imagenes' %}"><span class="black-text text-darken-2">ARRENDAMIENTOS</span></a></li>
-          <li><a href="{% url 'nosotros' %}"><span class="black-text text-darken-2">NOSOTROS</span></a></li>
-          <li><a href="{% url 'contacto' %}"><span class="black-text text-darken-2">CONTACTO</span></a></li>
+          <li><a href="{% url 'inicio' %}"><b>INICIO</b></a></li>
+          <li><a href="{% url 'ventas' %}"><b>VENTAS</b></a></li>
+          <li><a href="{% url 'listar_imagenes' %}"><b>ARRENDAMIENTOS</b></a></li>
+          <li><a href="{% url 'nosotros' %}"><b>NOSOTROS</b></a></li>
+          <li><a href="{% url 'contacto' %}"><b>CONTACTO</b></a></li>
         </ul>
       </div>
     </nav>
@@ -77,29 +93,34 @@
       {% block container2 %}
       {% endblock %}
 
-    <footer class="page-footer">
+    <footer class="page-footer red lighten-1 white-text">
         <div class="container">
           <div class="row">
             <div class="col l6 s12">
-              <h4 class="white-text">Ubicación</h4>
-              <h6 class="grey-text text-lighten-4">Dirección: </h6>
-              <h6 class="grey-text text-lighten-4">Teléfono: </h6>
-              <h6 class="grey-text text-lighten-4">Celular: </h6>
-              <h6 class="grey-text text-lighten-4">Correo: </h6>
+              <h4>Ubicación</h4>
+              <h6>Dirección: Calle 64A N°21-10 Oficina 202 Ed Portal del Cable</h6>
+              <h6>Teléfono: 8894521</h6>
+              <h6>Celular: 3165874219</h6>
+              <h6>Correo: inmobiliariainnova@gmail.com</h6>
             </div>
             <div class="col l3 s12">
               <h5 class="white-text">Enlaces</h5>
               <ul>
-                <li><a class="grey-text text-lighten-3" href="{% url 'ventas' %}">VENTAS</a></li>
-                <li><a class="grey-text text-lighten-3" href="{% url 'listar_imagenes' %}">ARRENDAMIENTOS</a></li>
-                <li><a class="grey-text text-lighten-3" href="{% url 'nosotros' %}">NOSOTROS</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">CONTACTO</a></li>
+                <li><a class="white-text text-lighten-3" href="{% url 'ventas' %}">VENTAS</a></li>
+                <li><a class="white-text text-lighten-3" href="{% url 'listar_imagenes' %}">ARRENDAMIENTOS</a></li>
+                <li><a class="white-text text-lighten-3" href="{% url 'nosotros' %}">NOSOTROS</a></li>
+                <li><a class="white-text text-lighten-3" href="{% url 'contacto' %}">CONTACTO</a></li>
               </ul>
             </div>
             <div class="col l3 s12">
               <h5 class="white-text">Redes Sociales</h5>
               <ul>
-                <li><i class="material-icons">android</i></li>
+                <li>
+                  <img src="{% static 'img/Icono Facebook.png' %}" style="width:24px; height:24px;">
+                  <img src="{% static 'img/Icono Instagram.png' %}" style="width:30px; height:24px;">
+                  <img src="{% static 'img/Icono Twitter.png' %}" style="width:24px; height:24px;">
+                  <img src="{% static 'img/Icono Whatsapp.png' %}" style="width:32px; height:24px;">
+                </li>
               </ul>
             </div>
           </div>

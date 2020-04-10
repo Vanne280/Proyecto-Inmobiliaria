@@ -80,6 +80,48 @@ class ContactoView(TemplateView):
 
         return HttpResponseRedirect(reverse('contacto'))
 
+# class ContactoUpdate(UpdateView):
+#     """docstring for ContactoUpdate."""
+#
+#     # model = Inmueble
+#     # fields = ['direccion','IDBarrio']
+#
+#     # Función que llama al formulario de contacto
+#     def get_context_data(self,**kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['contacto_form'] = ContactoForm()
+#         context['inmueble'] = InmuebleForm()
+#
+#         return context
+#
+#     # Función que envía un correo con la información recibida del formulario de contacto
+#     def post(self, request, *args, **kwargs):
+#         nombre = request.POST.get('nombre')
+#         apellido = request.POST.get('apellido')
+#         telefono = request.POST.get('telefono')
+#         email = request.POST.get('email')
+#         asunto = request.POST.get('asunto')
+#         mensaje = request.POST.get('mensaje', 'direccion')
+#
+#         body = render_to_string('email/email_contacto.html', {
+#             'nombre': nombre,
+#             'apellido': apellido,
+#             'telefono': telefono,
+#             'email': email,
+#             'mensaje': mensaje,
+#         })
+#
+#         msg = EmailMessage(
+#             subject = asunto,
+#             body = body,
+#             from_email = email,
+#             to = ['asesorinmobiliariainnova@gmail.com'],
+#         )
+#         msg.content_subtype = 'html'
+#         msg.send()
+#
+#         return HttpResponseRedirect(reverse('detalle'))
+
 
 class InmuebleCreate(CreateView):
     """Clase que crea la vista para registrar los inmuebles"""
@@ -109,6 +151,7 @@ def Guardar_inmueble(request):
         is_file = request.POST.get('imagenes', True)
         form = InmuebleForm(request.POST)
         if form.is_valid():
+            print(form)
             inmueble = form.save()
             for field in request.FILES.keys():
                 if is_file == True:

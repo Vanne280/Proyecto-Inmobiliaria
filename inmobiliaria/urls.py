@@ -20,6 +20,8 @@ urlpatterns = [
     # Ruta de la página Contacto
     path('paginas/contacto/', views.ContactoView.as_view(), name='contacto'),
 
+    # path('<int:pk>/', views.ContactoUpdate.as_view(), name='contacto_inmueble'),
+
     # Ruta de la página de ventas
     path('paginas/ventas/', views.ventas, name='ventas'),
     # path('paginas/arrendamientos/', views.arrendamientos, name='arrendamientos'),
