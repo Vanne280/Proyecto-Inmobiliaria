@@ -66,7 +66,7 @@
         <ul id="nav-mobile" class="hide-on-med-and-down">
           <li><a href="{% url 'inicio' %}"><b>INICIO</b></a></li>
           <li><a href="{% url 'ventas' %}"><b>VENTAS</b></a></li>
-          <li><a href="{% url 'listar_imagenes' %}"><b>ARRENDAMIENTOS</b></a></li>
+          <li><a href="{% url 'arrendamientos' %}"><b>ARRENDAMIENTOS</b></a></li>
           <li><a href="{% url 'nosotros' %}"><b>NOSOTROS</b></a></li>
           <li><a href="{% url 'contacto' %}"><b>CONTACTO</b></a></li>
           {% if user.perfil.IDRol.nombre == "Asesor" %}
@@ -107,7 +107,7 @@
               <h5 class="white-text">Enlaces</h5>
               <ul>
                 <li><a class="white-text text-lighten-3" href="{% url 'ventas' %}">VENTAS</a></li>
-                <li><a class="white-text text-lighten-3" href="{% url 'listar_imagenes' %}">ARRENDAMIENTOS</a></li>
+                <li><a class="white-text text-lighten-3" href="{% url 'arrendamientos' %}">ARRENDAMIENTOS</a></li>
                 <li><a class="white-text text-lighten-3" href="{% url 'nosotros' %}">NOSOTROS</a></li>
                 <li><a class="white-text text-lighten-3" href="{% url 'contacto' %}">CONTACTO</a></li>
               </ul>

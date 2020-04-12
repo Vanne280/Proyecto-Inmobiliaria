@@ -23,11 +23,10 @@ urlpatterns = [
     # path('<int:pk>/', views.ContactoUpdate.as_view(), name='contacto_inmueble'),
 
     # Ruta de la página de ventas
-    path('paginas/ventas/', views.ventas, name='ventas'),
-    # path('paginas/arrendamientos/', views.arrendamientos, name='arrendamientos'),
+    path('paginas/ventas/', views.VentaList.as_view(), name='ventas'),
 
     # Ruta de la página de arrendamientos
-    path('paginas/arrendamientos/', views.ImageList.as_view(), name='listar_imagenes'),
+    path('paginas/arrendamientos/', views.AlquilerList.as_view(), name='arrendamientos'),
 
     # Ruta de la página para crear inmuebles
     path('crear/', views.InmuebleCreate.as_view(), name='crear'),

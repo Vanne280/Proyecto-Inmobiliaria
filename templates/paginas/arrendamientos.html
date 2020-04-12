@@ -7,24 +7,26 @@
 {% block container %}
 
 <div class="row">
-  {% for inmueble in inmuebles %}
-    <div class="col s12 m4">
-      <div class="card">
-        <a href="{% url 'detalle' inmueble.id %}"</a>
-        <div class="card-image">
-          <img src="../../media/{{ inmueble.imagen }}" alt="{{ inmueble.direccion }}">
-          <span class="card-title">Card Title</span>
+    {% for inmueble in inmuebles %}
+      {% if inmueble.IDTipo_de_oferta.nombre == "Arrendamiento" %}
+        <div class="col s12 m4">
+          <div class="card">
+            <a href="{% url 'detalle' inmueble.id %}"</a>
+            <div class="card-image">
+              <img src="../../media/{{ inmueble.imagen }}" alt="{{ inmueble.direccion }}">
+              <span class="card-title">Card Title</span>
+            </div>
+            <div class="card-content">
+              <table class="highlight">
+                  <tr><td>{{ inmueble.IDTipo_de_inmueble.nombre }}</td></tr>
+                  <tr><td>Barrio: {{ inmueble.IDBarrio.nombre }}</td></tr>
+                  <tr><td>Precio: $ {{ inmueble.precio|intcomma }}</td></tr>
+              </table>
+            </div>
+          </div>
         </div>
-        <div class="card-content">
-          <table class="highlight">
-              <tr><td>{{ inmueble.IDTipo_de_inmueble.nombre }}</td></tr>
-              <tr><td>Barrio: {{ inmueble.IDBarrio.nombre }}</td></tr>
-              <tr><td>Precio: $ {{ inmueble.precio|intcomma }}</td></tr>
-          </table>
-        </div>
-      </div>
-    </div>
-  {% endfor %}
+      {% endif %}
+    {% endfor %}
 </div>
 
 {% endblock %}

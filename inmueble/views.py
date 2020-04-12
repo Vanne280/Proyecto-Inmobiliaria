@@ -30,10 +30,6 @@ from django.views.generic.detail import DetailView
 def home(request):
     return render(request, "inicio.html")
 
-# Función que llama la página de ventas
-def ventas(request):
-    return render(request, "paginas/ventas.html")
-
 # Función que llama la página de nosotros
 def nosotros(request):
     return render(request, "paginas/nosotros.html")
@@ -129,7 +125,7 @@ class InmuebleCreate(CreateView):
     model = Inmueble
     template_name = 'inmueble/inmueble_form.html'
     fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
-                'alcoba','baño','parqueadero','disponible','imagen']
+                'alcoba','baño','parqueadero','disponible','descripcion','imagen']
 
     # Retorna a la página donde se listan los inmuebles
     def get_success_url(self):
@@ -148,10 +144,34 @@ class InmuebleCreate(CreateView):
 # Función que guarda registros de inmuebles con sus respectivas imágenes
 def Guardar_inmueble(request):
     if request.method == 'POST':
+        direccion = request.POST.get('direccion')
+        IDBarrio = request.POST.get('IDBarrio')
+        IDTipo_de_inmueble = request.POST.get('IDTipo_de_inmueble')
+        IDTipo_de_oferta = request.POST.get('IDTipo_de_oferta')
+        precio = request.POST.get('precio')
+        alcoba = request.POST.get('alcoba')
+        baño = request.POST.get('baño')
+        parqueadero = request.POST.get('parqueadero')
+        disponible = request.POST.get('disponible')
+        descripcion = request.POST.get('descripcion')
+        imagen = request.POST.get('imagen', True)
         is_file = request.POST.get('imagenes', True)
+
+        print(direccion)
+        print(IDBarrio)
+        print(IDTipo_de_inmueble)
+        print(IDTipo_de_oferta)
+        print(precio)
+        print(alcoba)
+        print(baño)
+        print(parqueadero)
+        print(disponible)
+        print(descripcion)
+        print(imagen)
+        print(is_file)
+
         form = InmuebleForm(request.POST)
         if form.is_valid():
-            print(form)
             inmueble = form.save()
             for field in request.FILES.keys():
                 if is_file == True:
@@ -172,7 +192,7 @@ class InmuebleUpdate(UpdateView):
 
     model = Inmueble
     fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
-                'alcoba','baño','parqueadero','disponible','imagen']
+                'alcoba','baño','parqueadero','disponible','descripcion','imagen']
 
     # Retorna a la página donde se listan los inmuebles
     def get_success_url(self):
@@ -187,10 +207,17 @@ class InmuebleDelete(DeleteView):
     def get_success_url(self):
         return reverse('listar')
 
-class ImageList(ListView):
-    """Clase que muestra las ofertas de inmuebles"""
+class AlquilerList(ListView):
+    """Clase que muestra las ofertas de inmuebles en arrendamiento"""
 
     template_name = 'paginas/arrendamientos.html'
+    model = Inmueble
+    context_object_name = 'inmuebles'
+
+class VentaList(ListView):
+    """Clase que muestra las ofertas de inmuebles en venta"""
+
+    template_name = 'paginas/ventas.html'
     model = Inmueble
     context_object_name = 'inmuebles'
 
