@@ -4,29 +4,49 @@
 
 {% load humanize %}
 
-{% block container %}
+{% block container2 %}
 
-<div class="row">
-    {% for inmueble in inmuebles %}
-      {% if inmueble.IDTipo_de_oferta.nombre == "Venta" %}
-        <div class="col s12 m4">
-          <div class="card">
-            <a href="{% url 'detalle' inmueble.id %}"</a>
-            <div class="card-image">
-              <img src="../../media/{{ inmueble.imagen }}" alt="{{ inmueble.direccion }}">
-              <span class="card-title">Card Title</span>
-            </div>
-            <div class="card-content">
-              <table class="highlight">
-                  <tr><td>{{ inmueble.IDTipo_de_inmueble.nombre }}</td></tr>
-                  <tr><td>Barrio: {{ inmueble.IDBarrio.nombre }}</td></tr>
-                  <tr><td>Precio: $ {{ inmueble.precio|intcomma }}</td></tr>
-              </table>
+<div class="row grey lighten-2">
+  <div class="col s12">
+    <h5>Propiedades en venta</h5><br>
+  </div>
+</div>
+
+<div class="section">
+  <div class="row">
+    <div class="col s12 m4 l3">
+      <p>Búsqueda</p>
+
+    </div>
+
+    <div class="col s12 m8 l9">
+      {% for inmueble in inmuebles %}
+        {% if inmueble.IDTipo_de_oferta.nombre == "Venta" %}
+          <div class="col s12 m4">
+            <div class="card">
+              <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="../../media/{{ inmueble.imagen }}">
+              </div>
+              <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">{{ inmueble.IDBarrio.nombre }}
+                  <i class="material-icons right">more_vert</i>
+                </span>
+                <p><a href="{% url 'detalle' inmueble.id %}">Más información</a></p>
+              </div>
+              <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">{{ inmueble.IDBarrio.nombre }}
+                  <i class="material-icons right">close</i>
+                </span>
+                <p>{{ inmueble.IDTipo_de_inmueble.nombre }}</p>
+                <p>Barrio: {{ inmueble.IDBarrio.nombre }}</p>
+                <p>Precio: $ {{ inmueble.precio|intcomma }}</p>
+              </div>
             </div>
           </div>
-        </div>
-      {% endif %}
-    {% endfor %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
 </div>
 
 {% endblock %}
