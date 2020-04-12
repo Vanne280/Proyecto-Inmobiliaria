@@ -34,8 +34,19 @@
         <td>{{ data.precio }}</td>
         <td>{{ data.alcoba }}</td>
         <td>{{ data.baño }}</td>
-        <td>{{ data.parqueadero }}</td>
-        <td>{{ data.disponible }}</td>
+
+        {% if data.parqueadero == True %}
+          <td>SI</td>
+        {% else %}
+          <td>NO</td>
+        {% endif %}
+
+        {% if data.disponible == True %}
+          <td>SI</td>
+        {% else %}
+          <td>NO</td>
+        {% endif %}
+        
         <td>
           <a href="{% url 'editar' data.id %}" class="btn-floating btn-small waves-effect waves-light red darken-4">
             <i class="small material-icons">create</i>

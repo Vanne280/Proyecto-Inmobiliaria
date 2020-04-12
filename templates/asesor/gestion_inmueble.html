@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block container %}
+
+<br>
+<div class="section container">
+  <div class="row">
+    <div class="row card-panel">
+      <h3 class="center-align">Gestión</h3>
+      <form class="col s12" method="post">{% csrf_token %}
+        {{form.as_p}}
+        <div class="input-field col s12" style="text-align:center;">
+          <button class="btn waves-effect deep-orange darken-4" type="submit" name="action">Ingresar
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<div class="col s12 m4 l3"></div>
+
+
+{% endblock %}

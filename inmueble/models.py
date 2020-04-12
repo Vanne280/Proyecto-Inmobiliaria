@@ -1,6 +1,8 @@
 from djongo import models
 from django.contrib.auth.models import User
 
+# import datetime, date
+
 
 class Tipo_de_inmueble(models.Model):
     nombre = models.CharField(max_length=25, null=False)
@@ -13,7 +15,7 @@ class Tipo_de_inmueble(models.Model):
     def __str__(self):
         return self.nombre
     """
-    Función que muestracorrectamente el nombre del tipo de inmueble
+    Función que muestra correctamente el nombre del tipo de inmueble
     en el admin de Django
     """
 
@@ -44,6 +46,8 @@ class Barrio(models.Model):
         return self.nombre
 
 class Inmueble(models.Model):
+    """docstring for cita."""
+
     direccion = models.CharField(max_length=100, null=False)
     IDBarrio = models.ForeignKey(Barrio, null=False, on_delete=models.PROTECT)
     precio = models.DecimalField(max_digits=9, decimal_places=0,  null=False)
@@ -53,8 +57,25 @@ class Inmueble(models.Model):
     baño = models.IntegerField(null=False)
     parqueadero = models.BooleanField(null=False)
     disponible = models.BooleanField(null=False)
+    descripcion = models.CharField(max_length=300, null=True)
     imagen = models.ImageField(null=True, upload_to="imagenes/%Y/%m/%d")
 
 class Imagenes(models.Model):
+    """docstring for cita."""
+
     ruta = models.ImageField(null=True, upload_to="imagenes/%Y/%m/%d")
     IDInmueble = models.ForeignKey(Inmueble, null=True, on_delete=models.PROTECT)
+
+class Propietarios_arrendatarios(models.Model):
+    """docstring for cita."""
+
+    usuario = models.ManyToManyField(User)
+    inmueble = models.ManyToManyField(Inmueble)
+    tipo_cliente = models.BooleanField(null=False)
+
+class Cita(models.Model):
+    """docstring for cita."""
+
+    inmueble = models.ForeignKey(Inmueble, null=False, on_delete=models.PROTECT)
+    usuario = models.ForeignKey(User, null=False, on_delete=models.PROTECT)
+    fecha = models.DateTimeField()

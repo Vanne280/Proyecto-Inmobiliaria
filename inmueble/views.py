@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import (Inmueble, Barrio, Tipo_de_inmueble,
-                     Tipo_de_oferta, Imagenes)
+                     Tipo_de_oferta, Imagenes, Propietarios_arrendatarios, Cita)
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 from .forms import InmuebleForm, ContactoForm
@@ -204,3 +204,21 @@ class InmuebleDetail(DetailView):
     def get_context_data(self, **kwargs):
         kwargs['imagenes'] = Imagenes.objects.filter(IDInmueble_id = self.get_object().id)
         return super(InmuebleDetail, self).get_context_data(**kwargs)
+
+class Prop_arrenCreate(CreateView):
+    """docstring for Propietarios_arrendatarios."""
+
+    model = Propietarios_arrendatarios
+    template_name = 'asesor/gestion_inmueble.html'
+    fields = '__all__'
+
+    # Retorna a la página donde se listan los inmuebles
+    def get_success_url(self):
+        return reverse('listado')
+
+class Prop_arrenList(ListView):
+    """docstring for Prop_arrenList."""
+
+    template_name = 'asesor/mis_inmuebles.html'
+    model = Propietarios_arrendatarios
+    context_object_name = 'gestion'

@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% load humanize %}
+
+{% block container %}
+
+<div class="row">
+  {% for data in gestion %}
+    <div class="col s12 m4">
+      <div class="card">
+        <div class="card-content">
+          <table class="highlight">
+              <tr><td>Inmueble: {{ data.inmueble }}</td></tr>
+              <tr><td>Usuario: {{ data.usuario }}</td></tr>
+              <tr><td>Tipo cliente {{ data.tipo_cliente }}</td></tr>
+
+
+              <!-- Rol: {{ user.perfil.IDRol.nombre }} -->
+          </table>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

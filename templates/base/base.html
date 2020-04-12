@@ -19,12 +19,9 @@
   <body>
     <!-- Dropdown Structure -->
     <ul id="dropdown1" class="dropdown-content">
-      {% if user.perfil.IDRol.nombre == "Administrador" %}
-        <li><a href="{% url 'listar' %}">Inmuebles</a></li>
-        <li><a href="{% url 'usuario:listar' %}">Usuarios</a></li>
-      {% endif %}
-      {% if user.perfil.IDRol.nombre == "Cliente" %}
-        <li><a href="{% url 'usuario:userdata' %}">Datos personales</a></li>
+      {% if user.perfil.IDRol.nombre == "Asesor" %}
+        <li><a href="{% url 'gestion' %}">Gestón de inmuebles</a></li>
+        <li><a href="{% url 'listado' %}">Inmuebles</a></li>
       {% endif %}
     </ul>
     <nav class="white" role="navigation">
@@ -72,6 +69,9 @@
           <li><a href="{% url 'listar_imagenes' %}"><b>ARRENDAMIENTOS</b></a></li>
           <li><a href="{% url 'nosotros' %}"><b>NOSOTROS</b></a></li>
           <li><a href="{% url 'contacto' %}"><b>CONTACTO</b></a></li>
+          {% if user.perfil.IDRol.nombre == "Asesor" %}
+            <li><a href="{% url 'listar' %}"><b>MisInmuebles</b></a></li>
+          {% endif %}
         </ul>
       </div>
     </nav>

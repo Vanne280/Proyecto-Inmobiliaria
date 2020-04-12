@@ -52,6 +52,11 @@ urlpatterns = [
 
     # Ruta de las urls de la aplicación usuario
     path('usuario/', include(('usuario.urls', 'usuario'), namespace='usuario')),
+
+
+    path('asesor/gestion_inmueble', views.Prop_arrenCreate.as_view(), name='gestion'),
+
+    path('asesor/mis_inmuebles', views.Prop_arrenList.as_view(), name='listado'),
 ]
 
 # Concatenación para buscar archivos

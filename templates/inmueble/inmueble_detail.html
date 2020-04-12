@@ -35,7 +35,14 @@
             <li class="collection-item" style= "font-size: 20px;">Precio: $ {{ object.precio|intcomma }}</li>
             <li class="collection-item" style= "font-size: 20px;">Dirección: {{ object.direccion }}</li>
             <li class="collection-item" style= "font-size: 20px;">Barrio: {{ object.IDBarrio.nombre }}</li>
-            <li class="collection-item" style= "font-size: 20px;">Disponible: {{ object.disponible }}</li>
+
+            {% if object.disponible == True %}
+              <li class="collection-item" style= "font-size: 20px;">Disponible: SI</li>
+
+            {% else %}
+              <li class="collection-item" style= "font-size: 20px;">Disponible: NO</li>
+            {% endif %}
+
           </ul>
         </span>
         <div class="center-align">
@@ -79,7 +86,11 @@
           </li>
           <li>
               <i class="small material-icons">directions_car</i>
-              Parqueadero: {{ object.parqueadero }}
+              {% if object.parqueadero == True %}
+                Parqueadero: SI
+              {% else %}
+                Parqueadero: NO
+              {% endif %}
           </li>
         </ul>
       </div>
