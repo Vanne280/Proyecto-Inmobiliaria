@@ -24,35 +24,22 @@
           <span class="black-text text-darken-2">Innova Inmobiliaria</span></a>
         <ul class="right hide-on-med-and-down">
           {% if user.is_authenticated %}
-          <!-- Dropdown Structure -->
-          <!-- <ul id="dropdown1" class="dropdown-content">
-            {% if user.perfil.IDRol.nombre == "Asesor" %}
-              <li><h6>{{ user.perfil.IDRol.nombre }} {{ user.username }}</h6></li>
-              <li><a href="{% url 'gestion' %}">Gestón de inmuebles</a></li>
-              <li><a href="{% url 'listado' %}">Inmuebles</a></li>
-            {% endif %}
-          </ul> -->
-          <!-- Dropdown Trigger -->
-            <!-- <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"> -->
-              <!-- <span class="black-text text-darken-2">
-                  Hola {{ user.username }}! - Rol: {{ user.perfil.IDRol.nombre }}
-              </span>
-                  <i class="material-icons right">arrow_drop_down</i>
-                </a> -->
-            <!-- </li> -->
             <!-- Dropdown Trigger -->
               <a class='dropdown-trigger' href='#' data-target='dropdown1'>
-                  <i class="material-icons black-text">notifications_none</i>
+                  <i class="material-icons black-text">face</i>
               </a>
 
               <!-- Dropdown Structure -->
-              <ul id='dropdown1' class='dropdown-content'
-              style="width: 400px; left: 728px; top: 64px; height: 384.017px;">
+              <ul id='dropdown1' class='dropdown-content'>
                 {% if user.perfil.IDRol.nombre == "Asesor" %}
                   <li><h6>{{ user.perfil.IDRol.nombre }} {{ user.username }}</h6></li>
                   <li class="divider"></li>
                   <li><a href="{% url 'gestion' %}">Gestón de inmuebles</a></li>
-                  <li><a href="{% url 'listado' %}">Inmuebles</a></li>
+                  <li><a href="{% url 'listado' %}">Inmuebles y propietarios</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{% url 'crear' %}">Ingreso de inmuebles</a></li>
+                  <li><a href="{% url 'listar' %}">Listado de inmuebles</a></li>
+                  <li class="divider"></li>
                   <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
                 {% endif %}
               </ul>
@@ -86,11 +73,11 @@
     </nav>
 
     <ul class="sidenav" id="mobile-demo">
-      <li><a href="">INICIO</a></li>
-      <li><a href="">VENTAS</a></li>
-      <li><a href="">ARRENDAMIENTOS</a></li>
-      <li><a href="">NOSOTROS</a></li>
-      <li><a href="">CONTACTO</a></li>
+      <li><a href="{% url 'inicio' %}">INICIO</a></li>
+      <li><a href="{% url 'ventas' %}">VENTAS</a></li>
+      <li><a href="{% url 'arrendamientos' %}">ARRENDAMIENTOS</a></li>
+      <li><a href="{% url 'nosotros' %}">NOSOTROS</a></li>
+      <li><a href="{% url 'contacto' %}">CONTACTO</a></li>
     </ul>
 
     <div class="container">
