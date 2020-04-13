@@ -16,11 +16,11 @@
     <tbody>
       {% for user in object_list %}
       <tr>
-        <td>{{ user.first_name}}</td>
-        <td>{{ user.last_name}}</td>
-        <td>{{ user.username}}</td>
-        <td>{{ user.email}}</td>
-        <td>{{ user.perfil.IDRol.nombre}}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.perfil.IDRol.nombre }}</td>
       </tr>
       {% endfor %}
     </tbody>

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from .models import (Inmueble, Barrio, Tipo_de_inmueble,
                      Tipo_de_oferta, Imagenes, Propietarios_arrendatarios, Cita)
 from django.urls import reverse_lazy, reverse
@@ -237,15 +238,26 @@ class Prop_arrenCreate(CreateView):
 
     model = Propietarios_arrendatarios
     template_name = 'asesor/gestion_inmueble.html'
-    fields = '__all__'
+    fields = ['usuario','inmueble','tipo_cliente']
 
     # Retorna a la página donde se listan los inmuebles
     def get_success_url(self):
         return reverse('listado')
 
+    # Muestra los registros guardados de las tablas (User, Inmuebles) en los campos de selección
+    def get_context_data(self,**kwargs):
+        context = super(Prop_arrenCreate,self).get_context_data(**kwargs)
+        context['usuario'] = User.objects.all()
+        context['inmueble'] = Inmueble.objects.all()
+        return context
+
 class Prop_arrenList(ListView):
     """docstring for Prop_arrenList."""
 
-    template_name = 'asesor/mis_inmuebles.html'
+    template_name = 'asesor/inmuebles.html'
     model = Propietarios_arrendatarios
     context_object_name = 'gestion'
+
+# Función que llama la página de nosotros
+def mis_inmuebles(request):
+    return render(request, "cliente/mis_inmuebles.html")

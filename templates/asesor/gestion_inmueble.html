@@ -8,10 +8,46 @@
 <div class="section container">
   <div class="row">
     <div class="row card-panel">
-      <h3 class="center-align">Gestión</h3>
+      <h3 class="center-align">Gestión de propiedad</h3>
+      <br>
       <form class="col s12" method="post">{% csrf_token %}
-        {{form.as_p}}
-        <div class="input-field col s12" style="text-align:center;">
+        <!-- {{form.as_p}} -->
+
+        <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <select id="usuario" name="usuario" multiple>
+            <option value="" disabled selected>Seleccione uno o varios usuarios</option>
+              {% for d in usuario %}
+                <option value="{{ d.id }}">{{ d.first_name }} {{ d.last_name }}</option>
+              {% endfor %}
+          </select>
+          <label for="usuario">Usuario(s)</label>
+        </div>
+
+        <div class="input-field col s12">
+          <i class="material-icons prefix">home</i>
+          <select id="inmueble" name="inmueble" multiple>
+            <option value="" disabled selected>Seleccione uno o varios inmuebles</option>
+              {% for d in inmueble %}
+                <option value="{{ d.id }}">{{ d.direccion }}</option>
+              {% endfor %}
+          </select>
+          <label for="inmueble">Inmueble(s)</label>
+        </div>
+
+        <div class="col s12">
+          <label>
+            <input id="tipo_cliente" type="radio" name="tipo_cliente" value="True" >
+            <span>Propietario</span>
+          </label>
+          <label>
+            <input id="tipo_cliente" type="radio" name="tipo_cliente" value="False" >
+            <span>Arrendatario</span>
+          </label>
+          <br>
+        </div>
+
+        <div class="input-field col s12" style="text-align:center;"><br>
           <button class="btn waves-effect deep-orange darken-4" type="submit" name="action">Ingresar
             <i class="material-icons right">send</i>
           </button>

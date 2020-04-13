@@ -46,16 +46,20 @@ urlpatterns = [
     # Ruta de la página que muestra información de cada inmueble (Detail)
     path('detalle/<int:pk>/', views.InmuebleDetail.as_view(), name='detalle'),
 
+    # Ruta de la página para gestionar los proietarios y sus inmuebles
+    path('asesor/gestion_inmueble/', views.Prop_arrenCreate.as_view(), name='gestion'),
+
+    # Ruta de la página que muestra los propietarios y sus inmuebles
+    path('asesor/inmuebles/', views.Prop_arrenList.as_view(), name='listado'),
+
+    # Ruta de la página mis inmuebles
+    path('cliente/mis_inmuebles/', views.mis_inmuebles, name='mis_inmuebles'),
+
     # Ruta del inicio de sesión
     path('accounts/', include('django.contrib.auth.urls')),
 
     # Ruta de las urls de la aplicación usuario
     path('usuario/', include(('usuario.urls', 'usuario'), namespace='usuario')),
-
-
-    path('asesor/gestion_inmueble', views.Prop_arrenCreate.as_view(), name='gestion'),
-
-    path('asesor/mis_inmuebles', views.Prop_arrenList.as_view(), name='listado'),
 ]
 
 # Concatenación para buscar archivos
