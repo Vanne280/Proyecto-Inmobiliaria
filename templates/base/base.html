@@ -37,7 +37,7 @@
                 {% if user.perfil.IDRol.nombre == "Asesor" %}
                   <li><h6>{{ user.perfil.IDRol.nombre }} {{ user.username }}</h6></li>
                   <li class="divider"></li>
-                  <li><a href="{% url 'gestion' %}">Gestón de inmuebles</a></li>
+                  <li><a href="{% url 'gestion' %}">Gestión de inmuebles</a></li>
                   <li><a href="{% url 'listado' %}">Inmuebles y propietarios</a></li>
                   <li class="divider"></li>
                   <li><a href="{% url 'crear' %}">Ingreso de inmuebles</a></li>
