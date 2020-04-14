@@ -43,6 +43,8 @@
                   <li><a href="{% url 'crear' %}">Ingreso de inmuebles</a></li>
                   <li><a href="{% url 'listar' %}">Listado de inmuebles</a></li>
                   <li class="divider"></li>
+                  <li><a href="{% url 'mis_citas' %}">Mis citas</a></li>
+                  <li class="divider"></li>
                   <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
                 {% else %}
                   <li><h6>{{ user.perfil.IDRol.nombre }} {{ user.username }}</h6></li>

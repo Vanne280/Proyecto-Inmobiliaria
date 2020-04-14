@@ -20,8 +20,6 @@ urlpatterns = [
     # Ruta de la página Contacto
     path('paginas/contacto/', views.ContactoView.as_view(), name='contacto'),
 
-    # path('<int:pk>/', views.ContactoUpdate.as_view(), name='contacto_inmueble'),
-
     # Ruta de la página de ventas
     path('paginas/ventas/', views.VentaList.as_view(), name='ventas'),
 
@@ -47,13 +45,15 @@ urlpatterns = [
     path('detalle/<int:pk>/', views.InmuebleDetail.as_view(), name='detalle'),
 
     # Ruta de la página para gestionar los proietarios y sus inmuebles
-    path('asesor/gestion_inmueble/', views.Prop_arrenCreate.as_view(), name='gestion'),
+    path('asesor/gestion_inmueble/', views.GestionCreate.as_view(), name='gestion'),
 
     # Ruta de la página que muestra los propietarios y sus inmuebles
-    path('asesor/inmuebles/', views.Prop_arrenList.as_view(), name='listado'),
+    path('asesor/inmuebles/', views.GestionList.as_view(), name='listado'),
 
     # Ruta de la página mis inmuebles
     path('cliente/mis_inmuebles/', views.mis_inmuebles, name='mis_inmuebles'),
+
+    path('asesor/mis_citas/', views.ContactoList.as_view(), name='mis_citas'),
 
     # Ruta del inicio de sesión
     path('accounts/', include('django.contrib.auth.urls')),

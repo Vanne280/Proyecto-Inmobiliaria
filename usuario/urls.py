@@ -16,10 +16,4 @@ urlpatterns = [
     # Ruta de la página que lista los usuarios
     path('listar/', views.UserList.as_view(), name="listar"),
 
-
-
-
-    path('userdata/', views.UserData, name="userdata"),
-
-    #path('/<int:pk>/', UserUpdate.as_view(), name="editar"),
 ]

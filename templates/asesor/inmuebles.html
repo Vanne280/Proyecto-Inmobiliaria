@@ -14,8 +14,13 @@
       <div class="card">
         <div class="card-content">
           <table class="highlight">
-              <tr><td>Inmueble: {{ data.inmueble }}</td></tr>
-              <tr><td>Usuario: {{ data.usuario }}</td></tr>
+              {% for i in data.inmueble.all %}
+                <tr><td>Inmueble: {{ i.direccion }}</td></tr>
+              {% endfor %}
+
+              {% for u in data.usuario.all %}
+                <tr><td>Usuario: {{ u.first_name }} {{ u.last_name }}</td></tr>
+              {% endfor %}
 
               {% if data.tipo_cliente == True %}
                 <td>Cliente: Propietario</td>

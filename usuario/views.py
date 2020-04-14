@@ -80,17 +80,3 @@ class UserList(ListView):
     """Clase que listar los usuarios registrados"""
 
     model = User
-
-# Función para editar los datos del usuario (No funciona)
-def UserData(request):
-    return render(request, "auth/user_data.html")
-
-# @login_required
-# class UserUpdate(UpdateView):
-#     """docstring for UserUpdate."""
-#
-#     model = User
-#     fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
-#
-#     def get_success_url(self):
-#         return reverse('inicio')

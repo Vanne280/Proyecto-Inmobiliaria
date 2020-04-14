@@ -77,47 +77,12 @@ class ContactoView(TemplateView):
 
         return HttpResponseRedirect(reverse('contacto'))
 
-# class ContactoUpdate(UpdateView):
-#     """docstring for ContactoUpdate."""
-#
-#     # model = Inmueble
-#     # fields = ['direccion','IDBarrio']
-#
-#     # Función que llama al formulario de contacto
-#     def get_context_data(self,**kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['contacto_form'] = ContactoForm()
-#         context['inmueble'] = InmuebleForm()
-#
-#         return context
-#
-#     # Función que envía un correo con la información recibida del formulario de contacto
-#     def post(self, request, *args, **kwargs):
-#         nombre = request.POST.get('nombre')
-#         apellido = request.POST.get('apellido')
-#         telefono = request.POST.get('telefono')
-#         email = request.POST.get('email')
-#         asunto = request.POST.get('asunto')
-#         mensaje = request.POST.get('mensaje', 'direccion')
-#
-#         body = render_to_string('email/email_contacto.html', {
-#             'nombre': nombre,
-#             'apellido': apellido,
-#             'telefono': telefono,
-#             'email': email,
-#             'mensaje': mensaje,
-#         })
-#
-#         msg = EmailMessage(
-#             subject = asunto,
-#             body = body,
-#             from_email = email,
-#             to = ['asesorinmobiliariainnova@gmail.com'],
-#         )
-#         msg.content_subtype = 'html'
-#         msg.send()
-#
-#         return HttpResponseRedirect(reverse('detalle'))
+class ContactoList(ListView):
+    """docstring for ContactoList."""
+
+    template_name = 'asesor/mis_citas.html'
+    model = ContactoForm
+    context_object_name = 'contacto'
 
 
 class InmuebleCreate(CreateView):
@@ -208,6 +173,7 @@ class InmuebleDelete(DeleteView):
     def get_success_url(self):
         return reverse('listar')
 
+
 class AlquilerList(ListView):
     """Clase que muestra las ofertas de inmuebles en arrendamiento"""
 
@@ -233,7 +199,7 @@ class InmuebleDetail(DetailView):
         kwargs['imagenes'] = Imagenes.objects.filter(IDInmueble_id = self.get_object().id)
         return super(InmuebleDetail, self).get_context_data(**kwargs)
 
-class Prop_arrenCreate(CreateView):
+class GestionCreate(CreateView):
     """docstring for Propietarios_arrendatarios."""
 
     model = Propietarios_arrendatarios
@@ -246,12 +212,12 @@ class Prop_arrenCreate(CreateView):
 
     # Muestra los registros guardados de las tablas (User, Inmuebles) en los campos de selección
     def get_context_data(self,**kwargs):
-        context = super(Prop_arrenCreate,self).get_context_data(**kwargs)
+        context = super(GestionCreate,self).get_context_data(**kwargs)
         context['usuario'] = User.objects.all()
         context['inmueble'] = Inmueble.objects.all()
         return context
 
-class Prop_arrenList(ListView):
+class GestionList(ListView):
     """docstring for Prop_arrenList."""
 
     template_name = 'asesor/inmuebles.html'
