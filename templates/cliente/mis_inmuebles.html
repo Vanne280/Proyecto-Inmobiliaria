@@ -8,6 +8,51 @@
 
 <h2 class="header center black-text text-lighten-3">Mis Inmuebles</h2>
 
+<div class="section">
+  <div class="row">
+    <div class="col s12">
+      <table class="responsive-table">
+        <thead>
+          <tr>
+            <th>Tipo de oferta</th>
+            <th>Tipo de inmueble</th>
+            <th>Barrio</th>
+            <th>Dirección</th>
+            <th>Precio</th>
+            <th>Disponible</th>
+            <th>Propietario</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in inmuebles %}
+            {% for u in data.usuario.all %}
+              {% if u.id == user.id %}
+                <tr>
+                  {% for i in data.inmueble.all %}
+                    <td>{{ i.IDTipo_de_oferta.nombre }}</td>
+                    <td>{{ i.IDTipo_de_inmueble.nombre }}</td>
+                    <td>{{ i.IDBarrio.nombre }}</td>
+                    <td>{{ i.direccion }}</td>
+                    <td>{{ i.precio }}</td>
 
+                    {% if i.disponible == True %}
+                      <td>SI</td>
+                    {% else %}
+                      <td>NO</td>
+                    {% endif %}
+                    
+                  {% endfor %}
+                  {% for u in data.usuario.all %}
+                    <td>{{ u.first_name }} {{ u.last_name }}</td>
+                  {% endfor %}
+                </tr>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

@@ -51,7 +51,7 @@ urlpatterns = [
     path('asesor/inmuebles/', views.GestionList.as_view(), name='listado'),
 
     # Ruta de la página mis inmuebles
-    path('cliente/mis_inmuebles/', views.mis_inmuebles, name='mis_inmuebles'),
+    path('cliente/mis_inmuebles/', views.MisinmueblesList.as_view(), name='mis_inmuebles'),
 
     path('asesor/mis_citas/', views.ContactoList.as_view(), name='mis_citas'),
 

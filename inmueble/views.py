@@ -37,8 +37,8 @@ def nosotros(request):
 
 
 class ContactoView(TemplateView):
-    """Clase que llama la página de contacto y envía un correo
-        con información de un cliente"""
+    """ Clase que llama la página de contacto y envía un correo
+        con información de un cliente """
 
     template_name = 'paginas/contacto.html'
 
@@ -86,7 +86,7 @@ class ContactoList(ListView):
 
 
 class InmuebleCreate(CreateView):
-    """Clase que crea la vista para registrar los inmuebles"""
+    """ Clase que crea la vista para registrar los inmuebles """
 
     model = Inmueble
     template_name = 'inmueble/inmueble_form.html'
@@ -148,13 +148,13 @@ def Guardar_inmueble(request):
         return HttpResponseRedirect(reverse('listar'))
 
 class InmuebleView(ListView):
-    """Clase que lista los registros de los inmuebles"""
+    """ Clase que lista los registros de los inmuebles """
 
     model = Inmueble
     context_object_name = 'inmueble'
 
 class InmuebleUpdate(UpdateView):
-    """Clase que edita los inmuebles"""
+    """ Clase que edita los inmuebles """
 
     model = Inmueble
     fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
@@ -165,7 +165,7 @@ class InmuebleUpdate(UpdateView):
         return reverse('listar')
 
 class InmuebleDelete(DeleteView):
-    """Clase que elimina los inmuebles"""
+    """ Clase que elimina los inmuebles """
 
     model = Inmueble
 
@@ -175,21 +175,21 @@ class InmuebleDelete(DeleteView):
 
 
 class AlquilerList(ListView):
-    """Clase que muestra las ofertas de inmuebles en arrendamiento"""
+    """ Clase que muestra las ofertas de inmuebles en arrendamiento """
 
     template_name = 'paginas/arrendamientos.html'
     model = Inmueble
     context_object_name = 'inmuebles'
 
 class VentaList(ListView):
-    """Clase que muestra las ofertas de inmuebles en venta"""
+    """ Clase que muestra las ofertas de inmuebles en venta """
 
     template_name = 'paginas/ventas.html'
     model = Inmueble
     context_object_name = 'inmuebles'
 
 class InmuebleDetail(DetailView):
-    """Clase que muestra los datos de la tabla Inmueble"""
+    """ Clase que muestra los datos de la tabla Inmueble """
 
     model = Inmueble
     template_name = 'inmueble/inmueble_detail.html'
@@ -200,13 +200,13 @@ class InmuebleDetail(DetailView):
         return super(InmuebleDetail, self).get_context_data(**kwargs)
 
 class GestionCreate(CreateView):
-    """docstring for Propietarios_arrendatarios."""
+    """ Clase que registra los datos de la tabla Propietarios_arrendatarios """
 
     model = Propietarios_arrendatarios
     template_name = 'asesor/gestion_inmueble.html'
     fields = ['usuario','inmueble','tipo_cliente']
 
-    # Retorna a la página donde se listan los inmuebles
+    # Retorna a la página donde se listan los inmuebles y sus propietarios
     def get_success_url(self):
         return reverse('listado')
 
@@ -218,12 +218,15 @@ class GestionCreate(CreateView):
         return context
 
 class GestionList(ListView):
-    """docstring for Prop_arrenList."""
+    """ Clase que lista los inmuebles y sus propietarios """
 
     template_name = 'asesor/inmuebles.html'
     model = Propietarios_arrendatarios
     context_object_name = 'gestion'
 
-# Función que llama la página de nosotros
-def mis_inmuebles(request):
-    return render(request, "cliente/mis_inmuebles.html")
+class MisinmueblesList(ListView):
+    """docstring for MisinmueblesList."""
+
+    template_name = 'cliente/mis_inmuebles.html'
+    model = Propietarios_arrendatarios
+    context_object_name = 'inmuebles'
