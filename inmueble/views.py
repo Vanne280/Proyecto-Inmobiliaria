@@ -228,12 +228,34 @@ class GestionCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
         return context
 
 class GestionList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
-    """ Clase que lista los inmuebles y sus propietarios """
+    """ Clase que lista los propietarios y sus inmuebles """
 
     permission_required = 'usuario.listar_propiedad_cliente'
     template_name = 'asesor/inmuebles.html'
     model = Propietarios_arrendatarios
     context_object_name = 'gestion'
+
+class GestionUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    """ Clase que edita los propietarios y sus inmuebles """
+
+    permission_required = 'usuario.editar_propiedad_cliente'
+    model = Propietarios_arrendatarios
+    fields = ['usuario','inmueble','tipo_cliente']
+
+    # Retorna a la página donde se listan los propietarios y sus inmuebles
+    def get_success_url(self):
+        return reverse('listado')
+
+class GestionDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    """ Clase que eliminar los propietarios y sus inmuebles """
+
+    permission_required = 'usuario.eliminar_propiedad_cliente'
+    model = Propietarios_arrendatarios
+    context_object_name = 'gestion'
+
+    # Retorna a la página donde se listan los propietarios y sus inmuebles
+    def get_success_url(self):
+        return reverse('listado')
 
 class MisinmueblesList(LoginRequiredMixin, ListView):
     """docstring for MisinmueblesList."""

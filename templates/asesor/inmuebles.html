@@ -6,7 +6,7 @@
 
 {% block container %}
 
-<h2 class="header center black-text text-lighten-3">Inmuebles</h2>
+<h2 class="header center black-text text-lighten-3">Propiedades</h2>
 
 <div class="row">
   {% for data in gestion %}
@@ -14,19 +14,30 @@
       <div class="card">
         <div class="card-content">
           <table class="highlight">
-              {% for i in data.inmueble.all %}
-                <tr><td>Inmueble: {{ i.direccion }}</td></tr>
-              {% endfor %}
+            {% for i in data.inmueble.all %}
+              <tr><td>Inmueble: {{ i.direccion }}</td></tr>
+            {% endfor %}
 
-              {% for u in data.usuario.all %}
-                <tr><td>Usuario: {{ u.first_name }} {{ u.last_name }}</td></tr>
-              {% endfor %}
+            {% for u in data.usuario.all %}
+              <tr><td>Cliente: {{ u.first_name }} {{ u.last_name }}</td></tr>
+            {% endfor %}
 
-              {% if data.tipo_cliente == True %}
-                <td>Cliente: Propietario</td>
-              {% else %}
-                <td>Cliente: Arrendatario</td>
-              {% endif %}
+            {% if data.tipo_cliente == True %}
+              <td>Tipo de cliente: Propietario</td>
+            {% else %}
+              <td>Tipo de cliente: Arrendatario</td>
+            {% endif %}
+
+            <tr>
+              <td>
+                <a href="{% url 'editar_gestion' data.id %}" class="btn-floating btn-small waves-effect waves-light red darken-4">
+                  <i class="small material-icons">create</i>
+                </a>
+                <a href="{% url 'eliminar_gestion' data.id %}" class="btn-floating btn-small waves-effect waves-light red darken-4">
+                  <i class="small material-icons">delete_forever</i>
+                </a>
+              </td>
+            </tr>
 
           </table>
         </div>

@@ -48,7 +48,13 @@ urlpatterns = [
     path('asesor/gestion_inmueble/', views.GestionCreate.as_view(), name='gestion'),
 
     # Ruta de la página que muestra los propietarios y sus inmuebles
-    path('asesor/inmuebles/', views.GestionList.as_view(), name='listado'),
+    path('asesor/inmuebles/', views.GestionList.as_view(), name='listar_gestion'),
+
+    # Ruta de la página que edita los propietarios y sus inmuebles
+    path('<int:pk>/', views.GestionUpdate.as_view(), name='editar_gestion'),
+
+    # Ruta de la página que elimina los propietarios y sus inmuebles
+    path('eliminar/<int:pk>/', views.GestionDelete.as_view(), name='eliminar_gestion'),
 
     # Ruta de la página mis inmuebles
     path('cliente/mis_inmuebles/', views.MisinmueblesList.as_view(), name='mis_inmuebles'),
