@@ -23,12 +23,17 @@ class Perfil(models.Model):
     class Meta:
         """ Clase para introducir nuevas funcionalidades en la clase Perfil """
 
-        permissions = (("agregar_inmueble", "Puede agregar inmueble"),
+        permissions = (
+                       # Permisos para asesores
+                       ("agregar_inmueble", "Puede agregar inmueble"),
                        ("listar_inmueble", "Puede listar inmueble"),
                        ("editar_inmueble", "Puede editar inmueble"),
                        ("eliminar_inmueble", "Puede eliminar inmueble"),
                        ("gestionar_inmueble_propietario", "Puede gestionar inmuebles y propietarios"),
                        ("listar_propiedad_cliente", "Puede listar inmuebles y propietarios"),
                        ("editar_propiedad_cliente", "Puede editar inmuebles y propietarios"),
-                       ("eliminar_propiedad_cliente", "Puede eliminar inmuebles y propietarios"), 
+                       ("eliminar_propiedad_cliente", "Puede eliminar inmuebles y propietarios"),
+
+                       # Permisos para clientes
+                       ("ver_inmuebles", "Puede ver inmuebles registrados"),
                       )

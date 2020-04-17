@@ -257,9 +257,10 @@ class GestionDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse('listado')
 
-class MisinmueblesList(LoginRequiredMixin, ListView):
-    """docstring for MisinmueblesList."""
+class MisinmueblesList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+    """ Clase que lista los inmuebles registrados en el perfil de los clientes """
 
+    permission_required = 'usuario.ver_inmuebles'
     template_name = 'cliente/mis_inmuebles.html'
     model = Propietarios_arrendatarios
     context_object_name = 'inmuebles'
