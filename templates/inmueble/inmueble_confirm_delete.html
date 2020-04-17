@@ -7,8 +7,8 @@
   <div class="row">
     <form method="post">
       {% csrf_token %}
-      <p>¿Está seguro de eliminar el inmueble? "{{ object }}"?</p>
-      <input type="submit" value="Confirmar" class="blue darken-1 btn">
+      <p>¿Está seguro de eliminar el inmueble? "{{ inmueble.direccion }}"?</p>
+      <input type="submit" value="Confirmar" class="deep-orange darken-4 btn">
     </form>
   </div>
 

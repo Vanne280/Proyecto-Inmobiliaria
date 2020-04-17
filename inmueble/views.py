@@ -12,6 +12,10 @@ from django.core.mail import EmailMessage
 # Librería Decoradores (permisos)
 from django.contrib.auth.decorators import login_required
 
+# Librerías permisos requeridos para vistas basadas en clases
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
 # Librería que permite cargar una plantilla html como variable
 from django.template.loader import render_to_string
 
@@ -77,7 +81,7 @@ class ContactoView(TemplateView):
 
         return HttpResponseRedirect(reverse('contacto'))
 
-class ContactoList(ListView):
+class ContactoList(LoginRequiredMixin, ListView):
     """docstring for ContactoList."""
 
     template_name = 'asesor/mis_citas.html'
@@ -85,9 +89,10 @@ class ContactoList(ListView):
     context_object_name = 'contacto'
 
 
-class InmuebleCreate(CreateView):
+class InmuebleCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """ Clase que crea la vista para registrar los inmuebles """
 
+    permission_required = 'usuario.agregar_inmueble'
     model = Inmueble
     template_name = 'inmueble/inmueble_form.html'
     fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
@@ -147,15 +152,17 @@ def Guardar_inmueble(request):
 
         return HttpResponseRedirect(reverse('listar'))
 
-class InmuebleView(ListView):
+class InmuebleView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     """ Clase que lista los registros de los inmuebles """
 
+    permission_required = 'usuario.listar_inmueble'
     model = Inmueble
     context_object_name = 'inmueble'
 
-class InmuebleUpdate(UpdateView):
+class InmuebleUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     """ Clase que edita los inmuebles """
 
+    permission_required = 'usuario.eliminar_inmueble'
     model = Inmueble
     fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
                 'alcoba','baño','parqueadero','disponible','descripcion','imagen']
@@ -164,10 +171,12 @@ class InmuebleUpdate(UpdateView):
     def get_success_url(self):
         return reverse('listar')
 
-class InmuebleDelete(DeleteView):
+class InmuebleDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """ Clase que elimina los inmuebles """
 
+    permission_required = 'usuario.editar_inmueble'
     model = Inmueble
+    context_object_name = 'inmueble'
 
     # Retorna a la página donde se listan los inmuebles
     def get_success_url(self):
@@ -199,9 +208,10 @@ class InmuebleDetail(DetailView):
         kwargs['imagenes'] = Imagenes.objects.filter(IDInmueble_id = self.get_object().id)
         return super(InmuebleDetail, self).get_context_data(**kwargs)
 
-class GestionCreate(CreateView):
+class GestionCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     """ Clase que registra los datos de la tabla Propietarios_arrendatarios """
 
+    permission_required = 'usuario.gestionar_inmueble_propietario'
     model = Propietarios_arrendatarios
     template_name = 'asesor/gestion_inmueble.html'
     fields = ['usuario','inmueble','tipo_cliente']
@@ -217,14 +227,15 @@ class GestionCreate(CreateView):
         context['inmueble'] = Inmueble.objects.all()
         return context
 
-class GestionList(ListView):
+class GestionList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     """ Clase que lista los inmuebles y sus propietarios """
 
+    permission_required = 'usuario.listar_propiedad_cliente'
     template_name = 'asesor/inmuebles.html'
     model = Propietarios_arrendatarios
     context_object_name = 'gestion'
 
-class MisinmueblesList(ListView):
+class MisinmueblesList(LoginRequiredMixin, ListView):
     """docstring for MisinmueblesList."""
 
     template_name = 'cliente/mis_inmuebles.html'
