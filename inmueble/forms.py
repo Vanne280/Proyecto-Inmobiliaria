@@ -5,7 +5,7 @@ class InmuebleForm(forms.ModelForm):
     class Meta:
         model = Inmueble
         fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
-                  'alcoba','baño','parqueadero','disponible','descripcion','imagen']
+                  'alcoba','baño','parqueadero','disponible','descripcion']
         exclude = ('usuario',)
 
 class ContactoForm(forms.Form):

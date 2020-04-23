@@ -68,7 +68,7 @@ class Inmueble(models.Model):
     parqueadero = models.BooleanField(null=False)
     disponible = models.BooleanField(null=False)
     descripcion = models.CharField(max_length=300, null=True)
-    imagen = models.ImageField(null=True, upload_to="imagenes/%Y/%m/%d")
+    imagenppal = models.FileField(null=False, upload_to="imagenes/%Y/%m/%d")
 
 class Imagenes(models.Model):
     """ Crea un modelo con el nombre Imagenes con un campo ruta y un campo IDInmueble

@@ -10,6 +10,7 @@
   <div class="row">
     <div class="row card-panel">
       <form method="post" enctype="multipart/form-data" action="{% url 'crear' %}">
+
         {% csrf_token %}
         <!-- {{form.as_p}} -->
         <div class="input-field col l6 col-m6">
@@ -23,7 +24,7 @@
           <select id="IDBarrio" name="IDBarrio" required>
             <option value="" disabled selected>Seleccione un barrio</option>
               {% for d in form.IDBarrio %}
-                <!-- <option value="{{ d.id }}">{{ d.nombre }}</option> -->
+                 <!-- <option value="{{ d.id }}">{{ d.nombre }}</option> -->
                 {{ d }}
               {% endfor %}
           </select>
@@ -50,8 +51,8 @@
                 <!-- <option value="{{ d.id }}">{{ d.nombre }}</option> -->
                 {{ d }}
               {% endfor %}
-          </select>
-          <label for="IDTipo_de_oferta">Tipo de oferta</label>
+           </select>
+           <label for="IDTipo_de_oferta">Tipo de oferta</label>
         </div>
 
         <div class="input-field col l3 col-m6">
@@ -102,15 +103,15 @@
         <div class="file-field input-field col s12">
           <div class="btn-small deep-orange darken-4">
             <span>Examinar</span>
-            <input type="file" name="imagen" id="imagen">
+            <input type="file" name="imagenppal" id="imagenppal">
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate">
-            <label>Ingrese imagen principal de la propiedad</label>
+            <label for="imagenppal">Ingrese imagen principal de la propiedad</label>
           </div>
         </div>
 
-        <!-- <div class="clearfix"></div>
+        <div class="clearfix"></div>
         <p>A continuación puede ingresar las imágenes de la propiedad:</p>
         <div class="file-field input-field col s12">
           <div class="btn-small deep-orange darken-4">
@@ -121,10 +122,10 @@
             <input class="file-path validate" type="text">
             <label>Ingrese una o mas imágenes</label>
           </div>
-        </div> -->
+        </div>
 
         <div class="input-field col s12" style="text-align:center;">
-          <button class="btn waves-effect waves-light deep-orange darken-4" type="submit" name="action">Enviar
+          <button class="btn waves-effect waves-light deep-orange darken-4" type="submit">Enviar
             <i class="material-icons right">check</i>
           </button>
         </div>
@@ -142,6 +143,20 @@
   </ul>
 {% endif %}
 
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
 
 
 {% endblock %}

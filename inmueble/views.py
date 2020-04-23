@@ -173,19 +173,25 @@ def Guardar_inmueble(request):
 
     if request.method == 'POST':
         form = InmuebleForm(request.POST)
+        print(form)
         if form.is_valid():
-            form.save()
-            messages.success(request, 'Se guardó el inmueble correctamente')
+            is_file = request.POST.get('imagenppal', True)
 
-            # for field in request.FILES.keys():
-            #     if is_file == True:
-            #         for formfile in request.FILES.getlist(field):
-            #             img = Imagenes(ruta = formfile, IDInmueble_id = inmueble.pk)
-            #             img.save()
+            inmueble = form.save(commit = False)
+            if is_file == True:
+                 inmueble.imagenppal = request.FILES['imagenppal']
+            inmueble.save()
 
+            for field in request.FILES.keys():
+
+                    for formfile in request.FILES.getlist(field):
+                        img = Imagenes(ruta = formfile, IDInmueble_id = inmueble.pk)
+                        img.save()
+                        messages.success(request, 'Se guardó el inmueble correctamente')
             return HttpResponseRedirect(reverse('listar'))
         else:
             messages.warning(request, 'Por favor, ingrese los datos otra vez.')
+            return render(request, template_name, {'form':form})
     else:
         form = InmuebleForm()
 
@@ -205,7 +211,7 @@ class InmuebleUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     permission_required = 'usuario.editar_inmueble'
     model = Inmueble
     fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
-                'alcoba','baño','parqueadero','disponible','descripcion','imagen']
+                'alcoba','baño','parqueadero','disponible','descripcion','imagenppal']
 
     # Retorna a la página donde se listan los inmuebles
     def get_success_url(self):
