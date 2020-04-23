@@ -9,7 +9,7 @@
 <div class="section">
   <div class="row">
     <div class="row card-panel">
-      <form method="post" enctype="multipart/form-data" action="{% url 'guardar_inmueble' %}">
+      <form method="post" enctype="multipart/form-data" action="{% url 'crear' %}">
         {% csrf_token %}
         <!-- {{form.as_p}} -->
         <div class="input-field col l6 col-m6">
@@ -22,8 +22,9 @@
           <i class="material-icons prefix">location_city</i>
           <select id="IDBarrio" name="IDBarrio" required>
             <option value="" disabled selected>Seleccione un barrio</option>
-              {% for d in IDBarrio %}
-                <option value="{{ d.id }}">{{ d.nombre }}</option>
+              {% for d in form.IDBarrio %}
+                <!-- <option value="{{ d.id }}">{{ d.nombre }}</option> -->
+                {{ d }}
               {% endfor %}
           </select>
           <label for="IDBarrio">Barrio</label>
@@ -33,8 +34,9 @@
           <i class="material-icons prefix">location_city</i>
           <select id="IDTipo_de_inmueble" name="IDTipo_de_inmueble" required>
             <option value="" disabled selected>Seleccione un tipo de inmueble</option>
-              {% for d in IDTipo_de_inmueble %}
-                <option value="{{ d.id }}">{{ d.nombre }}</option>
+              {% for d in form.IDTipo_de_inmueble %}
+                <!-- <option value="{{ d.id }}">{{ d.nombre }}</option> -->
+                {{ d }}
               {% endfor %}
           </select>
           <label for="IDTipo_de_inmueble">Tipo de inmueble</label>
@@ -44,8 +46,9 @@
           <i class="material-icons prefix">local_offer</i>
           <select id="IDTipo_de_oferta" name="IDTipo_de_oferta" required>
             <option value="" disabled selected>Seleccione un tipo de oferta</option>
-              {% for d in IDTipo_de_oferta %}
-                <option value="{{ d.id }}">{{ d.nombre }}</option>
+              {% for d in form.IDTipo_de_oferta %}
+                <!-- <option value="{{ d.id }}">{{ d.nombre }}</option> -->
+                {{ d }}
               {% endfor %}
           </select>
           <label for="IDTipo_de_oferta">Tipo de oferta</label>
@@ -107,7 +110,7 @@
           </div>
         </div>
 
-        <div class="clearfix"></div>
+        <!-- <div class="clearfix"></div>
         <p>A continuación puede ingresar las imágenes de la propiedad:</p>
         <div class="file-field input-field col s12">
           <div class="btn-small deep-orange darken-4">
@@ -118,7 +121,7 @@
             <input class="file-path validate" type="text">
             <label>Ingrese una o mas imágenes</label>
           </div>
-        </div>
+        </div> -->
 
         <div class="input-field col s12" style="text-align:center;">
           <button class="btn waves-effect waves-light deep-orange darken-4" type="submit" name="action">Enviar
@@ -130,5 +133,15 @@
     </div>
   </div>
 </div>
+
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+
 
 {% endblock %}

@@ -4,7 +4,8 @@ from .models import Inmueble
 class InmuebleForm(forms.ModelForm):
     class Meta:
         model = Inmueble
-        fields = '__all__'
+        fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
+                  'alcoba','baño','parqueadero','disponible','descripcion','imagen']
         exclude = ('usuario',)
 
 class ContactoForm(forms.Form):

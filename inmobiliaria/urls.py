@@ -29,13 +29,13 @@ urlpatterns = [
     path('paginas/arrendamientos/', views.AlquilerList.as_view(), name='arrendamientos'),
 
     # Ruta de la página para crear inmuebles
-    path('crear/', views.InmuebleCreate.as_view(), name='crear'),
+    path('crear/', views.Guardar_inmueble, name='crear'),
 
     # Ruta de la página para listar los inmuebles
     path('listar/', views.InmuebleView.as_view(), name='listar'),
 
     # Ruta de la función de guardar inmuebles
-    path('guardar_inmueble/', views.Guardar_inmueble, name='guardar_inmueble'),
+    # path('guardar_inmueble/', views.Guardar_inmueble, name='guardar_inmueble'),
 
     # Ruta de la página para editar los inmuebles
     path('<int:pk>/', views.InmuebleUpdate.as_view(), name='editar'),
