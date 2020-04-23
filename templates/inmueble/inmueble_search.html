@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+    {% for data in object_list %}
+
+
+      <div class="card horizontal">
+        <div class="card-image">
+          <img src="../../media/{{ inmueble.imagen }}">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>{{ data.IDTipo_de_inmueble.nombre }}</p>
+            <p>Barrio: {{ data.IDBarrio.nombre }}</p>
+            <p>Precio: $ {{ data.precio }}</p>
+          </div>
+          <div class="card-action">
+            <a href="{% url 'detalle' data.id %}">Más información</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="card horizontal" style="width: 18rem;">
+        <img src="../../media/{{ movie.urlimage }}" class="card-img-top">
+
+        <div class="card-body">
+          <h5 class="card-title">{{ movie.name }}</h5>
+          <p class="card-text"></p>
+          <p class="card-text" style="font-size: 10pt;text-align:center">
+            {{ movie.runtime }} min | {{ movie.rating }}
+          </p>
+          <a href="#" class="btn btn-primary">Ver Horarios</a>
+        </div>
+      </div> -->
+    {% endfor %}
+
+
+
+{% endblock  %}

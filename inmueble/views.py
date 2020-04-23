@@ -31,9 +31,22 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Librería DetailView
 from django.views.generic.detail import DetailView
 
+# librería para filtrar en varios registros
+from django.db.models import Q
+
 # Función que llama la página de inicio
 def home(request):
     return render(request, "inicio.html")
+    
+
+def Buscarinmueble(request):
+    if request.method == 'POST':
+        pattern = request.POST['buscar']
+        inmuebles = Inmueble.objects.filter(disponible = True,
+                                            precio__contains = pattern)
+
+    return render(request, 'inmueble/inmueble_search.html', {'object_list':inmuebles, 'buscar':pattern})
+
 
 # Función que llama la página de nosotros
 def nosotros(request):

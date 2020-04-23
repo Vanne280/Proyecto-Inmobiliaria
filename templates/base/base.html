@@ -33,7 +33,7 @@
             </li>
 
               <!-- Dropdown Structure -->
-              <ul id='dropdown1' class='dropdown-content' style="/*! width: 102px; */ left: 782.1px; top: 0px; height: 552px; transform-origin: 0px 0px 0px; opacity: 1; transform: scaleX(1) scaleY(1);">
+              <ul id='dropdown1' class='dropdown-content'>
                 {% if user.perfil.IDRol.nombre == "Asesor" %}
                   <li><h6>{{ user.perfil.IDRol.nombre }} {{ user.username }}</h6></li>
                   <li class="divider"></li>
@@ -80,6 +80,16 @@
           <li><a href="{% url 'nosotros' %}"><b>NOSOTROS</b></a></li>
           <li><a href="{% url 'contacto' %}"><b>CONTACTO</b></a></li>
         </ul>
+      </div>
+    </nav>
+    <nav>
+      <div class="nav-wrapper container">
+        <form method="post" action="{% url 'buscar' %}"> {% csrf_token %}
+            <div class="input-field">
+              <input id="search" type="search" name="buscar" placeholder="Buscar..." required>
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+            </div>
+        </form>
       </div>
     </nav>
 
