@@ -13,6 +13,76 @@
     <div class="parallax"><img src="{% static 'img/banner2.jpg' %}"></div>
 </div>
 
+<div class="section">
+  <div class="row">
+    <div class="col s12 m5 l3">
+      <div class="card">
+        <form method="get" action="{% url 'busqueda' %}">
+          {% csrf_token %}
+          <!-- {{form.as_p}} -->
+          <div class="col m11">
+            <div class="input-field">
+              <i class="material-icons prefix">location_city</i>
+              <select id="barrio" name="barrio">
+                <option value="" disabled selected>Seleccione</option>
+                  {% for b in barrios %}
+                     <option value="{{ b }}">{{ b }}</option>
+                     {{ b }}
+                  {% endfor %}
+              </select>
+              <label for="barrio">Barrio</label>
+            </div>
+          </div>
+
+          <div class="col m11">
+            <div class="input-field">
+              <i class="material-icons prefix">location_city</i>
+              <select id="IDTipo_de_inmueble" name="IDTipo_de_inmueble" required>
+                <option value="" disabled selected>Seleccione</option>
+                  {% for d in form.IDTipo_de_inmueble %}
+                    <!-- <option value="{{ d.id }}">{{ d.nombre }}</option> -->
+                    {{ d }}
+                  {% endfor %}
+              </select>
+              <label for="IDTipo_de_inmueble">Tipo de inmueble</label>
+            </div>
+          </div>
+
+          <div class="col m11">
+            <div class="input-field">
+              <i class="material-icons prefix">local_offer</i>
+              <select id="IDTipo_de_oferta" name="IDTipo_de_oferta" required>
+                <option value="" disabled selected>Seleccione</option>
+                  {% for d in form.IDTipo_de_oferta %}
+                    <!-- <option value="{{ d.id }}">{{ d.nombre }}</option> -->
+                    {{ d }}
+                  {% endfor %}
+               </select>
+               <label for="IDTipo_de_oferta">Tipo de oferta</label>
+            </div>
+          </div>
+
+
+          <!-- <div class="input-field col l3 col-m6">
+            <i class="material-icons prefix">monetization_on</i>
+            <input id="precio" type="number" name="precio" class="validate" required>
+            <label for="precio">Precio</label>
+          </div> -->
+
+          <div class="input-field" style="text-align:center;">
+            <button class="btn waves-effect waves-light deep-orange darken-4" type="submit">Enviar
+              <i class="material-icons right">check</i>
+            </button>
+          </div><br>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</<section>
+
+
+
 <div class="section white">
     <div class="row">
       <div class="col s12 m6">

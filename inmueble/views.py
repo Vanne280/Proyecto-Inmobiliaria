@@ -39,6 +39,20 @@ from django.db.models import Q
 def home(request):
     return render(request, "inicio.html")
 
+def Busqueda(request):
+    qs = Inmueble.objects.all()
+    barrios = Barrio.objects.all()
+
+    barrio = request.GET.get('barrio')
+
+    if is_valid_queryparam(barrio):
+        qs = qs.filter(barrios__nombre=barrio)
+
+    context = {
+        'queryset': qs,
+        'barrios': barrios
+    }
+    return render(request, "paginas/arrendamientos.html", context)
 
 def Buscarinmueble(request):
     if request.method == 'POST':
