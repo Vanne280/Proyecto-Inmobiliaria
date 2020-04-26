@@ -17,7 +17,7 @@
   <div class="row">
     <div class="col s12 m5 l3">
       <div class="card">
-        <form method="get" action="{% url 'busqueda' %}">
+        <form method="get" action="{% url 'buscar' %}">
           {% csrf_token %}
           <!-- {{form.as_p}} -->
           <div class="col m11">
@@ -26,8 +26,7 @@
               <select id="barrio" name="barrio">
                 <option value="" disabled selected>Seleccione</option>
                   {% for b in barrios %}
-                     <option value="{{ b }}">{{ b }}</option>
-                     {{ b }}
+                     <option value="{{ b.id }}">{{ b.nombre }}</option>
                   {% endfor %}
               </select>
               <label for="barrio">Barrio</label>
@@ -37,28 +36,26 @@
           <div class="col m11">
             <div class="input-field">
               <i class="material-icons prefix">location_city</i>
-              <select id="IDTipo_de_inmueble" name="IDTipo_de_inmueble" required>
+              <select id="tipo_inmueble" name="tipo_inmueble" required>
                 <option value="" disabled selected>Seleccione</option>
-                  {% for d in form.IDTipo_de_inmueble %}
-                    <!-- <option value="{{ d.id }}">{{ d.nombre }}</option> -->
-                    {{ d }}
+                  {% for d in tipo_inmueble %}
+                    <option value="{{ d.id }}">{{ d.nombre }}</option>
                   {% endfor %}
               </select>
-              <label for="IDTipo_de_inmueble">Tipo de inmueble</label>
+              <label for="tipo_inmueble">Tipo de inmueble</label>
             </div>
           </div>
 
           <div class="col m11">
             <div class="input-field">
               <i class="material-icons prefix">local_offer</i>
-              <select id="IDTipo_de_oferta" name="IDTipo_de_oferta" required>
+              <select id="tipo_oferta" name="tipo_oferta" required>
                 <option value="" disabled selected>Seleccione</option>
-                  {% for d in form.IDTipo_de_oferta %}
-                    <!-- <option value="{{ d.id }}">{{ d.nombre }}</option> -->
-                    {{ d }}
+                  {% for d in tipo_oferta %}
+                    <option value="{{ d.id }}">{{ d.nombre }}</option>
                   {% endfor %}
                </select>
-               <label for="IDTipo_de_oferta">Tipo de oferta</label>
+               <label for="tipo_oferta">Tipo de oferta</label>
             </div>
           </div>
 
@@ -70,7 +67,7 @@
           </div> -->
 
           <div class="input-field" style="text-align:center;">
-            <button class="btn waves-effect waves-light deep-orange darken-4" type="submit">Enviar
+            <button class="btn waves-effect waves-light deep-orange darken-4" name="action" type="submit">Enviar
               <i class="material-icons right">check</i>
             </button>
           </div><br>

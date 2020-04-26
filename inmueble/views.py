@@ -38,30 +38,50 @@ from django.db.models import Q
 
 # Función que llama la página de inicio
 def home(request):
-    return render(request, "inicio.html")
+    barrios = Barrio.objects.all()
+    tipo_inmueble = Tipo_de_inmueble.objects.all()
+    tipo_oferta = Tipo_de_oferta.objects.all()
+    return render(request, "inicio.html", {'barrios':barrios,
+                                           'tipo_inmueble':tipo_inmueble,
+                                           'tipo_oferta': tipo_oferta})
+
+def is_valid_queryparam(param):
+    return param != '' and param is not None
 
 def Busqueda(request):
     qs = Inmueble.objects.all()
     barrios = Barrio.objects.all()
+    tipo_inmuebles = Tipo_de_inmueble.objects.all()
+    tipo_ofertas = Tipo_de_oferta.objects.all()
 
     barrio = request.GET.get('barrio')
+    tipo_inmueble = request.GET.get('tipo_inmueble')
+    tipo_oferta = request.GET.get('tipo_oferta')
 
     if is_valid_queryparam(barrio):
-        qs = qs.filter(barrios__nombre=barrio)
+        qs = qs.filter(IDBarrio=barrio)
+
+    if is_valid_queryparam(tipo_inmueble):
+        qs = qs.filter(IDTipo_de_inmueble__nombre=tipo_inmueble)
+
+    if is_valid_queryparam(tipo_oferta):
+        qs = qs.filter(IDTipo_de_oferta__nombre=tipo_oferta)
 
     context = {
         'queryset': qs,
-        'barrios': barrios
+        'barrios': barrios,
+        'tipo_inmuebles': tipo_inmuebles,
+        'tipo_ofertas': tipo_ofertas
     }
-    return render(request, "paginas/arrendamientos.html", context)
+    return render(request, 'inmueble/inmueble_search.html', context)
 
-def Buscarinmueble(request):
-    if request.method == 'POST':
-        pattern = request.POST['buscar']
-        inmuebles = Inmueble.objects.filter(disponible = True,
-                                            precio__contains = pattern)
-
-    return render(request, 'inmueble/inmueble_search.html', {'object_list':inmuebles, 'buscar':pattern})
+# def Buscarinmueble(request):
+#     if request.method == 'POST':
+#         pattern = request.POST['buscar']
+#         inmuebles = Inmueble.objects.filter(disponible = True,
+#                                             precio__contains = pattern)
+#
+#     return render(request, 'inmueble/inmueble_search.html', {'object_list':inmuebles, 'buscar':pattern})
 
 
 # Función que llama la página de nosotros
@@ -210,7 +230,7 @@ def Guardar_inmueble(request):
 
     return render(request, template_name, {'form':form})
 
-
+# Función que edita registros de inmuebles
 @permission_required('usuario.editar_inmueble')
 @login_required()
 def Editar_inmueble(request, pk):

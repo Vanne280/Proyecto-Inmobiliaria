@@ -5,7 +5,7 @@
 {% block content %}
 
 
-    {% for data in object_list %}
+    {% for data in queryset %}
 
 
       <div class="card horizontal">
@@ -15,7 +15,12 @@
         <div class="card-stacked">
           <div class="card-content">
             <p>{{ data.IDTipo_de_inmueble.nombre }}</p>
-            <p>Barrio: {{ data.IDBarrio.nombre }}</p>
+
+            {% for b in data.barrios.all %}
+              <p>Barrio: {{ b.IDBarrio.nombre }}</p>
+            {% endfor %}
+
+            <!-- <p>Barrio: {{ data.IDBarrio.nombre }}</p> -->
             <p>Precio: $ {{ data.precio }}</p>
           </div>
           <div class="card-action">

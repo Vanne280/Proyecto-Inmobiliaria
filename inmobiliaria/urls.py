@@ -14,9 +14,9 @@ urlpatterns = [
     # Ruta de la página de Inicio
     path('', views.home, name='inicio'),
 
-    path('', views.Busqueda, name='busqueda'),
+    path('buscar/', views.Busqueda, name='buscar'),
 
-    path('buscar/', views.Buscarinmueble, name='buscar'),
+    # path('buscar/', views.Buscarinmueble, name='buscar'),
 
     # Ruta de la página Nosotros
     path('paginas/nosotros/', views.nosotros, name='nosotros'),
