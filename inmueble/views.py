@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import (Inmueble, Barrio, Tipo_de_inmueble,
                      Tipo_de_oferta, Imagenes, Propietarios_arrendatarios, Cita)
@@ -16,6 +16,7 @@ from django.contrib.auth.decorators import login_required
 # Librerías permisos requeridos para vistas basadas en clases
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.contrib.auth.decorators import permission_required
 
 # Librería que permite cargar una plantilla html como variable
 from django.template.loader import render_to_string
@@ -180,6 +181,8 @@ class ContactoList(LoginRequiredMixin, ListView):
 #
 #         return HttpResponseRedirect(reverse('listar'))
 
+# Función que guarda registros de inmuebles con sus respectivas imágenes
+@permission_required('usuario.agregar_inmueble')
 @login_required()
 def Guardar_inmueble(request):
     template_name = 'inmueble/inmueble_form.html'
@@ -187,21 +190,17 @@ def Guardar_inmueble(request):
 
     if request.method == 'POST':
         form = InmuebleForm(request.POST)
-        print(form)
         if form.is_valid():
             is_file = request.POST.get('imagenppal', True)
-
             inmueble = form.save(commit = False)
             if is_file == True:
                  inmueble.imagenppal = request.FILES['imagenppal']
             inmueble.save()
-
             for field in request.FILES.keys():
-
                     for formfile in request.FILES.getlist(field):
                         img = Imagenes(ruta = formfile, IDInmueble_id = inmueble.pk)
                         img.save()
-                        messages.success(request, 'Se guardó el inmueble correctamente')
+                        # messages.success(request, 'Se guardó el inmueble correctamente')
             return HttpResponseRedirect(reverse('listar'))
         else:
             messages.warning(request, 'Por favor, ingrese los datos otra vez.')
@@ -212,6 +211,29 @@ def Guardar_inmueble(request):
     return render(request, template_name, {'form':form})
 
 
+@permission_required('usuario.editar_inmueble')
+@login_required()
+def Editar_inmueble(request, pk):
+    inmueble = Inmueble.objects.get(pk=pk)
+    if request.method == 'GET':
+        form = InmuebleForm(instance=inmueble)
+    else:
+        form = InmuebleForm(request.POST, instance=inmueble)
+        if form.is_valid():
+            is_file = request.POST.get('imagenppal', True)
+            inmueble = form.save(commit = False)
+            if is_file == True:
+                 inmueble.imagenppal = request.FILES['imagenppal']
+            inmueble.save()
+            for field in request.FILES.keys():
+                    for formfile in request.FILES.getlist(field):
+                        img = Imagenes(ruta = formfile, IDInmueble_id = inmueble.pk)
+                        img.save()
+                        # messages.success(request, 'Se guardó el inmueble correctamente')
+        return redirect('listar')
+
+    return render(request, 'inmueble/inmueble_form.html', {'form':form})
+
 class InmuebleView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     """ Clase que lista los registros de los inmuebles """
 
@@ -219,17 +241,17 @@ class InmuebleView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     model = Inmueble
     context_object_name = 'inmueble'
 
-class InmuebleUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-    """ Clase que edita los inmuebles """
-
-    permission_required = 'usuario.editar_inmueble'
-    model = Inmueble
-    fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
-                'alcoba','baño','parqueadero','disponible','descripcion','imagenppal']
-
-    # Retorna a la página donde se listan los inmuebles
-    def get_success_url(self):
-        return reverse('listar')
+# class InmuebleUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+#     """ Clase que edita los inmuebles """
+#
+#     permission_required = 'usuario.editar_inmueble'
+#     model = Inmueble
+#     fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
+#                 'alcoba','baño','parqueadero','disponible','descripcion','imagenppal']
+#
+#     # Retorna a la página donde se listan los inmuebles
+#     def get_success_url(self):
+#         return reverse('listar')
 
 class InmuebleDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """ Clase que elimina los inmuebles """

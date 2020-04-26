@@ -4,9 +4,20 @@ from .models import Inmueble
 class InmuebleForm(forms.ModelForm):
     class Meta:
         model = Inmueble
-        fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
-                  'alcoba','baño','parqueadero','disponible','descripcion']
-        exclude = ('usuario',)
+        fields = ('direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
+                  'alcoba','baño','parqueadero','disponible','descripcion')
+        exclude = ['usuario',]
+
+        widgets = {
+            'direccion': forms.TextInput(attrs={'class': 'validate', 'required': True}),
+            'precio':forms.NumberInput(attrs={'class': 'validate', 'required': True}),
+            'alcoba':forms.NumberInput(attrs={'class': 'validate', 'required': True}),
+            'baño':forms.NumberInput(attrs={'class': 'validate', 'required': True}),
+            'parqueadero':forms.CheckboxInput(attrs={'class': 'filled-in'}),
+            'disponible':forms.CheckboxInput(attrs={'class': 'filled-in'}),
+            'descripcion':forms.Textarea(attrs={'class': 'materialize-textarea'})
+        }
+
 
 class ContactoForm(forms.Form):
     """Clase del formulario Contacto"""

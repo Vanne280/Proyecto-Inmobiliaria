@@ -9,14 +9,15 @@
 <div class="section">
   <div class="row">
     <div class="row card-panel">
-      <form method="post" enctype="multipart/form-data" action="{% url 'crear' %}">
+      <form method="post" enctype="multipart/form-data">
 
         {% csrf_token %}
         <!-- {{form.as_p}} -->
         <div class="input-field col l6 col-m6">
           <i class="material-icons prefix">home</i>
-          <input id="direccion" type="text" name="direccion" class="validate" required>
-          <label for="direccion">Dirección</label>
+          <!-- <input id="direccion" type="text" name="direccion" class="validate" required> -->
+          <label>Dirección</label>
+          {{form.direccion}}
         </div>
 
         <div class="input-field col l6 col-m6">
@@ -57,27 +58,31 @@
 
         <div class="input-field col l3 col-m6">
           <i class="material-icons prefix">monetization_on</i>
-          <input id="precio" type="number" name="precio" class="validate" required>
-          <label for="precio">Precio</label>
+          <!-- <input id="precio" type="number" name="precio" class="validate" required> -->
+          <label>Precio</label>
+          {{form.precio}}
         </div>
 
         <div class="clearfix"></div>
         <div class="input-field col l2">
           <i class="material-icons prefix">hotel</i>
-          <input id="alcoba" type="number" name="alcoba" class="validate" required>
-          <label for="alcoba">Alcoba</label>
+          <!-- <input id="alcoba" type="number" name="alcoba" class="validate" required> -->
+          <label>Alcoba</label>
+          {{form.alcoba}}
         </div>
 
         <div class="input-field col l2">
           <i class="material-icons prefix">invert_colors</i>
-          <input id="baño" type="number" name="baño" class="validate" required>
-          <label for="baño">Baño</label>
+          <!-- <input id="baño" type="number" name="baño" class="validate" required> -->
+          <label>Baño</label>
+          {{form.baño}}
         </div>
 
         <div class="clearfix"></div>
         <div class="input-field col l2">
           <label>
-            <input id="parqueadero" type="checkbox" name="parqueadero" class="filled-in" />
+            <!-- <input id="parqueadero" type="checkbox" name="parqueadero" class="filled-in" /> -->
+            {{form.parqueadero}}
             <span>Parqueadero</span>
           </label>
         </div>
@@ -85,7 +90,8 @@
         <div class="clearfix"></div>
         <div class="input-field col l2">
           <label>
-            <input id="disponible" type="checkbox" name="disponible" class="filled-in" />
+            <!-- <input id="disponible" type="checkbox" name="disponible" class="filled-in" /> -->
+            {{form.disponible}}
             <span>Disponible</span>
           </label>
         </div>
@@ -94,8 +100,9 @@
         <br><br>
         <div class="input-field col s12">
           <i class="material-icons prefix">subject</i>
-          <textarea id="descripcion" name="descripcion" class="materialize-textarea"></textarea>
-          <label for="descripcion">Descripción</label>
+          <!-- <textarea id="descripcion" name="descripcion" class="materialize-textarea"></textarea> -->
+          {{form.descripcion}}
+          <label>Descripción</label>
         </div>
 
         <div class="clearfix"></div>
