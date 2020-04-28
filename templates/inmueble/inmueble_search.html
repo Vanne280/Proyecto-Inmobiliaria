@@ -10,13 +10,13 @@
 
       <div class="card horizontal">
         <div class="card-image">
-          <img src="../../media/{{ inmueble.imagen }}">
+          <img src="../../media/{{ inmueble.imagenppal }}">
         </div>
         <div class="card-stacked">
           <div class="card-content">
             <p>{{ data.IDTipo_de_inmueble.nombre }}</p>
 
-            {% for b in data.barrios.all %}
+            {% for b in data.barrio.all %}
               <p>Barrio: {{ b.IDBarrio.nombre }}</p>
             {% endfor %}
 
@@ -28,6 +28,14 @@
           </div>
         </div>
       </div>
+
+      {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
 
       <!-- <div class="card horizontal" style="width: 18rem;">
         <img src="../../media/{{ movie.urlimage }}" class="card-img-top">

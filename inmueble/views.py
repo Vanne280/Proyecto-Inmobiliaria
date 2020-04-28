@@ -60,6 +60,7 @@ def Busqueda(request):
 
     if is_valid_queryparam(barrio):
         qs = qs.filter(IDBarrio=barrio)
+        print(qs)
 
     if is_valid_queryparam(tipo_inmueble):
         qs = qs.filter(IDTipo_de_inmueble__nombre=tipo_inmueble)
@@ -67,11 +68,13 @@ def Busqueda(request):
     if is_valid_queryparam(tipo_oferta):
         qs = qs.filter(IDTipo_de_oferta__nombre=tipo_oferta)
 
+
+
     context = {
-        'queryset': qs,
-        'barrios': barrios,
-        'tipo_inmuebles': tipo_inmuebles,
-        'tipo_ofertas': tipo_ofertas
+        'queryset': qs
+        # 'barrios': barrios,
+        # 'tipo_inmuebles': tipo_inmuebles,
+        # 'tipo_ofertas': tipo_ofertas
     }
     return render(request, 'inmueble/inmueble_search.html', context)
 
@@ -220,7 +223,7 @@ def Guardar_inmueble(request):
                     for formfile in request.FILES.getlist(field):
                         img = Imagenes(ruta = formfile, IDInmueble_id = inmueble.pk)
                         img.save()
-                        # messages.success(request, 'Se guardó el inmueble correctamente')
+                        messages.success(request, 'Se guardó el inmueble correctamente')
             return HttpResponseRedirect(reverse('listar'))
         else:
             messages.warning(request, 'Por favor, ingrese los datos otra vez.')

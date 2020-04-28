@@ -132,9 +132,24 @@
         </div>
 
         <div class="input-field col s12" style="text-align:center;">
-          <button class="btn waves-effect waves-light deep-orange darken-4" type="submit">Enviar
+          <button data-target="idModal" class="btn waves-effect waves-light deep-orange darken-4" type="submit">Enviar
             <i class="material-icons right">check</i>
           </button>
+        </div>
+
+        <div class="modal" id="idModal">
+          <div class="modal-content">
+            {% if messages %}
+              <ul class="messages">
+                {% for message in messages %}
+                  <li class="{{ message.tags }}">{{ message }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
+          </div>
         </div>
 
       </form>
@@ -142,13 +157,13 @@
   </div>
 </div>
 
-{% if messages %}
+<!-- {% if messages %}
   <ul class="messages">
     {% for message in messages %}
       <li class="{{ message.tags }}">{{ message }}</li>
     {% endfor %}
   </ul>
-{% endif %}
+{% endif %} -->
 
 {% if form.errors %}
     {% for field in form %}
