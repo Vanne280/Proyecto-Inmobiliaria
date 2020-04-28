@@ -84,14 +84,12 @@ class Propietarios_arrendatarios(models.Model):
     inmueble = models.ManyToManyField(Inmueble)
     tipo_cliente = models.BooleanField(null=False)
 
-class Cita(models.Model):
+class cita(models.Model):
     """docstring for cita."""
 
-    inmueble = models.ForeignKey(Inmueble, null=False, on_delete=models.PROTECT)
-    usuario = models.ForeignKey(User, null=False, on_delete=models.PROTECT)
-    telefono = models.IntegerField(null=True)
-    fecha = models.DateField(auto_now=False, auto_now_add=False, null=True)
-    hora = models.TimeField(auto_now=False, auto_now_add=False, null=True)
+    inmueble = models.CharField(max_length=20, null=True)
+    usuario = models.CharField(max_length=50, null=True)
+    telefono = models.CharField(max_length=50, null=True)
     email = models.EmailField(max_length=254, null=True)
     asunto = models.CharField(max_length=30, null=True)
     mensaje = models.CharField(max_length=254, null=True)

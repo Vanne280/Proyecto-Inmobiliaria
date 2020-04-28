@@ -11,8 +11,8 @@
 <table class="responsive-table">
     <thead>
       <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
+        <th>Inmueble</th>
+        <th>usuario</th>
         <th>Teléfono</th>
         <th>Email</th>
         <th>Asunto</th>
@@ -20,14 +20,14 @@
       </tr>
     </thead>
     <tbody>
-      {% for data in contacto %}
+      {% for data in cita %}
       <tr>
-        <td>{{ data.nombre }}</td>
-        <td>{{ data.apellido }}</td>
+        <td>{{ data.inmueble }}</td>
+        <td>{{ data.usuario }}</td>
         <td>{{ data.telefono }}</td>
         <td>{{ data.email }}</td>
         <td>{{ data.asunto }}</td>
-        <td>{{ data.mensaje }}</td>        
+        <td>{{ data.mensaje }}</td>
       </tr>
       {% endfor %}
     </tbody>

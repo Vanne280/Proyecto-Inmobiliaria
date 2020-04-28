@@ -63,7 +63,9 @@ urlpatterns = [
     # Ruta de la página mis inmuebles
     path('cliente/mis_inmuebles/', views.MisinmueblesList.as_view(), name='mis_inmuebles'),
 
-    path('asesor/mis_citas/', views.ContactoList.as_view(), name='mis_citas'),
+    path('cita/', views.Citas_inmuebles.as_view(), name='cita'),
+
+    path('asesor/mis_citas/', views.CitaList.as_view(), name='mis_citas'),
 
     # Ruta del inicio de sesión
     path('accounts/', include('django.contrib.auth.urls')),

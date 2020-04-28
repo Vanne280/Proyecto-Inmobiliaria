@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import (Inmueble, Barrio, Tipo_de_inmueble,
-                     Tipo_de_oferta, Imagenes, Propietarios_arrendatarios, Cita)
+                     Tipo_de_oferta, Imagenes, Propietarios_arrendatarios, cita)
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
-from .forms import InmuebleForm, ContactoForm
+from .forms import InmuebleForm, ContactoForm, CitaForm
 from django.contrib import messages
 
 # Librería para enviar correos
@@ -132,14 +132,6 @@ class ContactoView(TemplateView):
         msg.send()
 
         return HttpResponseRedirect(reverse('contacto'))
-
-class ContactoList(LoginRequiredMixin, ListView):
-    """docstring for ContactoList."""
-
-    template_name = 'asesor/mis_citas.html'
-    model = ContactoForm
-    context_object_name = 'contacto'
-
 
 # class InmuebleCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 #     """ Clase que crea la vista para registrar los inmuebles """
@@ -369,3 +361,41 @@ class MisinmueblesList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     template_name = 'cliente/mis_inmuebles.html'
     model = Propietarios_arrendatarios
     context_object_name = 'inmuebles'
+
+class Citas_inmuebles(CreateView):
+    """docstring for Citas_inmuebles."""
+
+    model = cita
+    template_name = 'citas_inmuebles/cita_form.html'
+    fields = ['inmueble','usuario','telefono','email','asunto','mensaje']
+
+    # Retorna a la página donde se listan los inmuebles
+    def get_success_url(self):
+        return reverse('cita')
+
+# def Citas_inmuebles(request):
+#     template_name = 'citas_inmuebles/cita_form.html'
+#     form = CitaForm()
+#
+#     if request.method == 'POST':
+#         form = CitaForm(request.POST)
+#         if form.is_valid():
+#
+#             form.save()
+#             messages.success(request, 'Se envió correctamente el mensaje')
+#             return HttpResponseRedirect(reverse('cita'))
+#         else:
+#             messages.warning(request, 'Por favor, ingrese los datos otra vez.')
+#             return render(request, template_name, {'form':form})
+#     else:
+#         form = CitaForm()
+#
+#     return render(request, template_name, {'form':form})
+
+
+class CitaList(LoginRequiredMixin, ListView):
+    """docstring for ContactoList."""
+
+    template_name = 'asesor/mis_citas.html'
+    model = cita
+    context_object_name = 'cita'
