@@ -41,7 +41,7 @@ def home(request):
     barrios = Barrio.objects.all()
     tipo_inmueble = Tipo_de_inmueble.objects.all()
     tipo_oferta = Tipo_de_oferta.objects.all()
-    return render(request, "inicio.html", {'barrios':barrios,
+    return render(request, "inicio.html", {'barrios': barrios,
                                            'tipo_inmueble':tipo_inmueble,
                                            'tipo_oferta': tipo_oferta})
 
@@ -49,24 +49,36 @@ def is_valid_queryparam(param):
     return param != '' and param is not None
 
 def Busqueda(request):
-    qs = Inmueble.objects.all()
-    barrios = Barrio.objects.all()
-    tipo_inmuebles = Tipo_de_inmueble.objects.all()
-    tipo_ofertas = Tipo_de_oferta.objects.all()
+    # qs = Inmueble.objects.all()
+    # barrios = Barrio.objects.all()
+    # tipo_inmuebles = Tipo_de_inmueble.objects.all()
+    # tipo_ofertas = Tipo_de_oferta.objects.all()
+    #
+    # barrio = request.GET.get('barrio')
+    # tipo_inmueble = request.GET.get('tipo_inmueble')
+    # tipo_oferta = request.GET.get('tipo_oferta')
+    #
+    # if is_valid_queryparam(barrio):
+    #     qs = qs.objects.filter(qs__IDBarrio__nombre__contains = barrio)
+    #     print(qs)
+    #
+    # if is_valid_queryparam(tipo_inmueble):
+    #     qs = qs.filter(IDTipo_de_inmueble__nombre=tipo_inmueble)
+    #
+    # if is_valid_queryparam(tipo_oferta):
+    #     qs = qs.filter(IDTipo_de_oferta__nombre=tipo_oferta)
 
-    barrio = request.GET.get('barrio')
-    tipo_inmueble = request.GET.get('tipo_inmueble')
-    tipo_oferta = request.GET.get('tipo_oferta')
+    if request.method == 'POST':
+        # qs = Inmueble.objects.all()
 
-    if is_valid_queryparam(barrio):
-        qs = qs.filter(IDBarrio=barrio)
+        barrio = request.POST['barrio']
+        tipo_inmueble = request.POST['tipo_inmueble']
+        tipo_oferta = request.POST['tipo_oferta']
+
+        print(barrio)
+
+        qs = Inmueble.objects.filter(IDBarrio__nombre__contains = barrio)
         print(qs)
-
-    if is_valid_queryparam(tipo_inmueble):
-        qs = qs.filter(IDTipo_de_inmueble__nombre=tipo_inmueble)
-
-    if is_valid_queryparam(tipo_oferta):
-        qs = qs.filter(IDTipo_de_oferta__nombre=tipo_oferta)
 
 
 
