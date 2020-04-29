@@ -80,7 +80,7 @@
         </ul>
       </div>
     </nav>
-    <nav>
+    <!-- <nav>
       <div class="nav-wrapper container">
         <form method="post" action="{% url 'buscar' %}"> {% csrf_token %}
             <div class="input-field">
@@ -89,7 +89,7 @@
             </div>
         </form>
       </div>
-    </nav>
+    </nav> -->
 
     <ul class="sidenav" id="mobile-demo">
       <li><a href="{% url 'inicio' %}">INICIO</a></li>
@@ -174,7 +174,7 @@
         var elems = document.querySelectorAll('.parallax');
         var instances = M.Parallax.init(elems, {
           responsiveThreshold: 0
-        });        
+        });
       });
   </script>
 </html>
