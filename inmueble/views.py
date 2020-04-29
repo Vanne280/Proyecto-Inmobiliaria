@@ -45,10 +45,32 @@ def home(request):
                                            'tipo_inmueble':tipo_inmueble,
                                            'tipo_oferta': tipo_oferta})
 
-def is_valid_queryparam(param):
-    return param != '' and param is not None
+# def is_valid_queryparam(param):
+#     return param != '' and param is not None
 
 def Busqueda(request):
+    if request.method == 'POST':
+        # qs = Inmueble.objects.all()
+
+        barrio = request.POST['barrio']
+        tipo_inmueble = request.POST['tipo_inmueble']
+        tipo_oferta = request.POST['tipo_oferta']
+
+        print(barrio)
+
+        b = Inmueble.objects.filter(IDBarrio__id = barrio)
+        print(b)
+
+        # context = {
+        #     'object': b,
+        #     # 'barrio': b
+        #     # 'tipo_inmuebles': tipo_inmuebles,
+        #     # 'tipo_ofertas': tipo_ofertas
+        # }
+
+    return render(request, 'inmueble/inmueble_search.html', {'object_list':b})
+
+
     # qs = Inmueble.objects.all()
     # barrios = Barrio.objects.all()
     # tipo_inmuebles = Tipo_de_inmueble.objects.all()
@@ -68,27 +90,7 @@ def Busqueda(request):
     # if is_valid_queryparam(tipo_oferta):
     #     qs = qs.filter(IDTipo_de_oferta__nombre=tipo_oferta)
 
-    if request.method == 'POST':
-        # qs = Inmueble.objects.all()
 
-        barrio = request.POST['barrio']
-        tipo_inmueble = request.POST['tipo_inmueble']
-        tipo_oferta = request.POST['tipo_oferta']
-
-        print(barrio)
-
-        qs = Inmueble.objects.filter(IDBarrio__nombre__contains = barrio)
-        print(qs)
-
-
-
-    context = {
-        'queryset': qs
-        # 'barrios': barrios,
-        # 'tipo_inmuebles': tipo_inmuebles,
-        # 'tipo_ofertas': tipo_ofertas
-    }
-    return render(request, 'inmueble/inmueble_search.html', context)
 
 # def Buscarinmueble(request):
 #     if request.method == 'POST':

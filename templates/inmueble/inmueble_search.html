@@ -4,24 +4,25 @@
 
 {% block content %}
 
+<h2 class="header center black-text text-lighten-3">Inmuebles</h2>
 
-    {% for data in queryset %}
 
+    {% for b in object_list %}
 
       <div class="card horizontal">
-        <div class="card-image">
+        <!-- <div class="card-image">
           <img src="../../media/{{ inmueble.imagenppal }}">
-        </div>
+        </div> -->
         <div class="card-stacked">
           <div class="card-content">
-            <p>{{ data.IDTipo_de_inmueble.nombre }}</p>
+            <p>{{ b }}</p>
 
-            {% for b in data.barrio.all %}
-              <p>Barrio: {{ b.IDBarrio.nombre }}</p>
-            {% endfor %}
+            <!-- {% for bar in data.b %} -->
+              <!-- <p>Barrio: {{ data.barrio }}</p> -->
+            <!-- {% endfor %} -->
 
             <!-- <p>Barrio: {{ data.IDBarrio.nombre }}</p> -->
-            <p>Precio: $ {{ data.precio }}</p>
+            <!-- <p>Precio: $ {{ data.precio }}</p> -->
           </div>
           <div class="card-action">
             <a href="{% url 'detalle' data.id %}">Más información</a>
@@ -29,44 +30,21 @@
         </div>
       </div>
 
-      {% if messages %}
-        <ul class="messages">
-          {% for message in messages %}
-            <li class="{{ message.tags }}">{{ message }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-
-      {% if form.errors %}
-          {% for field in form %}
-              {% for error in field.errors %}
-                  <div class="alert alert-danger">
-                      <strong>{{ error|escape }}</strong>
-                  </div>
-              {% endfor %}
-          {% endfor %}
-          {% for error in form.non_field_errors %}
-              <div class="alert alert-danger">
-                  <strong>{{ error|escape }}</strong>
-              </div>
-          {% endfor %}
-      {% endif %}
-
-
-      <!-- <div class="card horizontal" style="width: 18rem;">
-        <img src="../../media/{{ movie.urlimage }}" class="card-img-top">
-
-        <div class="card-body">
-          <h5 class="card-title">{{ movie.name }}</h5>
-          <p class="card-text"></p>
-          <p class="card-text" style="font-size: 10pt;text-align:center">
-            {{ movie.runtime }} min | {{ movie.rating }}
-          </p>
-          <a href="#" class="btn btn-primary">Ver Horarios</a>
-        </div>
-      </div> -->
     {% endfor %}
 
-
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
 
 {% endblock  %}
