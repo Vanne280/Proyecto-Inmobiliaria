@@ -4,7 +4,7 @@ from .models import (Inmueble, Barrio, Tipo_de_inmueble,
                      Tipo_de_oferta, Imagenes, Propietarios_arrendatarios, cita)
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
-from .forms import InmuebleForm, ContactoForm, CitaForm
+from .forms import InmuebleForm, ContactoForm
 from django.contrib import messages
 
 # Librería para enviar correos
