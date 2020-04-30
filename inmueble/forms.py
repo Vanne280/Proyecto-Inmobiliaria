@@ -4,11 +4,12 @@ from .models import Inmueble
 class InmuebleForm(forms.ModelForm):
     class Meta:
         model = Inmueble
-        fields = ('direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
+        fields = ('codigo','direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
                   'alcoba','baño','parqueadero','disponible','descripcion')
         exclude = ['usuario',]
 
         widgets = {
+            'codigo': forms.TextInput(attrs={'class': 'validate', 'required': True}),
             'direccion': forms.TextInput(attrs={'class': 'validate', 'required': True}),
             'precio':forms.NumberInput(attrs={'class': 'validate', 'required': True}),
             'alcoba':forms.NumberInput(attrs={'class': 'validate', 'required': True}),

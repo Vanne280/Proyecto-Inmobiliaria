@@ -29,18 +29,18 @@
       </div>
       <div class="col s5 pull-s7">
         <span class="flow-text">
-          <ul class="collection with-header">
+          <ul class="collection with-header" style="border-style: outset;">
             <li class="collection-header">
               <h4>{{ object.IDTipo_de_inmueble.nombre }} en {{ object.IDTipo_de_oferta.nombre }}</h4></li>
-            <li class="collection-item" style= "font-size: 20px;">Precio: $ {{ object.precio|intcomma }}</li>
-            <li class="collection-item" style= "font-size: 20px;">Dirección: {{ object.direccion }}</li>
-            <li class="collection-item" style= "font-size: 20px;">Barrio: {{ object.IDBarrio.nombre }}</li>
+            <li class="collection-item" style= "font-size: 20px;"><b>Precio:</b> $ {{ object.precio|intcomma }}</li>
+            <li class="collection-item" style= "font-size: 20px;"><b>Dirección:</b> {{ object.direccion }}</li>
+            <li class="collection-item" style= "font-size: 20px;"><b>Barrio:</b> {{ object.IDBarrio.nombre }}</li>
+            <li class="collection-item" style= "font-size: 20px;"><b>Código:</b> {{ object.codigo }}</li>
 
             {% if object.disponible == True %}
-              <li class="collection-item" style= "font-size: 20px;">Disponible: SI</li>
-
+              <li class="collection-item" style= "font-size: 20px;"><b>Disponible:</b> SI</li>
             {% else %}
-              <li class="collection-item" style= "font-size: 20px;">Disponible: NO</li>
+              <li class="collection-item" style= "font-size: 20px;"><b>Disponible:</b> NO</li>
             {% endif %}
 
           </ul>

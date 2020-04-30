@@ -52,12 +52,13 @@ class Barrio(models.Model):
         return self.nombre
 
 class Inmueble(models.Model):
-    """ Crea un modelo con el nombre Inmueble con un campo direccion, un campo IDBarrio
+    """ Crea un modelo con el nombre Inmueble con un campo codigo, con un campo direccion, un campo IDBarrio
         con llave foránea de la tabla Barrio, un campo precio, un campo IDTipo_de_inmueble
         con llave foránea de la tabla Tipo_de_inmueble, un campo IDTipo_de_oferta con llave
         foránea de la tabla Tipo_de_oferta, un campo alcoba, un campo baño, un campo parqueadero,
         un campo disponible, un campo descripcion y un campo imagen """
 
+    codigo = models.CharField(max_length=50, null=False)
     direccion = models.CharField(max_length=100, null=False)
     IDBarrio = models.ForeignKey(Barrio, null=False, on_delete=models.PROTECT)
     precio = models.DecimalField(max_digits=9, decimal_places=0,  null=False)
@@ -78,14 +79,17 @@ class Imagenes(models.Model):
     IDInmueble = models.ForeignKey(Inmueble, null=True, on_delete=models.PROTECT)
 
 class Propietarios_arrendatarios(models.Model):
-    """docstring for cita."""
+    """ Crea un modelo con el nombre Propietarios_arrendatarios con un campo usuario
+        con llave foránea de la tabla User, un campo inmueble con llave foránea de la
+        table Inmueble y un campo tipo_cliente """
 
     usuario = models.ManyToManyField(User)
     inmueble = models.ManyToManyField(Inmueble)
     tipo_cliente = models.BooleanField(null=False)
 
 class cita(models.Model):
-    """docstring for cita."""
+    """ Crea un modelo con un campo inmueble, un campo usuario, un campo telefono,
+    un campo email, un campo asunto y un campo mensaje """
 
     inmueble = models.CharField(max_length=20, null=True)
     usuario = models.CharField(max_length=50, null=True)

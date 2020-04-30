@@ -12,11 +12,11 @@ from django.core.mail import EmailMessage
 
 # Librería Decoradores (permisos)
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 
 # Librerías permisos requeridos para vistas basadas en clases
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.contrib.auth.decorators import permission_required
 
 # Librería que permite cargar una plantilla html como variable
 from django.template.loader import render_to_string
@@ -107,7 +107,6 @@ class ContactoView(TemplateView):
 
 
 # Función que guarda registros de inmuebles con sus respectivas imágenes
-
 @login_required()
 @permission_required('usuario.agregar_inmueble')
 def Guardar_inmueble(request):

@@ -10,9 +10,16 @@
   <div class="row">
     <div class="row card-panel">
       <form method="post" enctype="multipart/form-data">
-
         {% csrf_token %}
-        <!-- {{form.as_p}} -->
+
+        <div class="input-field col l3 col-m6">
+          <i class="material-icons prefix">looks_3</i>
+          <!-- <input id="direccion" type="text" name="direccion" class="validate" required> -->
+          <label>Código</label>
+          {{form.codigo}}
+        </div>
+
+        <div class="clearfix"></div>
         <div class="input-field col l6 col-m6">
           <i class="material-icons prefix">home</i>
           <!-- <input id="direccion" type="text" name="direccion" class="validate" required> -->
