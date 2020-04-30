@@ -38,67 +38,25 @@ from django.db.models import Q
 
 # Función que llama la página de inicio
 def home(request):
-    barrios = Barrio.objects.all()
-    tipo_inmueble = Tipo_de_inmueble.objects.all()
-    tipo_oferta = Tipo_de_oferta.objects.all()
-    return render(request, "inicio.html", {'barrios': barrios,
-                                           'tipo_inmueble':tipo_inmueble,
-                                           'tipo_oferta': tipo_oferta})
-
-# def is_valid_queryparam(param):
-#     return param != '' and param is not None
+    return render(request, "inicio.html")
 
 def Busqueda(request):
-    if request.method == 'POST':
-        # qs = Inmueble.objects.all()
-
-        barrio = request.POST['barrio']
-        tipo_inmueble = request.POST['tipo_inmueble']
-        tipo_oferta = request.POST['tipo_oferta']
-
-        print(barrio)
-
-        b = Inmueble.objects.filter(IDBarrio__id = barrio)
-        print(b)
-
-        # context = {
-        #     'object': b,
-        #     # 'barrio': b
-        #     # 'tipo_inmuebles': tipo_inmuebles,
-        #     # 'tipo_ofertas': tipo_ofertas
-        # }
-
-    return render(request, 'inmueble/inmueble_search.html', {'object_list':b})
-
-
-    # qs = Inmueble.objects.all()
-    # barrios = Barrio.objects.all()
-    # tipo_inmuebles = Tipo_de_inmueble.objects.all()
-    # tipo_ofertas = Tipo_de_oferta.objects.all()
+    queryset = request.GET.get("buscar")
+    b = Inmueble.objects.filter(disponible=True)
+    if queryset:
+        b = Inmueble.objects.filter(
+            Q(IDBarrio__nombre__icontains = queryset) |
+            Q(IDTipo_de_inmueble__nombre__icontains = queryset) |
+            Q(IDTipo_de_oferta__nombre__icontains = queryset)
+        )
+    # if request.method == 'POST':
+    #     barrio = request.POST['barrio']
+    #     tipo_inmueble = request.POST['tipo_inmueble']
+    #     tipo_oferta = request.POST['tipo_oferta']
     #
-    # barrio = request.GET.get('barrio')
-    # tipo_inmueble = request.GET.get('tipo_inmueble')
-    # tipo_oferta = request.GET.get('tipo_oferta')
+    #     b = Inmueble.objects.filter(disponible=True, IDBarrio__id = barrio)
     #
-    # if is_valid_queryparam(barrio):
-    #     qs = qs.objects.filter(qs__IDBarrio__nombre__contains = barrio)
-    #     print(qs)
-    #
-    # if is_valid_queryparam(tipo_inmueble):
-    #     qs = qs.filter(IDTipo_de_inmueble__nombre=tipo_inmueble)
-    #
-    # if is_valid_queryparam(tipo_oferta):
-    #     qs = qs.filter(IDTipo_de_oferta__nombre=tipo_oferta)
-
-
-
-# def Buscarinmueble(request):
-#     if request.method == 'POST':
-#         pattern = request.POST['buscar']
-#         inmuebles = Inmueble.objects.filter(disponible = True,
-#                                             precio__contains = pattern)
-#
-#     return render(request, 'inmueble/inmueble_search.html', {'object_list':inmuebles, 'buscar':pattern})
+    return render(request, 'inmueble/inmueble_search.html', {'object_list':b, 'buscar':queryset})
 
 
 # Función que llama la página de nosotros
@@ -147,72 +105,11 @@ class ContactoView(TemplateView):
 
         return HttpResponseRedirect(reverse('contacto'))
 
-# class InmuebleCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-#     """ Clase que crea la vista para registrar los inmuebles """
-#
-#     permission_required = 'usuario.agregar_inmueble'
-#     model = Inmueble
-#     template_name = 'inmueble/inmueble_form.html'
-#     fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
-#                 'alcoba','baño','parqueadero','disponible','descripcion','imagen']
-#
-#     # Retorna a la página donde se listan los inmuebles
-#     def get_success_url(self):
-#         return reverse('listar')
-#
-#     # Muestra los registros guardados de las tablas (Barrio, Tipo_de_oferta,
-#     # Tipo_de_inmueble) en los campos de selección
-#     def get_context_data(self,**kwargs):
-#         context = super(InmuebleCreate,self).get_context_data(**kwargs)
-#         context['IDBarrio'] = Barrio.objects.all()
-#         context['IDTipo_de_inmueble'] = Tipo_de_inmueble.objects.all()
-#         context['IDTipo_de_oferta'] = Tipo_de_oferta.objects.all()
-#         return context
-
-# @login_required()
-# Función que guarda registros de inmuebles con sus respectivas imágenes
-# def Guardar_inmueble(request):
-#     if request.method == 'POST':
-#         direccion = request.POST.get('direccion')
-#         IDBarrio = request.POST.get('IDBarrio')
-#         IDTipo_de_inmueble = request.POST.get('IDTipo_de_inmueble')
-#         IDTipo_de_oferta = request.POST.get('IDTipo_de_oferta')
-#         precio = request.POST.get('precio')
-#         alcoba = request.POST.get('alcoba')
-#         baño = request.POST.get('baño')
-#         parqueadero = request.POST.get('parqueadero')
-#         disponible = request.POST.get('disponible')
-#         descripcion = request.POST.get('descripcion')
-#         imagen = request.POST.get('imagen', True)
-#         is_file = request.POST.get('imagenes', True)
-#
-#         print(direccion)
-#         print(IDBarrio)
-#         print(IDTipo_de_inmueble)
-#         print(IDTipo_de_oferta)
-#         print(precio)
-#         print(alcoba)
-#         print(baño)
-#         print(parqueadero)
-#         print(disponible)
-#         print(descripcion)
-#         print(imagen)
-#         print(is_file)
-#
-#         form = InmuebleForm(request.POST)
-#         if form.is_valid():
-#             inmueble = form.save()
-#             for field in request.FILES.keys():
-#                 if is_file == True:
-#                     for formfile in request.FILES.getlist(field):
-#                         img = Imagenes(ruta = formfile, IDInmueble_id = inmueble.pk)
-#                         img.save()
-#
-#         return HttpResponseRedirect(reverse('listar'))
 
 # Función que guarda registros de inmuebles con sus respectivas imágenes
-@permission_required('usuario.agregar_inmueble')
+
 @login_required()
+@permission_required('usuario.agregar_inmueble')
 def Guardar_inmueble(request):
     template_name = 'inmueble/inmueble_form.html'
     form = InmuebleForm()
@@ -281,18 +178,6 @@ class InmuebleView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 #     # Retorna a la página donde se listan los inmuebles
 #     def get_success_url(self):
 #         return reverse('listar')
-
-class InmuebleDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
-    """ Clase que elimina los inmuebles """
-
-    permission_required = 'usuario.eliminar_inmueble'
-    model = Inmueble
-    context_object_name = 'inmueble'
-
-    # Retorna a la página donde se listan los inmuebles
-    def get_success_url(self):
-        return reverse('listar')
-
 
 class AlquilerList(ListView):
     """ Clase que muestra las ofertas de inmuebles en arrendamiento """

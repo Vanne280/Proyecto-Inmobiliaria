@@ -2,49 +2,41 @@
 
 {% load static %}
 
-{% block content %}
+{% load humanize %}
+
+{% block container %}
 
 <h2 class="header center black-text text-lighten-3">Inmuebles</h2>
 
+  {% if object_list.count == 0 %}
+        <div class="alert alert-secondary mt-2" role="alert">
+          No hay resultados para la búsqueda: <b>"{{ buscar }}"</b>
+        </div>
+      {% endif %}
 
-    {% for b in object_list %}
+  {% for data in object_list %}
 
-      <div class="card horizontal">
-        <!-- <div class="card-image">
-          <img src="../../media/{{ inmueble.imagenppal }}">
-        </div> -->
-        <div class="card-stacked">
-          <div class="card-content">
-            <p>{{ b }}</p>
-
-            <!-- {% for bar in data.b %} -->
-              <!-- <p>Barrio: {{ data.barrio }}</p> -->
-            <!-- {% endfor %} -->
-
-            <!-- <p>Barrio: {{ data.IDBarrio.nombre }}</p> -->
-            <!-- <p>Precio: $ {{ data.precio }}</p> -->
-          </div>
-          <div class="card-action">
-            <a href="{% url 'detalle' data.id %}">Más información</a>
-          </div>
+    <div class="card horizontal">
+      <div class="card-image">
+        <img src="../../media/{{ data.imagenppal }}" style="width:280px; height:280px;">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <p><b>Barrio:</b> {{ data.IDBarrio.nombre }}</p>
+          <p><b>Tipo de inmueble:</b> {{ data.IDTipo_de_inmueble.nombre }}</p>
+          <p><b>Oferta:</b> en {{ data.IDTipo_de_oferta.nombre }}</p>
+          <p><b>Dirección:</b> {{ data.direccion }}</p>
+          <p><b>Precio:</b> $ {{ data.precio|intcomma }}</p>
+        </div>
+        <div class="card-action">
+          <a href="{% url 'detalle' data.id %}" class="red-text">Más información</a>
         </div>
       </div>
+    </div>
+  {% endfor %}
 
-    {% endfor %}
 
-    {% if form.errors %}
-        {% for field in form %}
-            {% for error in field.errors %}
-                <div class="alert alert-danger">
-                    <strong>{{ error|escape }}</strong>
-                </div>
-            {% endfor %}
-        {% endfor %}
-        {% for error in form.non_field_errors %}
-            <div class="alert alert-danger">
-                <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
-    {% endif %}
+
+
 
 {% endblock  %}

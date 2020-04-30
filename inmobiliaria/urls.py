@@ -40,10 +40,7 @@ urlpatterns = [
     # path('guardar_inmueble/', views.Guardar_inmueble, name='guardar_inmueble'),
 
     # Ruta de la página para editar los inmuebles
-    path('<int:pk>/', views.Editar_inmueble, name='editar'),
-
-    # Ruta de la página para eliminar los inmuebles
-    path('eliminar/<int:pk>/', views.InmuebleDelete.as_view(), name='eliminar'),
+    path('<int:pk>/', views.Editar_inmueble, name='editar'),    
 
     # Ruta de la página que muestra información de cada inmueble (Detail)
     path('detalle/<int:pk>/', views.InmuebleDetail.as_view(), name='detalle'),

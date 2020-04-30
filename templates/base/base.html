@@ -80,16 +80,16 @@
         </ul>
       </div>
     </nav>
-    <!-- <nav>
+    <nav>
       <div class="nav-wrapper container">
-        <form method="post" action="{% url 'buscar' %}"> {% csrf_token %}
+        <form method="get" action="{% url 'buscar' %}"> {% csrf_token %}
             <div class="input-field">
               <input id="search" type="search" name="buscar" placeholder="Buscar..." required>
               <label class="label-icon" for="search"><i class="material-icons">search</i></label>
             </div>
         </form>
       </div>
-    </nav> -->
+    </nav>
 
     <ul class="sidenav" id="mobile-demo">
       <li><a href="{% url 'inicio' %}">INICIO</a></li>
