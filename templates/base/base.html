@@ -108,45 +108,7 @@
       {% block container2 %}
       {% endblock %}
 
-    <footer class="page-footer red lighten-1 white-text">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h4>Ubicación</h4>
-              <h6>Dirección: Calle 64A N°21-10 Oficina 202 Ed Portal del Cable</h6>
-              <h6>Teléfono: 8894521</h6>
-              <h6>Celular: 3165874219</h6>
-              <h6>Correo: inmobiliariainnova@gmail.com</h6>
-            </div>
-            <div class="col l3 s12">
-              <h5 class="white-text">Enlaces</h5>
-              <ul>
-                <li><a class="white-text text-lighten-3" href="{% url 'ventas' %}">VENTAS</a></li>
-                <li><a class="white-text text-lighten-3" href="{% url 'arrendamientos' %}">ARRENDAMIENTOS</a></li>
-                <li><a class="white-text text-lighten-3" href="{% url 'nosotros' %}">NOSOTROS</a></li>
-                <li><a class="white-text text-lighten-3" href="{% url 'contacto' %}">CONTACTO</a></li>
-              </ul>
-            </div>
-            <div class="col l3 s12">
-              <h5 class="white-text">Redes Sociales</h5>
-              <ul>
-                <li>
-                  <img src="{% static 'img/Icono Facebook.png' %}" style="width:24px; height:24px;">
-                  <img src="{% static 'img/Icono Instagram.png' %}" style="width:30px; height:24px;">
-                  <img src="{% static 'img/Icono Twitter.png' %}" style="width:24px; height:24px;">
-                  <img src="{% static 'img/Icono Whatsapp.png' %}" style="width:32px; height:24px;">
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="footer-copyright">
-          <div class="container">
-          © 2020 Todos los derechos reservados
-          <a class="grey-text text-lighten-4 right">Diseñado y desarrollado por AVWeb</a>
-          </div>
-        </div>
-    </footer>
+
 
   </body>
   <!--Import jQuery before materialize.js-->
@@ -177,4 +139,43 @@
         });
       });
   </script>
+  <footer class="page-footer red lighten-1 white-text">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h4>Ubicación</h4>
+            <h6>Dirección: Calle 64A N°21-10 Oficina 202 Ed Portal del Cable</h6>
+            <h6>Teléfono: 8894521</h6>
+            <h6>Celular: 3165874219</h6>
+            <h6>Correo: inmobiliariainnova@gmail.com</h6>
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text">Enlaces</h5>
+            <ul>
+              <li><a class="white-text text-lighten-3" href="{% url 'ventas' %}">VENTAS</a></li>
+              <li><a class="white-text text-lighten-3" href="{% url 'arrendamientos' %}">ARRENDAMIENTOS</a></li>
+              <li><a class="white-text text-lighten-3" href="{% url 'nosotros' %}">NOSOTROS</a></li>
+              <li><a class="white-text text-lighten-3" href="{% url 'contacto' %}">CONTACTO</a></li>
+            </ul>
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text">Redes Sociales</h5>
+            <ul>
+              <li>
+                <img src="{% static 'img/Icono Facebook.png' %}" style="width:24px; height:24px;">
+                <img src="{% static 'img/Icono Instagram.png' %}" style="width:30px; height:24px;">
+                <img src="{% static 'img/Icono Twitter.png' %}" style="width:24px; height:24px;">
+                <img src="{% static 'img/Icono Whatsapp.png' %}" style="width:32px; height:24px;">
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+        © 2020 Todos los derechos reservados
+        <a class="grey-text text-lighten-4 right">Diseñado y desarrollado por AVWeb</a>
+        </div>
+      </div>
+  </footer>
 </html>

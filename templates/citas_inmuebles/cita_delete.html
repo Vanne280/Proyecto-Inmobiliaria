@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+
+{% block container %}
+
+<h3>Eliminar Inmueble-propietario</h3>
+
+  <div class="row">
+    <form method="post">
+      {% csrf_token %}
+      <p>¿Está seguro de eliminar el mensaje de "{{ cita.usuario }}"?</p>
+      <input type="submit" value="Confirmar" class="deep-orange darken-4 btn">
+    </form>
+  </div>
+
+{% endblock %}

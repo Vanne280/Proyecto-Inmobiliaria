@@ -162,12 +162,11 @@ def Editar_inmueble(request, pk):
 
     return render(request, 'inmueble/inmueble_form.html', {'form':form})
 
+# Función que lista los inmuebles
 @permission_required('usuario.listar_inmueble')
 @login_required()
 def Listar_inmueble(request):
     inmueble = Inmueble.objects.all()
-
-
     if request.POST.get('codigo'):
         codigo = (request.POST.get('codigo'))
         inmueble = Inmueble.objects.filter(codigo__icontains = codigo)
@@ -185,9 +184,7 @@ def Listar_inmueble(request):
     page = request.GET.get('page')
     inmueble = paginator.get_page(page)
 
-
     return render(request, 'inmueble/inmueble_list.html', {'inmueble':inmueble})
-
 
 class AlquilerList(ListView):
     """ Clase que muestra las ofertas de inmuebles en arrendamiento """
@@ -250,7 +247,7 @@ class MisinmueblesList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     context_object_name = 'inmuebles'
 
 class Citas_inmuebles(CreateView):
-    """docstring for Citas_inmuebles."""
+    """ Clase que crea un formulario para mandar un mensaje al asesor """
 
     model = cita
     template_name = 'citas_inmuebles/cita_form.html'
@@ -260,29 +257,20 @@ class Citas_inmuebles(CreateView):
     def get_success_url(self):
         return reverse('cita')
 
-# def Citas_inmuebles(request):
-#     template_name = 'citas_inmuebles/cita_form.html'
-#     form = CitaForm()
-#
-#     if request.method == 'POST':
-#         form = CitaForm(request.POST)
-#         if form.is_valid():
-#
-#             form.save()
-#             messages.success(request, 'Se envió correctamente el mensaje')
-#             return HttpResponseRedirect(reverse('cita'))
-#         else:
-#             messages.warning(request, 'Por favor, ingrese los datos otra vez.')
-#             return render(request, template_name, {'form':form})
-#     else:
-#         form = CitaForm()
-#
-#     return render(request, template_name, {'form':form})
-
-
 class CitaList(LoginRequiredMixin, ListView):
-    """docstring for ContactoList."""
+    """ Clase que muestra los mensajes al asesor """
 
     template_name = 'asesor/mis_citas.html'
     model = cita
     context_object_name = 'cita'
+
+class CitaDelete(LoginRequiredMixin, DeleteView):
+    """ Clase que borra la cita """
+
+    model = cita
+    template_name = 'citas_inmuebles/cita_delete.html'
+    context_object_name = 'cita'
+
+    # Retorna a la página donde se muestran las citas
+    def get_success_url(self):
+        return reverse('mis_citas')

@@ -7,20 +7,24 @@
 {% block container %}
 
 <h2 class="header center black-text text-lighten-3">Mis citas</h2>
+<br>
 
 {% for data in cita %}
   <div class="card horizontal">
+    <a class="btn-floating right btn-medium waves-effect waves-light red darken-4 " href="{% url 'eliminar_cita' data.id %}">
+      <i class="material-icons">delete</i>
+    </a><br>
     <div class="card-stacked">
       <div class="card-content">
-        <p>Código del inmueble: {{ data.inmueble }}</p>
-        <p>Nombre: {{ data.usuario }}</p>
-        <p>Teléfono: {{ data.telefono }}</p>
-        <p>Email: {{ data.email }}</p>
-        <p>Asunto: {{ data.asunto }}</p>
+        <p><b>Código del inmueble:</b> {{ data.inmueble }}</p>
+        <p><b>Nombre:</b> {{ data.usuario }}</p>
+        <p><b>Teléfono:</b> {{ data.telefono }}</p>
+        <p><b>Email:</b> {{ data.email }}</p>
       </div>
       <div class="card-content">
         <div class="col s8">
-          <p>Mensaje: {{ data.mensaje }}</p>
+          <p><b>Asunto:</b> {{ data.asunto }}</p>
+          <p><b>Mensaje:</b> {{ data.mensaje }}</p>
         </div>
       </div>
     </div>
