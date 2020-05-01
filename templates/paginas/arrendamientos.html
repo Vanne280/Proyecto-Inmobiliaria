@@ -6,104 +6,37 @@
 
 {% block container2 %}
 
-<div class="row grey lighten-2">
-  <div class="col s12">
-    <h5>Propiedades en arrendamiento</h5><br>
-  </div>
-</div>
+<h3 class="center-align">Propiedades en arrendamiento</h3>
+<br>
 
 <div class="section">
   <div class="row">
-    <div class="col s12 m5 l3">
-      <div class="card">
-        <form method="get" action="">
-          {% csrf_token %}
-          <!-- {{form.as_p}} -->
-          <div class="col m11">
-            <div class="input-field">
-              <i class="material-icons prefix">location_city</i>
-              <select id="barrio" name="barrio">
-                <option value="" disabled selected>Seleccione</option>
-                  {% for b in barrios %}
-                     <!-- <option value="{{ b }}">{{ b }}</option> -->
-                     {{ b }}
-                  {% endfor %}
-              </select>
-              <label for="barrio">Barrio</label>
-            </div>
-          </div>
-
-          <div class="col m11">
-            <div class="input-field">
-              <i class="material-icons prefix">location_city</i>
-              <select id="IDTipo_de_inmueble" name="IDTipo_de_inmueble" required>
-                <option value="" disabled selected>Seleccione</option>
-                  {% for d in form.IDTipo_de_inmueble %}
-                    <!-- <option value="{{ d.id }}">{{ d.nombre }}</option> -->
-                    {{ d }}
-                  {% endfor %}
-              </select>
-              <label for="IDTipo_de_inmueble">Tipo de inmueble</label>
-            </div>
-          </div>
-
-          <div class="col m11">
-            <div class="input-field">
-              <i class="material-icons prefix">local_offer</i>
-              <select id="IDTipo_de_oferta" name="IDTipo_de_oferta" required>
-                <option value="" disabled selected>Seleccione</option>
-                  {% for d in form.IDTipo_de_oferta %}
-                    <!-- <option value="{{ d.id }}">{{ d.nombre }}</option> -->
-                    {{ d }}
-                  {% endfor %}
-               </select>
-               <label for="IDTipo_de_oferta">Tipo de oferta</label>
-            </div>
-          </div>
-
-
-          <!-- <div class="input-field col l3 col-m6">
-            <i class="material-icons prefix">monetization_on</i>
-            <input id="precio" type="number" name="precio" class="validate" required>
-            <label for="precio">Precio</label>
-          </div> -->
-
-          <div class="input-field" style="text-align:center;">
-            <button class="btn waves-effect waves-light deep-orange darken-4" type="submit">Enviar
-              <i class="material-icons right">check</i>
-            </button>
-          </div><br>
-
-        </form>
-      </div>
-
-
-    </div>
-
-    <div class="col s12 m7 l9">
+    <div class="col s12">
       {% for inmueble in inmuebles %}
         {% if inmueble.IDTipo_de_oferta.nombre == "Arrendamiento" %}
-          <div class="col s12 m4">
-            <div class="card medium">
-              <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="../../media/{{ inmueble.imagenppal }}">
-              </div>
-              <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">{{ inmueble.IDBarrio.nombre }}
-                  <i class="material-icons right">more_vert</i>
-                </span>
-                <p><a href="{% url 'detalle' inmueble.id %}">Más información</a></p>
-              </div>
-              <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">{{ inmueble.IDBarrio.nombre }}
-                  <i class="material-icons right">close</i>
-                </span>
-                <p>{{ inmueble.IDTipo_de_inmueble.nombre }}</p>
-                <p>Barrio: {{ inmueble.IDBarrio.nombre }}</p>
-                <p>Precio: $ {{ inmueble.precio|intcomma }}</p>
-              </div>
+        <div class="col s12 m4">
+          <div class="card medium">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="../../media/{{ inmueble.imagenppal }}">
+            </div>
+            <div class="card-content">
+              <span class="card-title activator grey-text text-darken-4"><b>{{ inmueble.IDBarrio.nombre }}</b>
+                <i class="material-icons right">more_vert</i>
+              </span>
+              <p><a class="deep-orange-text darken-4" href="{% url 'detalle' inmueble.id %}">Más información</a></p>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title grey-text text-darken-4">
+                <h4><b>{{ inmueble.IDBarrio.nombre }}</b></h4><br>
+                <i class="material-icons right">close</i>
+              </span>
+              <h6>{{ inmueble.IDTipo_de_inmueble.nombre }} en {{ inmueble.IDTipo_de_oferta.nombre}}</h6>
+              <h6><b>Barrio:</b> {{ inmueble.IDBarrio.nombre }}</h6>
+              <h6><b>Dirección:</b> {{ inmueble.direccion }}</h6>
+              <h6><b>Precio:</b> $ {{ inmueble.precio|intcomma }}</h6>
             </div>
           </div>
+        </div>
         {% endif %}
       {% endfor %}
     </div>

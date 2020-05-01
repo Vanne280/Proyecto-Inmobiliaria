@@ -6,13 +6,25 @@
 
 <div class="section">
   <h4>Listado de inmuebles</h4>
-  <!--Botón para agregar nuevo inmueble-->
 
+  <!--Botón para agregar nuevo inmueble-->
   <a class="btn-floating right btn-medium waves-effect waves-light red darken-4 " href="{% url 'crear' %}">
     <i class="material-icons">add_box</i>
-  </a>
+  </a><br>
 </div>
 
+<br>
+<form method="post"> {% csrf_token %}
+  Código:
+  <input type="text" name="codigo" style="width:60px"/>
+  Tipo de oferta:
+  <input type="text" name="tipo_oferta" style="width:110px"/>
+  Tipo de inmueble:
+  <input type="text" name="tipo_inmueble" style="width:110px"/>
+  Barrio:
+  <input type="text" name="barrio" style="width:110px"/>
+  <input type="submit" value="Filtrar">
+</form>
 <br>
 
 <table class="responsive-table">
@@ -67,14 +79,21 @@
     </tbody>
 </table>
 
-
-<!--Botón para agregar nuevo inmueble-->
-<!-- <div class="fixed-action-btn">
-  <a href="{% url 'crear' %}" class="btn-floating btn-large teal darken-2">
-    <i class="large material-icons">add</i>
-  </a>
-</div> -->
-
-
+<div class="row">
+  <div class="col s12">
+    <div class="center-align">
+      {% if inmueble.has_other_pages %}
+        <ul class="pagination">
+          {% if inmueble.has_previous %}
+          <li><a href="?page={{ inmueble.previous_page_number }}"><i class="material-icons">chevron_left</i></a></li>
+          {% endif %}
+          {% if inmueble.has_next %}
+          <li><a href="?page={{ inmueble.next_page_number }}"><i class="material-icons">chevron_right</i></a></li>
+         {% endif %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+</div>
 
 {% endblock %}

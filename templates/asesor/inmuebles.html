@@ -15,30 +15,18 @@
         <div class="card-content">
           <table class="highlight">
             {% for i in data.inmueble.all %}
-              <tr><td>Inmueble: {{ i.direccion }}</td></tr>
+              <tr><td><b>Inmueble:</b> {{ i.direccion }}</td></tr>
             {% endfor %}
 
             {% for u in data.usuario.all %}
-              <tr><td>Cliente: {{ u.first_name }} {{ u.last_name }}</td></tr>
+              <tr><td><b>Cliente:</b> {{ u.first_name }} {{ u.last_name }}</td></tr>
             {% endfor %}
 
             {% if data.tipo_cliente == True %}
-              <td>Tipo de cliente: Propietario</td>
+              <td><b>Tipo de cliente:</b> Propietario</td>
             {% else %}
-              <td>Tipo de cliente: Arrendatario</td>
+              <td><b>Tipo de cliente:</b> Arrendatario</td>
             {% endif %}
-
-            <tr>
-              <td>
-                <a href="{% url 'editar_gestion' data.id %}" class="btn-floating btn-small waves-effect waves-light red darken-4">
-                  <i class="small material-icons">create</i>
-                </a>
-                <a href="{% url 'eliminar_gestion' data.id %}" class="btn-floating btn-small waves-effect waves-light red darken-4">
-                  <i class="small material-icons">delete_forever</i>
-                </a>
-              </td>
-            </tr>
-
           </table>
         </div>
       </div>

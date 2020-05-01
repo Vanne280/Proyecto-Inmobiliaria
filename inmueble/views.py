@@ -7,6 +7,9 @@ from django.http import HttpResponseRedirect
 from .forms import InmuebleForm, ContactoForm
 from django.contrib import messages
 
+# Librería para paginación
+from django.core.paginator import Paginator
+
 # Librería para enviar correos
 from django.core.mail import EmailMessage
 
@@ -159,24 +162,32 @@ def Editar_inmueble(request, pk):
 
     return render(request, 'inmueble/inmueble_form.html', {'form':form})
 
-class InmuebleView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
-    """ Clase que lista los registros de los inmuebles """
+@permission_required('usuario.listar_inmueble')
+@login_required()
+def Listar_inmueble(request):
+    inmueble = Inmueble.objects.all()
 
-    permission_required = 'usuario.listar_inmueble'
-    model = Inmueble
-    context_object_name = 'inmueble'
 
-# class InmuebleUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-#     """ Clase que edita los inmuebles """
-#
-#     permission_required = 'usuario.editar_inmueble'
-#     model = Inmueble
-#     fields = ['direccion','IDBarrio','precio','IDTipo_de_inmueble','IDTipo_de_oferta',
-#                 'alcoba','baño','parqueadero','disponible','descripcion','imagenppal']
-#
-#     # Retorna a la página donde se listan los inmuebles
-#     def get_success_url(self):
-#         return reverse('listar')
+    if request.POST.get('codigo'):
+        codigo = (request.POST.get('codigo'))
+        inmueble = Inmueble.objects.filter(codigo__icontains = codigo)
+    elif request.POST.get('tipo_oferta'):
+        tipo_oferta = (request.POST.get('tipo_oferta'))
+        inmueble = Inmueble.objects.filter(IDTipo_de_oferta__nombre__icontains = tipo_oferta)
+    elif request.POST.get('tipo_inmueble'):
+        tipo_inmueble = (request.POST.get('tipo_inmueble'))
+        inmueble = Inmueble.objects.filter(IDTipo_de_inmueble__nombre__icontains = tipo_inmueble)
+    elif request.POST.get('barrio'):
+        barrio = (request.POST.get('barrio'))
+        inmueble = Inmueble.objects.filter(IDBarrio__nombre__icontains = barrio)
+
+    paginator = Paginator(inmueble, 7)
+    page = request.GET.get('page')
+    inmueble = paginator.get_page(page)
+
+
+    return render(request, 'inmueble/inmueble_list.html', {'inmueble':inmueble})
+
 
 class AlquilerList(ListView):
     """ Clase que muestra las ofertas de inmuebles en arrendamiento """
@@ -229,28 +240,6 @@ class GestionList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     template_name = 'asesor/inmuebles.html'
     model = Propietarios_arrendatarios
     context_object_name = 'gestion'
-
-class GestionUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-    """ Clase que edita los propietarios y sus inmuebles """
-
-    permission_required = 'usuario.editar_propiedad_cliente'
-    model = Propietarios_arrendatarios
-    fields = ['usuario','inmueble','tipo_cliente']
-
-    # Retorna a la página donde se listan los propietarios y sus inmuebles
-    def get_success_url(self):
-        return reverse('listado')
-
-class GestionDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
-    """ Clase que eliminar los propietarios y sus inmuebles """
-
-    permission_required = 'usuario.eliminar_propiedad_cliente'
-    model = Propietarios_arrendatarios
-    context_object_name = 'gestion'
-
-    # Retorna a la página donde se listan los propietarios y sus inmuebles
-    def get_success_url(self):
-        return reverse('listado')
 
 class MisinmueblesList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     """ Clase que lista los inmuebles registrados en el perfil de los clientes """

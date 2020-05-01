@@ -34,13 +34,13 @@ urlpatterns = [
     path('crear/', views.Guardar_inmueble, name='crear'),
 
     # Ruta de la página para listar los inmuebles
-    path('listar/', views.InmuebleView.as_view(), name='listar'),
+    path('listar/', views.Listar_inmueble, name='listar'),
 
     # Ruta de la función de guardar inmuebles
     # path('guardar_inmueble/', views.Guardar_inmueble, name='guardar_inmueble'),
 
     # Ruta de la página para editar los inmuebles
-    path('<int:pk>/', views.Editar_inmueble, name='editar'),    
+    path('<int:pk>/', views.Editar_inmueble, name='editar'),
 
     # Ruta de la página que muestra información de cada inmueble (Detail)
     path('detalle/<int:pk>/', views.InmuebleDetail.as_view(), name='detalle'),
@@ -50,12 +50,6 @@ urlpatterns = [
 
     # Ruta de la página que muestra los propietarios y sus inmuebles
     path('asesor/inmuebles/', views.GestionList.as_view(), name='listar_gestion'),
-
-    # Ruta de la página que edita los propietarios y sus inmuebles
-    path('<int:pk>/', views.GestionUpdate.as_view(), name='editar_gestion'),
-
-    # Ruta de la página que elimina los propietarios y sus inmuebles
-    path('eliminar/<int:pk>/', views.GestionDelete.as_view(), name='eliminar_gestion'),
 
     # Ruta de la página mis inmuebles
     path('cliente/mis_inmuebles/', views.MisinmueblesList.as_view(), name='mis_inmuebles'),
