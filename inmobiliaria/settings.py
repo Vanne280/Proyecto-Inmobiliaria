@@ -25,7 +25,7 @@ SECRET_KEY = 'y2brg9wd)uqd$wcl@&^ov(qpy4r_ch0c@5)15u5miiu$6$vxi0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -80,7 +81,6 @@ WSGI_APPLICATION = 'inmobiliaria.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'inmobiliaria',
         'HOST': 'mongodb+srv://admin:Innova2020@cluster0-s99di.mongodb.net/test?retryWrites=true&w=majority',
         'USER': 'admin',
         'PASSWORD': 'Innova2020',
@@ -133,6 +133,8 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR), 'static')
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Envío de correos
 EMAIL_USE_SSL = True
