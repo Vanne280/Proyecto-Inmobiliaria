@@ -81,6 +81,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'inmobiliaria',
+        'HOST': 'mongodb+srv://admin:Innova2020@cluster0-s99di.mongodb.net/test?retryWrites=true&w=majority',
+        'USER': 'admin',
+        'PASSWORD': 'Innova2020',
     }
 }
 
