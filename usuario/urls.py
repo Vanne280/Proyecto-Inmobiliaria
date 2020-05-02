@@ -13,7 +13,4 @@ urlpatterns = [
     # Ruta de la página que muestra la cuenta activada
     path('activate/<str:uidb64>/<str:token>/', views.ActivateUser, name='activate'),
 
-    # Ruta de la página que lista los usuarios
-    path('listar/', views.UserList.as_view(), name="listar"),
-
 ]

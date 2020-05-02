@@ -11,6 +11,7 @@ class InmuebleForm(forms.ModelForm):
         widgets = {
             'codigo': forms.TextInput(attrs={'class': 'validate', 'required': True}),
             'direccion': forms.TextInput(attrs={'class': 'validate', 'required': True}),
+            'IDBarrio': forms.Select(attrs={'class': 'validate', 'required': True}),
             'precio':forms.NumberInput(attrs={'class': 'validate', 'required': True}),
             'alcoba':forms.NumberInput(attrs={'class': 'validate', 'required': True}),
             'baño':forms.NumberInput(attrs={'class': 'validate', 'required': True}),

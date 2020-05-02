@@ -75,8 +75,3 @@ def ActivateUser(request, uidb64, token, backend='django.contrib.auth.backends.M
 # Función que renderiza el template account_activation.html
 def templateEmailSent(request, username):
     return render(request, 'registration/account_activation.html', {'username': username})
-
-class UserList(ListView):
-    """Clase que listar los usuarios registrados"""
-
-    model = User

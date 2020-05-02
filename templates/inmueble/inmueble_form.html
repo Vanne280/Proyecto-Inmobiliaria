@@ -29,7 +29,7 @@
 
         <div class="input-field col l6 col-m6">
           <i class="material-icons prefix">location_city</i>
-          <select id="IDBarrio" name="IDBarrio" required>
+          <select id="IDBarrio" name="IDBarrio">
             <option value="" disabled selected>Seleccione un barrio</option>
               {% for d in form.IDBarrio %}
                  <!-- <option value="{{ d.id }}">{{ d.nombre }}</option> -->
@@ -175,13 +175,13 @@
 {% if form.errors %}
     {% for field in form %}
         {% for error in field.errors %}
-            <div class="alert alert-danger">
+            <div class="card-panel brown lighten-3">
                 <strong>{{ error|escape }}</strong>
             </div>
         {% endfor %}
     {% endfor %}
     {% for error in form.non_field_errors %}
-        <div class="alert alert-danger">
+        <div class="card-panel brown lighten-3">
             <strong>{{ error|escape }}</strong>
         </div>
     {% endfor %}
