@@ -31,7 +31,7 @@
           <select id="inmueble" name="inmueble" multiple>
             <option value="" disabled selected>Seleccione uno o varios inmuebles</option>
               {% for d in inmueble %}
-                <option value="{{ d.id }}">{{ d.direccion }}</option>
+                <option value="{{ d.id }}">{{ d.codigo }}</option>
               {% endfor %}
           </select>
           <label for="inmueble">Inmueble(s)</label>
