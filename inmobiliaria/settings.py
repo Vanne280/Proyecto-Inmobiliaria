@@ -80,10 +80,8 @@ WSGI_APPLICATION = 'inmobiliaria.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'HOST': 'mongodb+srv://admin:Innova2020@cluster0-s99di.mongodb.net/test?retryWrites=true&w=majority',
-        'USER': 'admin',
-        'PASSWORD': 'Innova2020',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
