@@ -138,7 +138,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 EMAIL_USE_SSL = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'registroinmobiliariainnova@gmail.com'
-EMAIL_HOST_PASSWORD = 'Innova2020'
+EMAIL_HOST_PASSWORD = 'Innovainm2020'
 EMAIL_PORT = 465
 
 # Carga de archivos
