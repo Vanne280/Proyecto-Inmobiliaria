@@ -1,4 +1,4 @@
-from djongo import models
+from django.db import models
 from django.contrib.auth.models import User
 
 
@@ -97,3 +97,4 @@ class cita(models.Model):
     email = models.EmailField(max_length=254, null=True)
     asunto = models.CharField(max_length=30, null=True)
     mensaje = models.CharField(max_length=254, null=True)
+    mensajedos = models.CharField(max_length=254, null=True)
