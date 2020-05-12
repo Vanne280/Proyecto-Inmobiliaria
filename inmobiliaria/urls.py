@@ -56,7 +56,7 @@ urlpatterns = [
     # Ruta de la página que muestra los mensajes al asesor
     path('asesor/mis_citas/', views.CitaList.as_view(), name='mis_citas'),
 
-    # Ruta de la página para eliminar la cita 
+    # Ruta de la página para eliminar la cita
     path('eliminar/<int:pk>/', views.CitaDelete.as_view(), name='eliminar_cita'),
 
     # Ruta del inicio de sesión
@@ -68,3 +68,4 @@ urlpatterns = [
 
 # Concatenación para buscar archivos
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
