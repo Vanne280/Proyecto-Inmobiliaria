@@ -221,7 +221,7 @@ class GestionCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
     # Retorna a la página donde se listan los inmuebles y sus propietarios
     def get_success_url(self):
-        return reverse('listado')
+        return reverse('listar_gestion')
 
     # Muestra los registros guardados de las tablas (User, Inmuebles) en los campos de selección
     def get_context_data(self,**kwargs):
